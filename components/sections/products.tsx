@@ -42,9 +42,9 @@ const ProductItem: FC<{
   description?: string;
 }> = (props) => {
   return (
-    <div className="group rounded-lg bg-white drop-shadow-2xl p-3 w-[250px] relative overflow-hidden">
+    <div className="group  bg-white drop-shadow-2xl p-3 w-[250px] relative overflow-hidden">
       <div className="absolute transition-all opacity-0 -top-[100%] bg-black/60 flex flex-col p-10 text-center justify-center items-center left-0 w-full h-full group-hover:opacity-100 group-hover:top-0">
-        <p className="text-white opacity-0 transition delay-200 group-hover:opacity-50">
+        <p className="text-white opacity-0 transition delay-200 group-hover:opacity-100">
           {props.description}
         </p>
         <Button

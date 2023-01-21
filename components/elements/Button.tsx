@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode, CSSProperties, FC } from "react";
 
 type ColorsTypes = "primary" | "secondary";
