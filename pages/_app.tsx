@@ -16,16 +16,14 @@ const fontFamily = Titillium_Web({
   weight: ["600", "700"],
 });
 
-function MyApp({ Component, pageProps }: AppLayoutProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   // setup layout
-  const Layout =
-    Component.layout || ((children: ReactElement) => <>{children}</>);
+  // const Layout =
+  //   Component.layout || ((children: ReactElement) => <>{children}</>);
 
   return (
     <div className={fontFamily.className}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </div>
   );
 }

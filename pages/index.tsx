@@ -9,22 +9,26 @@ import Services from "../components/sections/services";
 import MainLayout from "../layouts/main-layout";
 import PageWithLayoutType from "../layouts/page-with-layout";
 
-const Home: PageWithLayoutType = () => {
+const Home: NextPage = (props) => {
   return (
     <div>
       <Head>
         <title>Home Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Banner />
-      <AboutUs />
-      <Products />
-      <Services />
-      <Contact />
+      <MainLayout>
+        <>
+          <Banner />
+          <AboutUs />
+          <Products />
+          <Services />
+          <Contact />
+        </>
+      </MainLayout>
     </div>
   );
 };
 
-Home.layout = MainLayout;
+// Home.layout = MainLayout;
 
 export default Home;
