@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  color: #111;
+  background-color: #fefce8;
+}
+
+a {
+  transition: color 0.4s ease;
+}
+
+a:hover {
+  color: #dc2626;
+}
