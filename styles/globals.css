@@ -14,3 +14,8 @@ a {
 a:hover {
   color: #dc2626;
 }
+
+input:focus,
+textarea:focus {
+  outline: none;
+}

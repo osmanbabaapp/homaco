@@ -2,92 +2,40 @@ import { FC } from "react";
 import Container from "../container";
 import Button from "../elements/Button";
 import { BiMapAlt, BiPhoneCall } from "react-icons/bi";
+import Map from "../map";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
+const location = {
+  address: "1600 Amphitheatre Parkway, Mountain View, california.",
+  lat: 37.42216,
+  lng: -122.08427,
+};
 const Contact: FC<{}> = () => {
   return (
-    <div className="py-10">
+    <div className="py-10 bg-slate-800 text-white">
       <Container>
         <h2 className="text-4xl font-bold">Contact Us</h2>
         <p>Our friendly team would love to hear from you!</p>
-        <div className="grid grid-cols-2 gap-4 mt-10">
-          <div className="col-span-2 md:col-span-1 border-t-[1px] pt-10">
-            <form>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="col-span-1">
-                  <div className="mb-6">
-                    <label
-                      htmlFor="firstName"
-                      className="block mb-2 text-sm font-medium text-gray-900 "
-                    >
-                      First Name
-                    </label>
-                    <input
-                      type="firstName"
-                      id="firstName"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                      placeholder="John"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="col-span-1">
-                  <div className="mb-6">
-                    <label
-                      htmlFor="lastName"
-                      className="block mb-2 text-sm font-medium text-gray-900 "
-                    >
-                      Last Name
-                    </label>
-                    <input
-                      type="lastName"
-                      id="lastName"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                      placeholder="John"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="col-span-2">
-                  <div className="mb-6">
-                    <label
-                      htmlFor="email"
-                      className="block mb-2 text-sm font-medium text-gray-900 "
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                      placeholder="name@example.com"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="col-span-2">
-                  <div className="mb-6">
-                    <label
-                      htmlFor="message"
-                      className="block mb-2 text-sm font-medium text-gray-900 "
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                      placeholder="name@example.com"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <Button className="w-full text-xl" type="fill">
-                Submit
-              </Button>
-            </form>
+        <div className="grid grid-cols-3 gap-4 mt-10">
+          <div className="order-1 sm:order-1 col-span-3 md:col-span-1">
+            <div className="w-full">
+              <iframe
+                width="100%"
+                height="400"
+                frameBorder="0"
+                scrolling="no"
+                marginHeight={0}
+                marginWidth={0}
+                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Address+(Homaco%20Company)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+              >
+                <a href="https://www.maps.ie/distance-area-calculator.html">
+                  area maps
+                </a>
+              </iframe>
+            </div>
           </div>
-          <div className="col-span-2 md:col-span-1 flex justify-center flex-col">
-            <h4 className="text-2xl text-center mb-10">You can also</h4>
+          <div className="order-3 sm:order-2 col-span-3 md:col-span-1 text-center flex justify-center flex-col">
+            {/* <h4 className="text-2xl text-center mb-10">You can also</h4>
             <div className="w-full grid grid-cols-4 gap-5">
               <div className="col-span-2 md:col-span-2  p-2 rounded-md transition-colors border-[1px] duration-150 cursor-pointer hover:bg-white">
                 <a
@@ -113,7 +61,122 @@ const Contact: FC<{}> = () => {
                   <h4>Call Us</h4>
                 </a>
               </div>
+            </div> */}
+            <h2 className="text-2xl font-bold text-red-600">Homaco Company</h2>
+            <p>Some description if you want</p>
+            <ul className="flex flex-row gap-3 justify-center my-2">
+              <li>
+                <a href="#">
+                  <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-red-600 hover:text-white hover:bg-red-700">
+                    <FaFacebook />
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-red-600 hover:text-white hover:bg-red-700">
+                    <FaTwitter />
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-red-600 hover:text-white hover:bg-red-700">
+                    <FaInstagram />
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <hr className="my-5" />
+            <div className="text-center">
+              <h6>
+                {"\u00A9\uFE0F"} {new Date().getFullYear()} Made by{" "}
+                <a
+                  href="https://osmanbaba.net"
+                  className="text-red-600"
+                  target={"_blank"}
+                  rel=""
+                >
+                  Osmanbaba
+                </a>
+              </h6>
             </div>
+          </div>
+          <div className="order-2 sm:order-3 col-span-3 md:col-span-1">
+            <form>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="col-span-1">
+                  <div className="mb-6">
+                    <label
+                      htmlFor="firstName"
+                      className="block mb-2 text-sm font-medium text-white "
+                    >
+                      First Name
+                    </label>
+                    <input
+                      type="firstName"
+                      id="firstName"
+                      className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-2.5 "
+                      placeholder="John"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-span-1">
+                  <div className="mb-6">
+                    <label
+                      htmlFor="lastName"
+                      className="block mb-2 text-sm font-medium text-white "
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      type="lastName"
+                      id="lastName"
+                      className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-2.5 "
+                      placeholder="John"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-span-2">
+                  <div className="mb-6">
+                    <label
+                      htmlFor="email"
+                      className="block mb-2 text-sm font-medium text-white "
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-2.5 "
+                      placeholder="name@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-span-2">
+                  <div className="mb-6">
+                    <label
+                      htmlFor="message"
+                      className="block mb-2 text-sm font-medium text-white "
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-2.5 "
+                      placeholder="name@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <Button className="w-full border-none text-lg" type="fill">
+                Submit
+              </Button>
+            </form>
           </div>
         </div>
       </Container>
