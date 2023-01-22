@@ -16,8 +16,12 @@ const AboutUs: FC = () => {
             </h2>
             <p className="text-slate-500 text-lg">More than 37 countries</p>
             <div className="space-x-2 py-5">
-              <Button className="shadow-xl text-xl">Become a client</Button>
-              <Button className="shadow-xl text-xl">Become a client</Button>
+              <Button className="text-sm shadow-xl md:text-xl">
+                Become a client
+              </Button>
+              <Button className="text-sm shadow-xl md:text-xl">
+                Become a client
+              </Button>
             </div>
           </div>
           <div className="col-span-2 md:col-span-1">

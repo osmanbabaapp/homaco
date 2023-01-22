@@ -1,9 +1,11 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useContext } from "react";
 import Image from "next/image";
 import Container from "../../components/container";
 import Link from "next/link";
 import Button from "../../components/elements/Button";
 import NavSwitch from "../../components/nav-switch";
+import { MobileNavContext } from "../../context/mobile-nav-context";
+import MobileNavbar from "./mobile-navbar";
 
 const LinkItem: FC<{
   href: string;
@@ -17,6 +19,8 @@ const LinkItem: FC<{
 };
 
 const Navbar = () => {
+  const { open, toggleNavbar } = useContext(MobileNavContext);
+
   return (
     <nav className="border-b-2 drop-shadow-sm">
       <Container>
@@ -47,7 +51,7 @@ const Navbar = () => {
             <Button color="primary">Hello</Button>
           </div>
           <div className="block sm:hidden">
-            <NavSwitch />
+            <NavSwitch open={open} toggleNavbar={toggleNavbar} />
           </div>
         </header>
       </Container>

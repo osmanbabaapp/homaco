@@ -4,6 +4,7 @@ import PageWithLayoutType from "../layouts/page-with-layout";
 import { ReactElement } from "react";
 
 import { Titillium_Web } from "@next/font/google";
+import MobileNavContextProvider from "../context/mobile-nav-context";
 
 // layout types
 type AppLayoutProps = AppProps & {
@@ -23,7 +24,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <div className={fontFamily.className}>
-      <Component {...pageProps} />
+      <MobileNavContextProvider>
+        <Component {...pageProps} />
+      </MobileNavContextProvider>
     </div>
   );
 }

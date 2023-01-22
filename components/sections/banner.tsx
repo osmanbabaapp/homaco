@@ -101,7 +101,7 @@ const Banner = () => {
                         initial="hidden"
                         animate="show"
                       >
-                        <h2 className="text-6xl font-bold text-white mb-10">
+                        <h2 className="text-4xl md:text-6xl font-bold text-white mb-10">
                           {item.title}
                         </h2>
                       </motion.div>

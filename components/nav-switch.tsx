@@ -1,31 +1,26 @@
 import { FC, useCallback, useState } from "react";
+import { MNavbType } from "../context/mobile-nav-context";
 
-const NavSwitch: FC = () => {
-  const [active, setActive] = useState<boolean>(false);
-
-  const navSwitch = useCallback(() => {
-    setActive((prev) => !prev);
-  }, [active]);
-
+const NavSwitch: FC<MNavbType> = ({ open, toggleNavbar }) => {
   const firstSpanClassNames = `${
-    active
+    open
       ? "translate-x-0 translate-y-0 -rotate-45"
       : "-translate-x-full -translate-y-[10px]"
   }`;
   const secondSpanClassNames = `${
-    active
+    open
       ? "-translate-x-1/2 -translate-y-1/2 rotate-45"
       : "-translate-x-1/2 -translate-y-1/2"
   }`;
   const thirdSpanClassNames = `${
-    active
+    open
       ? "-translate-x-full translate-y-0 -rotate-45"
       : "translate-x-[0px] translate-y-[10px]"
   }`;
   return (
     <div
-      onClick={navSwitch}
-      className="relative cursor-pointer w-[40px] h-[40px] shadow-lg shadow-black/30 rounded-sm border-2 border-black"
+      onClick={toggleNavbar}
+      className="relative cursor-pointer w-[40px] h-[40px] shadow-lg shadow-black/30 rounded-sm border-2 border-black z-50"
     >
       <div className="w-[80%] h-[80%] m-[10%] absolute">
         <span
