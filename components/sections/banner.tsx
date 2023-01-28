@@ -88,11 +88,11 @@ const Banner = () => {
                 style={{
                   backgroundImage: "url('" + item.image + "')",
                 }}
-                className={`relative bg-no-repeat bg-cover h-[90vh] after:content-[''] after:absolute after:inset-0 after:bg-black/70 after:-z-1`}
+                className={`relative bg-no-repeat bg-cover h-[100vh] after:content-[''] after:absolute after:inset-0 after:bg-black/70 after:-z-1`}
               >
                 <Container>
-                  <div className="grid grid-cols-2 relative z-10 items-center text-center h-[90vh]">
-                    <span className="absolute flex items-center justify-center top-10 left-2 w-8 h-8 bg-red-600 text-white">
+                  <div className="grid grid-cols-2 relative z-10 items-center h-[100vh]">
+                    <span className="absolute flex items-center justify-center top-24 left-2 w-8 h-8 bg-red-600 text-white">
                       {index + 1}
                     </span>
                     <div className="col-span-2">
@@ -101,7 +101,7 @@ const Banner = () => {
                         initial="hidden"
                         animate="show"
                       >
-                        <h2 className="text-4xl md:text-6xl font-bold text-white mb-10">
+                        <h2 className="text-4xl md:text-6xl text-center font-bold text-white mb-10">
                           {item.title}
                         </h2>
                       </motion.div>
@@ -110,13 +110,13 @@ const Banner = () => {
                         initial={"hidden"}
                         animate={"show"}
                       >
-                        <Button
+                        {/* <Button
                           color="primary"
                           className="drop-shadow-lg"
                           style={{ background: "#fff", border: 0 }}
                         >
                           Take A Look
-                        </Button>
+                        </Button> */}
                       </motion.div>
                     </div>
                   </div>

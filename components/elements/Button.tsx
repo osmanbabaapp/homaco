@@ -26,10 +26,10 @@ const styles = {
   secondary: {
     ghost: {
       classNames:
-        "text-yellow-600 border-yellow-600 hover:text-yellow-600 hover:border-yellow-700",
+        "text-yellow-400 border-yellow-400 hover:text-yellow-400 hover:border-yellow-500",
     },
     fill: {
-      classNames: "text-white bg-yellow-600 border-0 hover:bg-yellow-700",
+      classNames: "text-white bg-yellow-400 border-0 hover:bg-yellow-500",
     },
   },
 };

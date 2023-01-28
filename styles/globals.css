@@ -4,7 +4,7 @@
 
 body {
   color: #111;
-  background-color: #fefce8;
+  /* background-color: #fefce8; */
 }
 
 a {
@@ -12,7 +12,7 @@ a {
 }
 
 a:hover {
-  color: #dc2626;
+  color: #c99d23;
 }
 
 input:focus,

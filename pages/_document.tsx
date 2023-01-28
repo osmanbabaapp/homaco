@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en-us" className="text-white">
+    <Html lang="ar" dir="rtl" className="text-white">
       <Head />
       <body className="h-full overflow-x-hidden">
         <Main />

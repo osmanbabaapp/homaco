@@ -10,52 +10,52 @@ import "swiper/css";
 const data = [
   {
     id: 0,
-    image:
-      "https://images.unsplash.com/photo-1624880403473-4244deee045a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-    title: "Machine For Industry",
-    description: "Some description about this machine etc ...",
+    image: "/imgs/prod2.png",
+    title: "خلاط بودرة",
+    description:
+      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
   {
     id: 1,
-    image:
-      "https://images.unsplash.com/photo-1624880403473-4244deee045a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-    title: "Machine For Industry",
-    description: "Some description about this machine etc ...",
+    image: "/imgs/prod3.png",
+    title: "آلة طحن السمسم ميني",
+    description:
+      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
   {
     id: 2,
-    image:
-      "https://images.unsplash.com/photo-1606337321936-02d1b1a4d5ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-    title: "Machine For Industry",
-    description: "Some description about this machine etc ...",
+    image: "/imgs/prod.png",
+    title: "آلة تعبئة السوائل",
+    description:
+      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
   {
     id: 3,
-    image:
-      "https://images.unsplash.com/photo-1611117775350-ac3950990985?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
-    title: "Machine For Industry",
-    description: "Some description about this machine etc ...",
+    image: "/imgs/prod.png",
+    title: "آلة تعبئة السوائل",
+    description:
+      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
   {
     id: 4,
-    image:
-      "https://images.unsplash.com/photo-1611117775350-ac3950990985?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
-    title: "Machine For Industry",
-    description: "Some description about this machine etc ...",
+    image: "/imgs/prod.png",
+    title: "آلة تعبئة السوائل",
+    description:
+      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
   {
     id: 5,
-    image:
-      "https://images.unsplash.com/photo-1611117775350-ac3950990985?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
-    title: "Machine For Industry",
-    description: "Some description about this machine etc ...",
+    image: "/imgs/prod.png",
+    title: "آلة تعبئة السوائل",
+    description:
+      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
   {
     id: 6,
-    image:
-      "https://images.unsplash.com/photo-1611117775350-ac3950990985?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
-    title: "Machine For Industry",
-    description: "Some description about this machine etc ...",
+    image: "/imgs/prod.png",
+    title: "آلة تعبئة السوائل",
+    description:
+      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
 ];
 
@@ -66,7 +66,7 @@ const ProductItem: FC<{
   description?: string;
 }> = (props) => {
   return (
-    <div className="group  bg-white drop-shadow-lg p-3 w-[250px] relative overflow-hidden">
+    <div className="group  drop-shadow-lg p-3 w-[300px] relative overflow-hidden">
       <div className="absolute transition-all opacity-0 -top-[100%] bg-black/60 flex flex-col p-10 text-center justify-center items-center left-0 w-full h-full group-hover:opacity-100 group-hover:top-0">
         <p className="text-white opacity-0 transition delay-200 group-hover:opacity-100">
           {props.description}
@@ -76,17 +76,18 @@ const ProductItem: FC<{
           color="primary"
           className="border-red-600 opacity-0 transition delay-200 group-hover:opacity-100"
         >
-          Show Details <HiArrowNarrowRight style={{ display: "inline" }} />
+          التفاصيل <HiArrowNarrowRight style={{ display: "inline" }} />
         </Button>
       </div>
-      <h3 className="font-bold">{props.title}</h3>
       <Image
         src={props.image}
         alt={props.title}
         width={250}
         height={150}
-        className="object-cover h-[250px]"
+        className="object-cover h-[300px]"
       />
+      <h3 className="font-bold text-xl">{props.title}</h3>
+      <p className="font-bold text-md line-clamp-2">{props.description}</p>
     </div>
   );
 };
@@ -95,11 +96,16 @@ const Products: FC<{}> = () => {
   return (
     <div className="py-10">
       <Container>
-        <h2 className="font-bold text-4xl mb-10">Products</h2>
+        {/* <h2 className="font-bold text-4xl mb-10">Products</h2> */}
+        <p className="font-bold text-2xl text-center w-[80%] m-auto">
+          شركة هوماكو للصناعات الهندسية وخطوط الانتاج نقوم بتصنيع الآت طحن
+          السمسم و انتاج الطحينة والآت التعبئة الكيميائية والطبية وخطوط انتاج
+          المارشميلو
+        </p>
         <div>
           <Swiper spaceBetween={20} className="py-10 px-5" slidesPerView="auto">
             {data.map((item) => (
-              <SwiperSlide className="w-[250px]" key={item.id}>
+              <SwiperSlide className="w-[300px]" key={item.id}>
                 <ProductItem {...item} />
               </SwiperSlide>
             ))}
