@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <nav className="border-b-[1px] drop-shadow-sm fixed w-full z-50 text-primYellow">
       <Container>
-        <header className="flex justify-between items-center flex-row-reverse">
+        <header className="flex justify-between items-center">
           <div>
             <Image
               alt="Srio Logo"
@@ -35,6 +35,22 @@ const Navbar = () => {
             />
           </div>
           <div className="flex gap-5">
+            <div className="hidden sm:flex space-x-10 items-center">
+              <ul className="flex gap-5">
+                <li>
+                  <LinkItem href="/" text="الرئيسية" />
+                </li>
+                <li>
+                  <LinkItem href="/" text="من نحن" />
+                </li>
+                <li>
+                  <LinkItem href="/" text="منتجاتنا" />
+                </li>
+                <li>
+                  <LinkItem href="/" text="اتصل بنا" />
+                </li>
+              </ul>
+            </div>
             <div className="flex gap-2">
               <a
                 href="#"
@@ -60,22 +76,6 @@ const Navbar = () => {
               >
                 <FaInstagram />
               </a>
-            </div>
-            <div className="hidden sm:flex space-x-10 items-center">
-              <ul className="flex gap-5 flex-row-reverse">
-                <li>
-                  <LinkItem href="/" text="الرئيسية" />
-                </li>
-                <li>
-                  <LinkItem href="/" text="من نحن" />
-                </li>
-                <li>
-                  <LinkItem href="/" text="منتجاتنا" />
-                </li>
-                <li>
-                  <LinkItem href="/" text="اتصل بنا" />
-                </li>
-              </ul>
             </div>
           </div>
           <div className="block sm:hidden">
