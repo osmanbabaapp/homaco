@@ -11,6 +11,8 @@ import Services from "../components/sections/services";
 import MainLayout from "../layouts/main-layout";
 import PageWithLayoutType from "../layouts/page-with-layout";
 
+import "animate.css/animate.min.css";
+
 const Home: NextPage = (props) => {
   return (
     <div>

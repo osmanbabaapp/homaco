@@ -5,6 +5,7 @@ import Container from "../container";
 import Button from "../elements/Button";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Contact: FC<{}> = () => {
   return (
@@ -15,70 +16,190 @@ const Contact: FC<{}> = () => {
             شركاؤنا في نجاح العلامة التجارية لإنتاج اجود انواع الطحينية
           </h2>
           <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 items-center gap-2">
-            <div>
-              <Image
-                src={"/imgs/marka.png"}
-                alt="marka"
-                width={100}
-                height={100}
-              />
-            </div>
-            <div>
-              <Image
-                src={"/imgs/marka.png"}
-                alt="marka"
-                width={100}
-                height={100}
-              />
-            </div>
-            <div>
-              <Image
-                src={"/imgs/marka.png"}
-                alt="marka"
-                width={100}
-                height={100}
-              />
-            </div>
-            <div>
-              <Image
-                src={"/imgs/marka.png"}
-                alt="marka"
-                width={100}
-                height={100}
-              />
-            </div>
-            <div>
-              <Image
-                src={"/imgs/marka.png"}
-                alt="marka"
-                width={100}
-                height={100}
-              />
-            </div>
-            <div>
-              <Image
-                src={"/imgs/marka.png"}
-                alt="marka"
-                width={100}
-                height={100}
-              />
-            </div>
-            <div>
-              <Image
-                src={"/imgs/marka.png"}
-                alt="marka"
-                width={100}
-                height={100}
-              />
-            </div>
-            <div>
-              <Image
-                src={"/imgs/marka.png"}
-                alt="marka"
-                width={100}
-                height={100}
-              />
-            </div>
+            <motion.div
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 0,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                scale: 0.7,
+                opacity: 0,
+              }}
+            >
+              <div>
+                <Image
+                  src={"/imgs/marka.png"}
+                  alt="marka"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 0.2,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                scale: 0.7,
+                opacity: 0,
+              }}
+            >
+              <div>
+                <Image
+                  src={"/imgs/marka.png"}
+                  alt="marka"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 0.4,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                scale: 0.7,
+                opacity: 0,
+              }}
+            >
+              <div>
+                <Image
+                  src={"/imgs/marka.png"}
+                  alt="marka"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 0.6,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                scale: 0.7,
+                opacity: 0,
+              }}
+            >
+              <div>
+                <Image
+                  src={"/imgs/marka.png"}
+                  alt="marka"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 0.8,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                scale: 0.7,
+                opacity: 0,
+              }}
+            >
+              <div>
+                <Image
+                  src={"/imgs/marka.png"}
+                  alt="marka"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 1,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                scale: 0.7,
+                opacity: 0,
+              }}
+            >
+              <div>
+                <Image
+                  src={"/imgs/marka.png"}
+                  alt="marka"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 1.2,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                scale: 0.7,
+                opacity: 0,
+              }}
+            >
+              <div>
+                <Image
+                  src={"/imgs/marka.png"}
+                  alt="marka"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 1.4,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                scale: 0.7,
+                opacity: 0,
+              }}
+            >
+              <div>
+                <Image
+                  src={"/imgs/marka.png"}
+                  alt="marka"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </motion.div>
           </div>
           <div className="grid grid-cols-3 gap-4 mt-10">
             <div className="order-3 xs:order-1 col-span-3 md:col-span-1">
@@ -158,56 +279,136 @@ const Contact: FC<{}> = () => {
               <form>
                 <div className="grid grid-cols-2 gap-2">
                   <div className="col-span-1">
-                    <div className="mb-6">
-                      <input
-                        type="firstName"
-                        id="firstName"
-                        className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
-                        placeholder="الاسم"
-                        required
-                      />
-                    </div>
+                    <motion.div
+                      style={{ position: "relative" }}
+                      whileInView={{
+                        opacity: 1,
+                        top: 0,
+                        transition: {
+                          delay: 0,
+                          duration: 0.8,
+                        },
+                      }}
+                      initial={{
+                        top: -10,
+                        opacity: 0,
+                      }}
+                    >
+                      <div className="mb-6">
+                        <input
+                          type="firstName"
+                          id="firstName"
+                          className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
+                          placeholder="الاسم"
+                          required
+                        />
+                      </div>
+                    </motion.div>
                   </div>
                   <div className="col-span-1">
-                    <div className="mb-6">
-                      <input
-                        type="lastName"
-                        id="lastName"
-                        className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
-                        placeholder="الدولة"
-                        required
-                      />
-                    </div>
+                    <motion.div
+                      style={{ position: "relative" }}
+                      whileInView={{
+                        opacity: 1,
+                        top: 0,
+                        transition: {
+                          delay: 0.4,
+                          duration: 0.8,
+                        },
+                      }}
+                      initial={{
+                        top: -10,
+                        opacity: 0,
+                      }}
+                    >
+                      <div className="mb-6">
+                        <input
+                          type="lastName"
+                          id="lastName"
+                          className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
+                          placeholder="الدولة"
+                          required
+                        />
+                      </div>
+                    </motion.div>
                   </div>
                   <div className="col-span-2">
-                    <div className="mb-6">
-                      <input
-                        type="email"
-                        id="email"
-                        className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
-                        placeholder="البريد الالكتروني"
-                        required
-                      />
-                    </div>
+                    <motion.div
+                      style={{ position: "relative" }}
+                      whileInView={{
+                        opacity: 1,
+                        top: 0,
+                        transition: {
+                          delay: 0.8,
+                          duration: 0.8,
+                        },
+                      }}
+                      initial={{
+                        top: -10,
+                        opacity: 0,
+                      }}
+                    >
+                      <div className="mb-6">
+                        <input
+                          type="email"
+                          id="email"
+                          className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
+                          placeholder="البريد الالكتروني"
+                          required
+                        />
+                      </div>
+                    </motion.div>
                   </div>
                   <div className="col-span-2">
-                    <div className="mb-6">
-                      <textarea
-                        id="message"
-                        className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
-                        placeholder="الرسالة"
-                        required
-                      />
-                    </div>
+                    <motion.div
+                      style={{ position: "relative" }}
+                      whileInView={{
+                        opacity: 1,
+                        top: 0,
+                        transition: {
+                          delay: 1.2,
+                          duration: 0.8,
+                        },
+                      }}
+                      initial={{
+                        top: -10,
+                        opacity: 0,
+                      }}
+                    >
+                      <div className="mb-6">
+                        <textarea
+                          id="message"
+                          className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
+                          placeholder="الرسالة"
+                          required
+                        />
+                      </div>
+                    </motion.div>
                   </div>
                 </div>
-                <Button
-                  className="w-[100px] block m-auto border-none text-md"
-                  color="secondary"
-                  type="fill"
+                <motion.div
+                  style={{ position: "relative" }}
+                  whileInView={{
+                    opacity: 1,
+                    top: 0,
+                    transition: {
+                      delay: 1.6,
+                      duration: 0.8,
+                    },
+                  }}
+                  initial={{
+                    top: -10,
+                    opacity: 0,
+                  }}
                 >
-                  إرسال
-                </Button>
+                  <Button
+                    className="w-[100px] block m-auto border-none text-md"
+                    color="secondary"
+                    type="fill"
+                  >
+                    إرسال
+                  </Button>
+                </motion.div>
               </form>
             </div>
           </div>

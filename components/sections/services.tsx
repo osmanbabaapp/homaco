@@ -2,6 +2,7 @@ import { FC } from "react";
 import Container from "../container";
 import { TbBuildingFactory } from "react-icons/tb";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 // const Services: FC<{}> = () => {
 //   return (
@@ -73,27 +74,75 @@ import Image from "next/image";
 // };
 const Services: FC<{}> = () => {
   return (
-    <div className="relative py-10  text-white h-[500px] md:h-[500px] lg:h-[600px]">
-      <img
-        src="/imgs/bg-mach-2.png"
+    <div className="relative py-10 group text-white h-[500px] md:h-[500px] lg:h-[600px]">
+      <motion.div
         className="absolute bottom-0 left-0 w-full max-h-[500px]"
-        alt="homaco machine"
-      />
+        whileInView={{
+          opacity: 1,
+          transition: {
+            delay: 0.2,
+            duration: 0.8,
+          },
+        }}
+        initial={{
+          opacity: 0,
+        }}
+      >
+        <img
+          src="/imgs/bg-mach-2.png"
+          className="grayscale group-hover:grayscale-0 transition-all duration-300"
+          alt="homaco machine"
+        />
+      </motion.div>
       <Container>
         <div className="grid grid-cols-4">
-          <h2 className="col-span-4 md:col-span-1 text-3xl">
-            <Image
-              alt="Homaco Logo"
-              src={"/imgs/logo.png"}
-              width={240}
-              height={80}
-            />
-          </h2>
-          <p className="col-span-4 md:col-span-3 text-2xl">
-            يتم من خلال الآلة الطحن السمسم وانتاج الطحينة هذه الالة مصنوعة من
-            معدن الستانلس ستيل ٣٠٤ بالكامل وتعمل بنظام اتوماتيكي يتم طحن السمسم
-            علي مرحلتين وتحوي الالة روؤس تنعيم السمسم المطحون
-          </p>
+          <motion.div
+            style={{ position: "relative" }}
+            whileInView={{
+              opacity: 1,
+              top: 0,
+              transition: {
+                delay: 0,
+                duration: 0.8,
+              },
+            }}
+            initial={{
+              top: -50,
+              opacity: 0,
+            }}
+          >
+            <h2 className="col-span-4 md:col-span-1 text-3xl">
+              <Image
+                alt="Homaco Logo"
+                src={"/imgs/logo.png"}
+                width={240}
+                height={80}
+              />
+            </h2>
+          </motion.div>
+          <div className="col-span-4 md:col-span-3">
+            <motion.div
+              style={{ position: "relative", width: "100%" }}
+              whileInView={{
+                opacity: 1,
+                top: 0,
+                transition: {
+                  delay: 0.4,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                top: -50,
+                opacity: 0,
+              }}
+            >
+              <p className="text-2xl">
+                يتم من خلال الآلة الطحن السمسم وانتاج الطحينة هذه الالة مصنوعة
+                من معدن الستانلس ستيل ٣٠٤ بالكامل وتعمل بنظام اتوماتيكي يتم طحن
+                السمسم علي مرحلتين وتحوي الالة روؤس تنعيم السمسم المطحون
+              </p>
+            </motion.div>
+          </div>
         </div>
       </Container>
     </div>

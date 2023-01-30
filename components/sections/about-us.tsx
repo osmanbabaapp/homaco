@@ -4,6 +4,7 @@ import Button from "../elements/Button";
 import { FaShippingFast } from "react-icons/fa";
 import Shape from "../shape";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 // const AboutUs: FC = () => {
 //   return (
@@ -63,20 +64,53 @@ const AboutUs: FC = () => {
     >
       <Container>
         <div className="md:w-[50%] sm:w-[70%] w-[80%]">
-          <Image
-            alt="Homaco Logo"
-            src={"/imgs/logo.png"}
-            width={240}
-            height={80}
-          />
-          <p className="text-xl">اسم تثقون به</p>
-          <p className="text-xl">صناعات هندسية وخطوط الإنتاج</p>
-          <p className="text-xl">
-            تصاميم فريدة، احترافية عالية، بايدي الخبراء نعتمد اعلى معايير الدقة
-            والحرفية في التصميم خيرات متوارثة في التصميم والصناعة لأكثر من ٣٠
-            عاماٍ سماكة الطحينة السائلة دليل خبرتنا ونجاحنا اجود انواع الستانلس
-            ستيل
-          </p>
+          <motion.div
+            style={{ position: "relative" }}
+            whileInView={{
+              opacity: 1,
+              left: 0,
+              transition: {
+                delay: 0,
+                duration: 0.8,
+              },
+            }}
+            initial={{
+              opacity: 0,
+              left: -100,
+            }}
+          >
+            <Image
+              alt="Homaco Logo"
+              src={"/imgs/logo.png"}
+              width={240}
+              height={80}
+            />
+          </motion.div>
+
+          <motion.div
+            style={{ position: "relative" }}
+            whileInView={{
+              opacity: 1,
+              left: 0,
+              transition: {
+                delay: 0.4,
+                duration: 0.8,
+              },
+            }}
+            initial={{
+              opacity: 0,
+              left: -100,
+            }}
+          >
+            <p className="text-xl">اسم تثقون به</p>
+            <p className="text-xl">صناعات هندسية وخطوط الإنتاج</p>
+            <p className="text-xl">
+              تصاميم فريدة، احترافية عالية، بايدي الخبراء نعتمد اعلى معايير
+              الدقة والحرفية في التصميم خيرات متوارثة في التصميم والصناعة لأكثر
+              من ٣٠ عاماٍ سماكة الطحينة السائلة دليل خبرتنا ونجاحنا اجود انواع
+              الستانلس ستيل
+            </p>
+          </motion.div>
         </div>
       </Container>
     </div>

@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useRef } from "react";
 import Container from "../container";
 import Button from "../elements/Button";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
+import { motion } from "framer-motion";
 
 const data = [
   {
@@ -65,6 +66,8 @@ const ProductItem: FC<{
 };
 
 const Products: FC<{}> = () => {
+  // const ref = useRef<HTMLDivElement>(null);
+  // const onScreen = useEle
   return (
     <div className="py-10 bg-white" id="products">
       <Container>
@@ -82,10 +85,23 @@ const Products: FC<{}> = () => {
           المارشميلو
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {data.map((item) => (
-            <div key={item.id}>
+          {data.map((item, index) => (
+            <motion.div
+              style={{ position: "relative" }}
+              whileInView={{
+                opacity: 1,
+                msTransition: "linear",
+                top: 0,
+                transition: {
+                  duration: 0.8,
+                  delay: 0.2 * index,
+                },
+              }}
+              initial={{ opacity: 0, top: -100 }}
+              key={item.id}
+            >
               <ProductItem {...item} />
-            </div>
+            </motion.div>
           ))}
           {/* <Swiper spaceBetween={20} className="py-10 px-5" slidesPerView="auto">
             {data.map((item) => (
