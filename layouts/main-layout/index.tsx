@@ -10,7 +10,7 @@ const MainLayout: LayoutProps = (props) => {
   return (
     <div>
       <Navbar />
-      <main>{props.children}</main>
+      <main style={{ marginTop: -66 }}>{props.children}</main>
 
       {open && <MobileNavbar open={open} toggleNavbar={toggleNavbar} />}
 

@@ -20,26 +20,26 @@ const NavSwitch: FC<MNavbType> = ({ open, toggleNavbar }) => {
   return (
     <div
       onClick={toggleNavbar}
-      className="relative cursor-pointer w-[40px] h-[40px] shadow-lg shadow-black/30 rounded-sm border-2 border-black z-50"
+      className="relative cursor-pointer w-[40px] h-[40px] shadow-lg shadow-black/30 rounded-sm border-2 border-white z-50"
     >
       <div className="w-[80%] h-[80%] m-[10%] absolute">
         <span
           className={
-            "bg-black  h-[2px] rounded-sm block absolute top-1/2 left-1/2 transform  transition-all duration-500 w-1/2  origin-[0_0]" +
+            "bg-white  h-[2px] rounded-sm block absolute top-1/2 left-1/2 transform  transition-all duration-500 w-1/2  origin-[0_0]" +
             " " +
             firstSpanClassNames
           }
         ></span>
         <span
           className={
-            "bg-black w-full h-[2px] rounded-sm block absolute top-1/2 left-1/2 transform transition-all duration-500" +
+            "bg-white w-full h-[2px] rounded-sm block absolute top-1/2 left-1/2 transform transition-all duration-500" +
             " " +
             secondSpanClassNames
           }
         ></span>
         <span
           className={
-            "bg-black  h-[2px] rounded-sm block absolute top-1/2  transform  transition-all duration-500 w-1/2 right-0 left-auto origin-[100%_0]" +
+            "bg-white  h-[2px] rounded-sm block absolute top-1/2  transform  transition-all duration-500 w-1/2 right-0 left-auto origin-[100%_0]" +
             " " +
             thirdSpanClassNames
           }

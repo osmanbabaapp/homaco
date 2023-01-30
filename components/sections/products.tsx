@@ -29,34 +29,6 @@ const data = [
     description:
       "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
-  {
-    id: 3,
-    image: "/imgs/prod.png",
-    title: "آلة تعبئة السوائل",
-    description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
-  },
-  {
-    id: 4,
-    image: "/imgs/prod.png",
-    title: "آلة تعبئة السوائل",
-    description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
-  },
-  {
-    id: 5,
-    image: "/imgs/prod.png",
-    title: "آلة تعبئة السوائل",
-    description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
-  },
-  {
-    id: 6,
-    image: "/imgs/prod.png",
-    title: "آلة تعبئة السوائل",
-    description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
-  },
 ];
 
 const ProductItem: FC<{
@@ -66,15 +38,15 @@ const ProductItem: FC<{
   description?: string;
 }> = (props) => {
   return (
-    <div className="group  drop-shadow-lg p-3 w-[300px] relative overflow-hidden">
-      <div className="absolute transition-all opacity-0 -top-[100%] bg-black/60 flex flex-col p-10 text-center justify-center items-center left-0 w-full h-full group-hover:opacity-100 group-hover:top-0">
-        <p className="text-white opacity-0 transition delay-200 group-hover:opacity-100">
+    <div className="group  drop-shadow-lg p-3 m-auto w-[300px] relative overflow-hidden">
+      <div className="absolute transition-all opacity-0 bg-black/60 flex flex-col p-10 text-center justify-center items-center left-0 w-full h-full group-hover:opacity-100">
+        <p className="absolute text-lg -left-[50%] top-[40%] w-[90%] text-white opacity-0 transition-all delay-200 group-hover:opacity-100 group-hover:left-[50%] -translate-x-1/2">
           {props.description}
         </p>
         <Button
           type="fill"
           color="primary"
-          className="border-red-600 opacity-0 transition delay-200 group-hover:opacity-100"
+          className="absolute -left-[100%] top-[65%] border-red-600 opacity-0 delay-[350] group-hover:opacity-100 group-hover:left-[50%] -translate-x-1/2"
         >
           التفاصيل <HiArrowNarrowRight style={{ display: "inline" }} />
         </Button>
@@ -102,14 +74,19 @@ const Products: FC<{}> = () => {
           السمسم و انتاج الطحينة والآت التعبئة الكيميائية والطبية وخطوط انتاج
           المارشميلو
         </p>
-        <div>
-          <Swiper spaceBetween={20} className="py-10 px-5" slidesPerView="auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {data.map((item) => (
+            <div key={item.id}>
+              <ProductItem {...item} />
+            </div>
+          ))}
+          {/* <Swiper spaceBetween={20} className="py-10 px-5" slidesPerView="auto">
             {data.map((item) => (
               <SwiperSlide className="w-[300px]" key={item.id}>
                 <ProductItem {...item} />
               </SwiperSlide>
             ))}
-          </Swiper>
+          </Swiper> */}
         </div>
       </Container>
     </div>

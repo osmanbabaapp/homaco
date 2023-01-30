@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import Container from "../../components/container";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import Image from "next/image";
 
 const Footer: FC<{}> = () => {
   return (
@@ -9,7 +10,14 @@ const Footer: FC<{}> = () => {
       <Container>
         <div className="grid grid-cols-3">
           <div className="grid-col-3 md:grid-col-1">
-            <h2 className="text-2xl font-bold text-red-600">Homaco Company</h2>
+            <h2 className="text-2xl font-bold text-red-600">
+              <Image
+                alt="Homaco Logo"
+                src={"/imgs/logo.png"}
+                width={240}
+                height={80}
+              />
+            </h2>
             <p>Some description if you want</p>
           </div>
           <div className="grid-col-3 md:grid-col-1">

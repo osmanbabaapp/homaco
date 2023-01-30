@@ -25,14 +25,14 @@ const animateEl = {
 };
 const MobileNavbar: FC<MNavbType> = ({ open, toggleNavbar }) => {
   return (
-    <div className="fixed z-40 inset-0 bg-black/90 text-white flex justify-center items-center">
+    <div className="fixed z-[1000] inset-0 bg-black/90 text-white flex justify-center items-center">
       <a
         href="#"
         onClick={(e) => {
           e.preventDefault();
           toggleNavbar(e);
         }}
-        className="text-5xl fixed z-40 right-[10px] top-[20px]"
+        className="text-5xl fixed z-40 left-[10px] top-[20px]"
       >
         <AiOutlineClose />
       </a>

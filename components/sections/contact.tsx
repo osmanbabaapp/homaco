@@ -4,6 +4,7 @@ import { FC } from "react";
 import Container from "../container";
 import Button from "../elements/Button";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import Image from "next/image";
 
 const Contact: FC<{}> = () => {
   return (
@@ -12,8 +13,11 @@ const Contact: FC<{}> = () => {
         <Container>
           <div className="grid grid-cols-3 gap-4 mt-10">
             <div className="order-3 xs:order-1 col-span-3 md:col-span-1">
-              <div className="w-full rounded-lg overflow-hidden">
+              <div className="relative w-full h-[250px] rounded-lg">
+                <div className="w-[100px] h-[100px] bg-primYellow absolute -top-[8px] -left-[8px] z-10"></div>
+                <div className="w-[100px] h-[100px] bg-primYellow absolute -bottom-[8px] -right-[8px] z-10"></div>
                 <iframe
+                  className="absolute w-full h-full left-0 top-0 z-20"
                   width="100%"
                   height="250"
                   frameBorder="0"
@@ -26,7 +30,13 @@ const Contact: FC<{}> = () => {
             </div>
             <div className="order-1 xs:order-2 col-span-3 md:col-span-1 text-center">
               <h2 className="text-2xl font-bold text-yellow-400">
-                Homaco Company
+                <Image
+                  alt="Homaco Logo"
+                  src={"/imgs/logo.png"}
+                  className="m-auto"
+                  width={240}
+                  height={80}
+                />
               </h2>
               <ul className="flex flex-row gap-3 justify-center my-2">
                 <a

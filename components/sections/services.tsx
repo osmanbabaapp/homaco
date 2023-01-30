@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Container from "../container";
 import { TbBuildingFactory } from "react-icons/tb";
+import Image from "next/image";
 
 // const Services: FC<{}> = () => {
 //   return (
@@ -72,11 +73,23 @@ import { TbBuildingFactory } from "react-icons/tb";
 // };
 const Services: FC<{}> = () => {
   return (
-    <div className="relative py-10 bg-slate-900 text-white before:content-[''] before:absolute before:top-0 hover:before:grayscale-0 before:transition-all before:duration-300 before:left-0 before:w-full before:h-full before:grayscale before:bg-[url('/imgs/bg-mach-2.png')] before:bg-no-repeat before:bg-contain h-[600px] before:bg-left-bottom">
+    <div className="relative py-10 bg-slate-900 text-white h-[500px] md:h-[500px] lg:h-[600px]">
+      <img
+        src="/imgs/bg-mach-2.png"
+        className="absolute bottom-0 left-0 w-full max-h-[500px]"
+        alt="homaco machine"
+      />
       <Container>
-        <div className="grid grid-cols-2">
-          <h2 className="col-span-3 md:col-span-1 text-3xl">Logo</h2>
-          <p className="col-span-3 md:col-span-1 text-2xl">
+        <div className="grid grid-cols-4">
+          <h2 className="col-span-4 md:col-span-1 text-3xl">
+            <Image
+              alt="Homaco Logo"
+              src={"/imgs/logo.png"}
+              width={240}
+              height={80}
+            />
+          </h2>
+          <p className="col-span-4 md:col-span-3 text-2xl">
             يتم من خلال الآلة الطحن السمسم وانتاج الطحينة هذه الالة مصنوعة من
             معدن الستانلس ستيل ٣٠٤ بالكامل وتعمل بنظام اتوماتيكي يتم طحن السمسم
             علي مرحلتين وتحوي الالة روؤس تنعيم السمسم المطحون

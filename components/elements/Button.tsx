@@ -40,7 +40,7 @@ const Button: FC<IButton> = (props) => {
     styles[props.color || "primary"][props.type || "ghost"]["classNames"];
   return (
     <button
-      className={`px-4 py-1 cursor-pointer transition-colors duration-500 text-sm font-medium border-2 ${inStyles} ${props.className}`}
+      className={`px-4 py-1 cursor-pointer transition-all duration-500 text-sm font-medium border-2 ${inStyles} ${props.className}`}
       style={props.style}
     >
       {props.children}
