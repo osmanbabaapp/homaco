@@ -78,10 +78,9 @@ const Banner = () => {
       <motion.div variants={bigContainer} initial="hidden" animate="show">
         <div
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1610891015188-5369212db097?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2129&q=80')",
+            backgroundImage: "url('/imgs/bannerr.jpeg')",
           }}
-          className={`relative bg-no-repeat bg-cover h-[100vh] after:content-[''] after:absolute after:inset-0 after:bg-black/70 after:-z-1`}
+          className={`relative bg-no-repeat bg-contain lg:bg-cover  h-[100vh] after:content-[''] after:absolute after:inset-0 after:bg-black/70 after:-z-1`}
         >
           <Container>
             <div className="grid grid-cols-2 relative z-10 items-center h-[100vh]">
