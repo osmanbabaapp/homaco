@@ -73,7 +73,7 @@ import Image from "next/image";
 // };
 const Services: FC<{}> = () => {
   return (
-    <div className="relative py-10 bg-slate-900 text-white h-[500px] md:h-[500px] lg:h-[600px]">
+    <div className="relative py-10  text-white h-[500px] md:h-[500px] lg:h-[600px]">
       <img
         src="/imgs/bg-mach-2.png"
         className="absolute bottom-0 left-0 w-full max-h-[500px]"

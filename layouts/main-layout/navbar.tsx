@@ -49,13 +49,13 @@ const Navbar = () => {
                   <LinkItem href="/" text="الرئيسية" />
                 </li>
                 <li>
-                  <LinkItem href="/" text="من نحن" />
+                  <LinkItem href="#about-us" text="من نحن" />
                 </li>
                 <li>
-                  <LinkItem href="/" text="منتجاتنا" />
+                  <LinkItem href="#products" text="منتجاتنا" />
                 </li>
                 <li>
-                  <LinkItem href="/" text="اتصل بنا" />
+                  <LinkItem href="/#contact" text="اتصل بنا" />
                 </li>
               </ul>
             </div>

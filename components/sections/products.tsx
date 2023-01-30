@@ -66,8 +66,15 @@ const ProductItem: FC<{
 
 const Products: FC<{}> = () => {
   return (
-    <div className="py-10">
+    <div className="py-10 bg-white" id="products">
       <Container>
+        <Image
+          alt="Homaco Logo"
+          src={"/imgs/logo.png"}
+          className="m-auto"
+          width={260}
+          height={80}
+        />
         {/* <h2 className="font-bold text-4xl mb-10">Products</h2> */}
         <p className="font-bold text-2xl text-center w-[80%] m-auto">
           شركة هوماكو للصناعات الهندسية وخطوط الانتاج نقوم بتصنيع الآت طحن

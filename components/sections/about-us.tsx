@@ -3,6 +3,7 @@ import Container from "../container";
 import Button from "../elements/Button";
 import { FaShippingFast } from "react-icons/fa";
 import Shape from "../shape";
+import Image from "next/image";
 
 // const AboutUs: FC = () => {
 //   return (
@@ -56,9 +57,18 @@ import Shape from "../shape";
 // };
 const AboutUs: FC = () => {
   return (
-    <div className="py-28 flex bg-slate-900 text-white bg-[url('/imgs/bg-section-about.png')] bg-no-repeat bg-contain">
+    <div
+      className="py-28 flex text-white bg-[url('/imgs/bg-section-about.png')] bg-no-repeat bg-contain"
+      id="about-us"
+    >
       <Container>
         <div className="md:w-[50%] sm:w-[70%] w-[80%]">
+          <Image
+            alt="Homaco Logo"
+            src={"/imgs/logo.png"}
+            width={240}
+            height={80}
+          />
           <p className="text-xl">اسم تثقون به</p>
           <p className="text-xl">صناعات هندسية وخطوط الإنتاج</p>
           <p className="text-xl">

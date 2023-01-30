@@ -12,7 +12,7 @@ const data = [
 
 const Posters: FC<{}> = () => {
   return (
-    <div className="py-10">
+    <div className="py-10 bg-white">
       <Container>
         <div>
           <Swiper spaceBetween={30} className="py-10 px-5" slidesPerView="auto">

@@ -76,36 +76,40 @@ const Banner = () => {
     <section className="pb-2 relative">
       {/* <button onClick={changeActive}>change</button> */}
       <motion.div variants={bigContainer} initial="hidden" animate="show">
-        <div
+        {/* <div
           style={{
             backgroundImage: "url('/imgs/bannerr.jpeg')",
           }}
-          className={`relative bg-no-repeat bg-contain lg:bg-cover  h-[100vh] after:content-[''] after:absolute after:inset-0 after:bg-black/70 after:-z-1`}
-        >
+          className={`relative bg-no-repeat bg-contain lg:bg-cover  h-[90vh] after:content-[''] after:absolute after:inset-0 after:bg-black/70 after:-z-1`}
+        > */}
+        <div className="relative h-[60vh]">
           <Container>
-            <div className="grid grid-cols-2 relative z-10 items-center h-[100vh]">
-              {/* <span className="absolute flex items-center justify-center top-24 left-2 w-8 h-8 bg-red-600 text-white">
+            {/* <span className="absolute flex items-center justify-center top-24 left-2 w-8 h-8 bg-red-600 text-white">
                       {index + 1}
                     </span> */}
-              <div className="col-span-2">
-                <motion.div
+            {/* <motion.div
                   variants={container}
                   initial="hidden"
                   animate="show"
-                >
-                  <h2 className="text-4xl md:text-6xl text-center font-bold text-white mb-10">
-                    Where engineering and technology meet agriculture
-                  </h2>
-                </motion.div>
-                <motion.div
+                > */}
+            <h2 className="absolute z-10 text-2xl md:text-4xl right-10 top-28 max-w-[300px] text-center font-bold text-white mb-10">
+              تصاميم فريدة، احترافية عالية، بأيدي الخبراء
+            </h2>
+            {/* </motion.div> */}
+            {/* <motion.div
                   variants={itemsAni}
                   initial={"hidden"}
                   animate={"show"}
-                ></motion.div>
-              </div>
-            </div>
+                ></motion.div> */}
           </Container>
+          <img
+            src="/imgs/bannerr.jpeg"
+            alt="ss"
+            className="absolute w-full h-full left-0 bottom-0"
+          />
         </div>
+
+        {/* </div> */}
       </motion.div>
     </section>
   );

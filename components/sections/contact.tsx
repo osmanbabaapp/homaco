@@ -9,8 +9,77 @@ import Image from "next/image";
 const Contact: FC<{}> = () => {
   return (
     <>
-      <div className="py-10 bg-slate-800 text-white">
+      <div className="py-10  text-white" id="contact">
         <Container>
+          <h2 className="text-2xl text-center mb-5">
+            شركاؤنا في نجاح العلامة التجارية لإنتاج اجود انواع الطحينية
+          </h2>
+          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 items-center gap-2">
+            <div>
+              <Image
+                src={"/imgs/marka.png"}
+                alt="marka"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/imgs/marka.png"}
+                alt="marka"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/imgs/marka.png"}
+                alt="marka"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/imgs/marka.png"}
+                alt="marka"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/imgs/marka.png"}
+                alt="marka"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/imgs/marka.png"}
+                alt="marka"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/imgs/marka.png"}
+                alt="marka"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/imgs/marka.png"}
+                alt="marka"
+                width={100}
+                height={100}
+              />
+            </div>
+          </div>
           <div className="grid grid-cols-3 gap-4 mt-10">
             <div className="order-3 xs:order-1 col-span-3 md:col-span-1">
               <div className="relative w-full h-[250px] rounded-lg">
@@ -144,7 +213,7 @@ const Contact: FC<{}> = () => {
           </div>
         </Container>
       </div>
-      <div className="py-2 text-center">
+      <div className="py-2 text-center bg-white">
         <h6>
           Made by{" "}
           <a

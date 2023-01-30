@@ -3,7 +3,7 @@ import Container from "../container";
 
 const MachineSection1: FC<{}> = () => {
   return (
-    <div className="py-28 flex bg-[url('/imgs/mach-1.png')] bg-no-repeat bg-contain">
+    <div className="py-28 flex bg-white bg-[url('/imgs/mach-1.png')] bg-no-repeat bg-contain">
       <Container>
         <div className="md:w-[40%] sm:w-[70%] w-[80%] bg-white drop-shadow-lg p-5">
           <p className="text-xl">
