@@ -19,7 +19,10 @@ const LinkItem: FC<{
   text: string;
 }> = (props) => {
   return (
-    <Link href={props.href} className="text-2xl hover:text-primYellowHover">
+    <Link
+      href={props.href}
+      className="sm:text-lg text-2xl hover:text-primYellowHover"
+    >
       {props.text}
     </Link>
   );
@@ -40,9 +43,10 @@ const Navbar = () => {
               src={"/imgs/logo.png"}
               width={240}
               height={80}
+              className={"w-[180px] md:w-[240px]"}
             />
           </div>
-          <div className="flex gap-5">
+          <div className="flex gap-5 items-center">
             <div className="hidden sm:flex space-x-10 items-center">
               <ul className="flex gap-5">
                 <li>
@@ -124,9 +128,9 @@ const Navbar = () => {
                 <img src="oslogo.png" alt="osmanbaba" />
               </a>
             </div>
-          </div>
-          <div className="block sm:hidden">
-            <NavSwitch open={open} toggleNavbar={toggleNavbar} />
+            <div className="block sm:hidden">
+              <NavSwitch open={open} toggleNavbar={toggleNavbar} />
+            </div>
           </div>
         </header>
       </Container>

@@ -43,8 +43,8 @@ const MobileNavbar: FC<MNavbType> = ({ open, toggleNavbar }) => {
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1, transition: { duration: 0.2 } }}
             >
-              <Link className="text-5xl" href="/">
-                Home
+              <Link className="text-5xl" href="/" onClick={toggleNavbar}>
+                الرئيسية
               </Link>
             </motion.div>
           </li>
@@ -57,8 +57,12 @@ const MobileNavbar: FC<MNavbType> = ({ open, toggleNavbar }) => {
                 transition: { delay: 0.2, duration: 0.2 },
               }}
             >
-              <Link className="text-5xl" href="/">
-                Products
+              <Link
+                className="text-5xl"
+                href="#about-us"
+                onClick={toggleNavbar}
+              >
+                من نحن
               </Link>
             </motion.div>
           </li>
@@ -71,8 +75,12 @@ const MobileNavbar: FC<MNavbType> = ({ open, toggleNavbar }) => {
                 transition: { delay: 0.4, duration: 0.2 },
               }}
             >
-              <Link className="text-5xl" href="/">
-                About Us
+              <Link
+                className="text-5xl"
+                href="#products"
+                onClick={toggleNavbar}
+              >
+                منتجاتنا
               </Link>
             </motion.div>
           </li>
@@ -85,8 +93,8 @@ const MobileNavbar: FC<MNavbType> = ({ open, toggleNavbar }) => {
                 transition: { delay: 0.6, duration: 0.2 },
               }}
             >
-              <Link className="text-5xl" href="/">
-                Contact
+              <Link className="text-5xl" href="#contact" onClick={toggleNavbar}>
+                اتصل بنا
               </Link>
             </motion.div>
           </li>

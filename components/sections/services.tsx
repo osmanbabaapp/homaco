@@ -76,7 +76,7 @@ const Services: FC<{}> = () => {
   return (
     <div className="relative py-10 group text-white h-[500px] md:h-[500px] lg:h-[600px]">
       <motion.div
-        className="absolute bottom-0 left-0 w-full max-h-[500px]"
+        className="absolute bottom-0 left-0 w-full"
         whileInView={{
           opacity: 1,
           transition: {
@@ -90,36 +90,36 @@ const Services: FC<{}> = () => {
       >
         <img
           src="/imgs/bg-mach-2.png"
-          className="grayscale group-hover:grayscale-0 transition-all duration-300"
+          className="w-full  max-h-[500px]  grayscale group-hover:grayscale-0 transition-all duration-300"
           alt="homaco machine"
         />
       </motion.div>
       <Container>
         <div className="grid grid-cols-4">
-          <motion.div
-            style={{ position: "relative" }}
-            whileInView={{
-              opacity: 1,
-              top: 0,
-              transition: {
-                delay: 0,
-                duration: 0.8,
-              },
-            }}
-            initial={{
-              top: -50,
-              opacity: 0,
-            }}
-          >
-            <h2 className="col-span-4 md:col-span-1 text-3xl">
+          <h2 className="col-span-4 md:col-span-1 text-3xl">
+            <motion.div
+              style={{ position: "relative" }}
+              whileInView={{
+                opacity: 1,
+                top: 0,
+                transition: {
+                  delay: 0,
+                  duration: 0.8,
+                },
+              }}
+              initial={{
+                top: -50,
+                opacity: 0,
+              }}
+            >
               <Image
                 alt="Homaco Logo"
                 src={"/imgs/logo.png"}
                 width={240}
                 height={80}
               />
-            </h2>
-          </motion.div>
+            </motion.div>
+          </h2>
           <div className="col-span-4 md:col-span-3">
             <motion.div
               style={{ position: "relative", width: "100%" }}

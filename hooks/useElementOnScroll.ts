@@ -20,3 +20,5 @@ function useElementOnScreen(ref: RefObject<Element>, rootMargin = "0px") {
   }, []);
   return isIntersecting;
 }
+
+export default useElementOnScreen;
