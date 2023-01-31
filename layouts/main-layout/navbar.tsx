@@ -21,7 +21,7 @@ const LinkItem: FC<{
   return (
     <Link
       href={props.href}
-      className="sm:text-lg text-2xl hover:text-primYellowHover"
+      className="text-lg md:text-2xl hover:text-primYellowHover"
     >
       {props.text}
     </Link>
@@ -34,7 +34,7 @@ const Navbar = () => {
 
   let menuClasses = menuActive ? "" : "hidden";
   return (
-    <nav className="border-b-[1px] drop-shadow-sm w-full relative z-50 text-primYellow">
+    <nav className="drop-shadow-sm w-full relative z-50 text-primYellow">
       <Container>
         <header className="flex justify-between items-center">
           <div>
@@ -43,7 +43,7 @@ const Navbar = () => {
               src={"/imgs/logo.png"}
               width={240}
               height={80}
-              className={"w-[180px] md:w-[240px]"}
+              className={"w-[180px] md:w-[280px]"}
             />
           </div>
           <div className="flex gap-5 items-center">

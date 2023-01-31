@@ -6,6 +6,7 @@ import { ReactElement } from "react";
 import { Titillium_Web } from "@next/font/google";
 import localFont from "@next/font/local";
 import MobileNavContextProvider from "../context/mobile-nav-context";
+import { SessionProvider } from "next-auth/react";
 
 // layout types
 type AppLayoutProps = AppProps & {
@@ -48,9 +49,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           font-family: ${myFont.style.fontFamily};
         }
       `}</style> */}
-      <MobileNavContextProvider>
-        <Component {...pageProps} />
-      </MobileNavContextProvider>
+      <SessionProvider session={pageProps?.session}>
+        <MobileNavContextProvider>
+          <Component {...pageProps} />
+        </MobileNavContextProvider>
+      </SessionProvider>
     </div>
   );
 }
