@@ -84,6 +84,7 @@ const AboutUs: FC = () => {
               src={"/imgs/logo.png"}
               width={240}
               height={80}
+              className={"w-[180px] md:w-[380px]"}
             />
           </motion.div>
 
