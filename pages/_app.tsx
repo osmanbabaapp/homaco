@@ -46,23 +46,30 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-    <Head>
+      <Head>
         <link rel="shortcut icon" href="/media/dahir/dahir-123.png" />
 
-        <meta name="google-site-verification" content="qg4zIniEUpBAY4rrmeNIR7DvFNqR71Bf9au5J3lUIxg0000000000000" />
+        <meta
+          name="google-site-verification"
+          content="qg4zIniEUpBAY4rrmeNIR7DvFNqR71Bf9au5J3lUIxg0000000000000"
+        />
+        <meta
+          name="google-site-verification"
+          content="h1M0H97zNrzTcJCcNfZLBOSMdwm-awqkDV6pe24Wcb8"
+        />
       </Head>
-    <div className={myFont.className}>
-      {/* <style jsx global>{`
+      <div className={myFont.className}>
+        {/* <style jsx global>{`
         body {
           font-family: ${myFont.style.fontFamily};
         }
       `}</style> */}
-      <SessionProvider session={pageProps?.session} refetchInterval={5 * 60}>
-        <MobileNavContextProvider>
-          <Component {...pageProps} />
-        </MobileNavContextProvider>
-      </SessionProvider>
-    </div>
+        <SessionProvider session={pageProps?.session} refetchInterval={5 * 60}>
+          <MobileNavContextProvider>
+            <Component {...pageProps} />
+          </MobileNavContextProvider>
+        </SessionProvider>
+      </div>
     </>
   );
 }
