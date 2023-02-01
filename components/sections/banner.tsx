@@ -91,7 +91,7 @@ const Banner = () => {
                   initial="hidden"
                   animate="show"
                 > */}
-            <h2 className="absolute z-10 text-2xl md:text-4xl right-[550px] top-20 md:right-[8vw] md:top-[16vh] max-w-[300px] text-center font-bold text-white mb-10">
+            <h2 className="absolute z-10 text-2xl md:text-4xl right-[550px] top-20 md:right-[8vw] md:top-[18vh] max-w-[300px] text-center font-bold text-white mb-10">
               تصاميم فريدة، احترافية عالية، بأيدي الخبراء
             </h2>
             {/* </motion.div> */}
@@ -101,7 +101,7 @@ const Banner = () => {
                   animate={"show"}
                 ></motion.div> */}
           </Container>
-          <img src="/imgs/bannerr.jpeg" alt="ss" className="absolute w-full h-[114vh] left-0 bottom-[0vh]" />
+          <img src="/imgs/bannerr.jpeg" alt="ss" className="absolute w-full h-[114vh] left-0 bottom-[-1vh]" />
         </div>
 
         {/* </div> */}
