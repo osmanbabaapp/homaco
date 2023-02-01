@@ -63,7 +63,7 @@ const AboutUs: FC = () => {
       id="about-us"
     >
       <Container>
-        <div className="md:w-[50%] sm:w-[70%] w-[80%]">
+        <div className="md:w-[50%] sm:w-[70%] w-[80%] mt-[30vh] mr-[3vh] sm:mt-[0vh] sm:mr-[0vh]">
           <motion.div
             style={{ position: "relative" }}
             whileInView={{

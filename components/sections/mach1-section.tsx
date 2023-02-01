@@ -25,7 +25,7 @@ const MachineSection1: FC<{}> = () => {
             scale: 0.5,
           }}
         >
-          <div className="md:w-[40%] min-w-[50%] sm:w-[70%] w-[80%] bg-white drop-shadow-lg p-5 ">
+          <div className="md:w-[40%] min-w-[50%] sm:w-[70%] w-[100%] bg-white drop-shadow-lg p-5 mt-[30vh] sm:mt-[0vh]  ">
             {/* <div className="block"> */}
             <section className="text-xl">لطحن السمسم و إنتاج أفضل أنواع الطحينية ,</section>
 

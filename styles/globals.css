@@ -6,6 +6,7 @@ html,
 body {
   scroll-behavior: smooth !important;
   /* font-family: var(--font-base) !important; */
+  overflow-x: hidden !important;
 }
 
 body {

@@ -7,6 +7,8 @@ import Navbar from "./navbar";
 
 const MainLayout: LayoutProps = (props) => {
   const { open, toggleNavbar } = useContext(MobileNavContext);
+
+  console.log('open :>> ', open);
   return (
     <div>
       <Navbar />

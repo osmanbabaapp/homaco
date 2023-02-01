@@ -81,7 +81,7 @@ const Banner = () => {
           }}
           className={`relative bg-no-repeat bg-contain lg:bg-cover  h-[90vh] after:content-[''] after:absolute after:inset-0 after:bg-black/70 after:-z-1`}
         > */}
-        <div className="relative h-[100vh] md:h-[96vh]">
+        <div className="relative h-[70vh] sm:h-[100vh] md:h-[96vh]">
           <Container>
             {/* <span className="absolute flex items-center justify-center top-24 left-2 w-8 h-8 bg-red-600 text-white">
                       {index + 1}
@@ -91,7 +91,7 @@ const Banner = () => {
                   initial="hidden"
                   animate="show"
                 > */}
-            <h2 className="absolute z-10 text-2xl md:text-4xl right-[550px] top-20 md:right-[8vw] md:top-[18vh] max-w-[300px] text-center font-bold text-white mb-10">
+            <h2 className="absolute z-10 text-2xl md:text-4xl right-[10vw] top-20 md:right-[8vw] md:top-[18vh] max-w-[300px] text-center font-bold text-white mb-10">
               تصاميم فريدة، احترافية عالية، بأيدي الخبراء
             </h2>
             {/* </motion.div> */}
@@ -101,7 +101,11 @@ const Banner = () => {
                   animate={"show"}
                 ></motion.div> */}
           </Container>
-          <img src="/imgs/bannerr.jpeg" alt="ss" className="absolute w-full h-[114vh] left-0 bottom-[-1vh]" />
+          <img
+            src="/imgs/bannerr.jpeg"
+            alt="ss"
+            className="absolute w-full sm:h-[114vh] h-[70vh] left-0 bottom-[-1vh]"
+          />
         </div>
 
         {/* </div> */}

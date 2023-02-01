@@ -50,8 +50,8 @@ const ProductItem: FC<{
         </Button>
       </div>
       <Image src={props.image} alt={props.title} width={250} height={150} className="object-cover h-[300px]" />
-      <h3 className="font-bold text-[28px] my-2 self-center px-[50px]">{props.title}</h3>
-      <p className="font-bold text-[18px] line-clamp-2 text-red-600">{props.description}</p>
+      <h3 className="font-bold text-[28px] my-2 self-center px-[50px] text-red-600 text-center">{props.title}</h3>
+      <p className="font-bold text-[18px] line-clamp-2 ">{props.description}</p>
     </div>
   );
 };
