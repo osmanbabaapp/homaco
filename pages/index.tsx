@@ -17,8 +17,8 @@ const Home: NextPage = (props) => {
   return (
     <div>
       <Head>
-        <title>Home Page</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Homaco Makina</title>
+        <link rel="icon" href="/imgs/logo.png" />
       </Head>
       <MainLayout>
         <>

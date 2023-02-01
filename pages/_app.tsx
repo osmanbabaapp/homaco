@@ -1,4 +1,6 @@
 import "../styles/globals.css";
+import Head from "next/head";
+
 import type { AppProps } from "next/app";
 import PageWithLayoutType from "../layouts/page-with-layout";
 import { ReactElement } from "react";
@@ -43,6 +45,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   Component.layout || ((children: ReactElement) => <>{children}</>);
 
   return (
+    <>
+    <Head>
+        <link rel="shortcut icon" href="/media/dahir/dahir-123.png" />
+
+        <meta name="google-site-verification" content="qg4zIniEUpBAY4rrmeNIR7DvFNqR71Bf9au5J3lUIxg0000000000000" />
+      </Head>
     <div className={myFont.className}>
       {/* <style jsx global>{`
         body {
@@ -55,6 +63,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </MobileNavContextProvider>
       </SessionProvider>
     </div>
+    </>
   );
 }
 

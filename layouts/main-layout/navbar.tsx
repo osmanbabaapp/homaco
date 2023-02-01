@@ -34,7 +34,7 @@ const Navbar = () => {
 
   let menuClasses = menuActive ? "" : "hidden";
   return (
-    <nav className="drop-shadow-sm w-full relative z-50 text-primYellow">
+    <nav className="drop-shadow-sm w-[100%]  relative z-50 text-primYellow">
       <Container>
         <header className="flex justify-between items-center">
           <div>
@@ -46,6 +46,7 @@ const Navbar = () => {
               className={"w-[180px] md:w-[280px]"}
             />
           </div>
+
           <div className="flex gap-5 items-center">
             <div className="hidden sm:flex space-x-10 items-center">
               <ul className="flex gap-5">

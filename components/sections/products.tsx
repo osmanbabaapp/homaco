@@ -13,22 +13,19 @@ const data = [
     id: 0,
     image: "/imgs/prod2.png",
     title: "خلاط بودرة",
-    description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
+    description: "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
   {
     id: 1,
     image: "/imgs/prod3.png",
     title: "آلة طحن السمسم ميني",
-    description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
+    description: "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
   {
     id: 2,
     image: "/imgs/prod.png",
     title: "آلة تعبئة السوائل",
-    description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
+    description: "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
   },
 ];
 
@@ -52,13 +49,7 @@ const ProductItem: FC<{
           التفاصيل <HiArrowNarrowRight style={{ display: "inline" }} />
         </Button>
       </div>
-      <Image
-        src={props.image}
-        alt={props.title}
-        width={250}
-        height={150}
-        className="object-cover h-[300px]"
-      />
+      <Image src={props.image} alt={props.title} width={250} height={150} className="object-cover h-[300px]" />
       <h3 className="font-bold text-xl">{props.title}</h3>
       <p className="font-bold text-md line-clamp-2">{props.description}</p>
     </div>
@@ -71,20 +62,13 @@ const Products: FC<{}> = () => {
   return (
     <div className="py-10 bg-white" id="products">
       <Container>
-        <Image
-          alt="Homaco Logo"
-          src={"/imgs/logo.png"}
-          className="m-auto"
-          width={260}
-          height={80}
-        />
+        <Image alt="Homaco Logo" src={"/imgs/logo.png"} className="m-auto" width={260} height={80} />
         {/* <h2 className="font-bold text-4xl mb-10">Products</h2> */}
-        <p className="font-bold text-2xl text-center w-[80%] m-auto">
-          شركة هوماكو للصناعات الهندسية وخطوط الانتاج نقوم بتصنيع الآت طحن
-          السمسم و انتاج الطحينة والآت التعبئة الكيميائية والطبية وخطوط انتاج
-          المارشميلو
+        <p className="font-bold text-2xl text-center w-[80%] m-auto md:mt-[4vh]">
+          شركة هوماكو للصناعات الهندسية وخطوط الانتاج نقوم بتصنيع الآت طحن السمسم و انتاج الطحينة والآت التعبئة
+          الكيميائية والطبية وخطوط انتاج المارشميلو
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:my-[4vh]">
           {data.map((item, index) => (
             <motion.div
               style={{ position: "relative" }}
