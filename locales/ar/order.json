@@ -1,0 +1,55 @@
+{
+  "steps": {
+    "order": "طلبيات",
+    "orderDesc": "قائمة طلبيات",
+    "kurumsal": "معلومات الشركة",
+    "kurumsalDesc": "معلومات حول شركة",
+    "payment": "الدفع",
+    "paymentDesc": "وسائل الدفع",
+    "done": "تم",
+    "doneDesc": "تمت العملية :)"
+  },
+  "order": {
+    "titlePackage": "الباقة",
+    "titlePrice": "السعر",
+    "select": {
+      "month": "شهري",
+      "6month": "6 شهور",
+      "yearly": "سنوي"
+    }
+  },
+  "kurumsal": {
+    "diviCompany": "معلومات الشركة",
+    "diviAddress": "معلومات العنوان",
+    "unvan": "اسم الشركة",
+    "fAddress": "عنوان الشركة",
+    "fTel": "هاتف الشركة",
+    "fPost": "بريد الالكتروني للشركة",
+    "vergiNo": "رقم الضريبي للشركة",
+    "address": "العنوان"
+  },
+  "payment": {
+    "eftDesc": "للدفع عن طريق حوالة بريدية / تحويل إلكتروني ، أرسل مبلغ الطلب إلى أرقام IBAN التالية ، عن طريق إدخال الرقم المرجعي أدناه في قسم الشرح.",
+    "radios": {
+      "title": "وسيلة الدفع",
+      "eft": "حوالة",
+      "creditCard": "كرت البنك"
+    },
+    "cardNumber": "رقم التسلسلي",
+    "cardName": "اسم صاحب البطاقة",
+    "validDate": "تاريخ إنتهاء البطاقة",
+    "cvv": "CVC/CVV",
+    "holderName": "Cardholder Name",
+    "osbDesc": "Osmanbaba Vakıf Katılım Bankasını IBANI: RUHARTE BİLİŞİM TEKNOLOJİLERİ SANAYİ VE TİCARET LİMİTED ŞİRKET",
+    "refNo": "رقم المرجع",
+    "acceptReq": "يجب عليك الموافقة على شروط الخصوصية"
+  },
+  "orderSummary": {
+    "title": "ملخص الطلب",
+    "total": "المجموع",
+    "shippingMess": "الحساب بعد الشحن",
+    "withKdv": "(مع قيمة الضريبة المضافة)"
+  },
+  "next": "التالي",
+  "prev": "السابق"
+}

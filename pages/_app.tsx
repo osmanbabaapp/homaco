@@ -9,6 +9,8 @@ import { Titillium_Web } from "@next/font/google";
 import localFont from "@next/font/local";
 import MobileNavContextProvider from "../context/mobile-nav-context";
 import { SessionProvider } from "next-auth/react";
+import Theme from "../config/theme";
+import LayoutContextProvider from "../context/layout.context";
 
 // layout types
 type AppLayoutProps = AppProps & {
@@ -66,7 +68,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       `}</style> */}
         <SessionProvider session={pageProps?.session} refetchInterval={5 * 60}>
           <MobileNavContextProvider>
-            <Component {...pageProps} />
+            <LayoutContextProvider>
+              <Component {...pageProps} />
+            </LayoutContextProvider>
           </MobileNavContextProvider>
         </SessionProvider>
       </div>

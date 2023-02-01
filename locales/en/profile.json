@@ -1,0 +1,25 @@
+{
+  "editTitle": "Edit Profile",
+  "form": {
+    "label": {
+      "username": "Company Name",
+      "mobile": "Mobile",
+      "phone": "Phone Number",
+      "email": "Email",
+      "city": "City",
+      "area": "Area",
+      "semet": "Semet",
+      "mahalle": "District",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "website": "Website"
+    }
+  },
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "aboutAs": "About Us in Turkish",
+  "aboutAs_ar": "About Us in Arabic",
+  "aboutAs_en": "About Us",
+  "certificates": "Certificates"
+}

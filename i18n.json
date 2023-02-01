@@ -1,0 +1,7 @@
+{
+  "locales": ["ar", "tr"],
+  "defaultLocale": "tr",
+  "pages": {
+    "*": ["common", "addad", "profile", "translation", "home"]
+  }
+}

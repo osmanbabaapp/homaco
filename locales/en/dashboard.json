@@ -1,0 +1,12 @@
+{
+  "side": {
+    "dash": "Control Panel",
+    "ad": "Ads",
+    "ads": "All Ads",
+    "addAd": "Add Ad",
+    "emails": "Emails",
+    "edit": "Settings",
+    "incomingOfferEmails": "Incoming offer emails",
+    "outgoingOfferEmails": "Outgoing offer emails"
+  }
+}

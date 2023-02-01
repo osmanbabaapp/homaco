@@ -1,0 +1,29 @@
+{
+  "Detay": "التفاصيل العامة",
+  "Manager": "مدير العام",
+  "Nace_codu": "كود الاختصاص",
+  "Partner": "الشريك",
+  "Reserve_found": "صندوق الاحتياطي",
+  "Generalassembly": "الجمعية العامة",
+  "Legelprovisions": "الأحكام القانونية",
+  "add_Adress": " إضافة عنوان الشركة",
+  "Add_ads": "إضافة إعلانات",
+  "addCapital": "إضافة رأس مال للشركة",
+  "addManager": "المدير",
+  "addNace_codu": "إضافة كود مميز",
+  "addPartner": "إضافة الشريك",
+  "addProfitDetection": "إضافة كشف الربح وتوزيعه",
+  "addRepresentation": "أضف ممثل للشركة",
+  "addTarget": "أضف هدف للشركة",
+  "addTime": "إضافة مدة للشركة",
+  "addTitle": "إضافة اسم للشركة",
+
+  "detay": {
+    "title": "Kurulumun yapılması için gerekli bilgileri giriniz.",
+    "coType": "Şirket /Ticari işletme Türü : Limited Şirket",
+    "altType": "Alt tür",
+    "city": "İl",
+    "area": "İlçe",
+    "sicil": "Ticaret Sicili Müdürlüğü"
+  }
+}

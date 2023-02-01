@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+
+const withPlugins = require("next-compose-plugins");
+const nextTranslate = require("next-translate");
+
+const nextConfig = withPlugins([[nextTranslate, {}]], {
   reactStrictMode: true,
-  images: {
-    domains: ["images.unsplash.com"],
+  compiler: {
+    styledComponents: true,
   },
-};
+  images: {
+    domains: ["images.unsplash.com", "packagingtemplet.online"],
+  },
+});
+
+module.exports = nextConfig;

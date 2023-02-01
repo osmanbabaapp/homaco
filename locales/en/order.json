@@ -1,0 +1,55 @@
+{
+  "steps": {
+    "order": "Orders",
+    "orderDesc": "Order List",
+    "kurumsal": "Corporate Information",
+    "kurumsalDesc": "Company Information",
+    "payment": "Payment",
+    "paymentDesc": "Payment Methods",
+    "done": "Done",
+    "doneDesc": "Everything is Ok :)"
+  },
+  "order": {
+    "titlePackage": "Package",
+    "titlePrice": "Price",
+    "select": {
+      "month": "Monthly",
+      "6month": "6 Month",
+      "yearly": "Yearly"
+    }
+  },
+  "kurumsal": {
+    "diviCompany": "Company Information",
+    "diviAddress": "Address Information",
+    "unvan": "Company Name",
+    "fAddress": "Comapny Address",
+    "fTel": "Company Phone",
+    "fPost": "Comapny Email",
+    "vergiNo": "Comapny Tax Number",
+    "address": "Address"
+  },
+  "payment": {
+    "eftDesc": "To pay by money Havale/EFT, send the order amount to the following IBAN numbers, by entering the reference number below in the explanation section.",
+    "radios": {
+      "title": "Payment Method",
+      "eft": "Havale/EFT",
+      "creditCard": "Credit Card"
+    },
+    "cardNumber": "Card Number",
+    "cardName": "Card Name",
+    "validDate": "Valid Date",
+    "cvv": "CVC/CVV",
+    "holderName": "Cardholder Name",
+    "osbDesc": "Osmanbaba Vakıf Katılım Bankasını IBANI: RUHARTE BİLİŞİM TEKNOLOJİLERİ SANAYİ VE TİCARET LİMİTED ŞİRKET",
+    "refNo": "Reference number",
+    "acceptReq": "You must agree to the privacy terms"
+  },
+  "orderSummary": {
+    "title": "Order Summary",
+    "total": "Total",
+    "shippingMess": "Account after top up",
+    "withKdv": "(VAT included)"
+  },
+  "next": "Next",
+  "prev": "Previous"
+}

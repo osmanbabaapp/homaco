@@ -1,0 +1,27 @@
+{
+  "Detay": "Details",
+  "Manager": "aaam",
+  "Nace_codu": "Nace Kodu",
+  "Partner": "Partner",
+  "Reserve_found": "Reserve Found",
+  "Generalassembly": "General Assembly",
+  "Legelprovisions": "Legel Provisions",
+  "add_Adress": "Add Address",
+  "Add_ads": "Add Ads",
+  "addCapital": "Capital",
+  "addManager": "Manager",
+  "addNace_codu": "Add Nace Code",
+  "addProfitDetection": "Add Profit Detection",
+  "addRepresentation": "Add Representation",
+  "addTarget": "Add Target Of Company",
+  "addTime": "Add Time",
+  "addTitle": "Title Of Company",
+  "detay": {
+    "title": "Kurulumun yapılması için gerekli bilgileri giriniz.",
+    "coType": "Şirket /Ticari işletme Türü : Limited Şirket",
+    "altType": "Alt tür",
+    "city": "İl",
+    "area": "İlçe",
+    "sicil": "Ticaret Sicili Müdürlüğü"
+  }
+}

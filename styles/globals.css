@@ -11,7 +11,7 @@ body {
 
 body {
   color: #111;
-  background-image: url("/imgs/bg.jpeg");
+  /* background-image: url("/imgs/bg.jpeg"); */
   background-size: cover;
   /* background-color: #fefce8; */
 }

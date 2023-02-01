@@ -1,0 +1,25 @@
+{
+  "editTitle": "Profile Düzenle",
+  "form": {
+    "label": {
+      "username": "Ticari Adı",
+      "mobile": "Mobil",
+      "phone": "Telefon Numarası",
+      "email": "E-posta",
+      "city": "Şehir",
+      "area": "İlçe",
+      "semet": "Semet",
+      "mahalle": "Mahalle",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "website": "Şirket Sitesi"
+    }
+  },
+  "submit": "Kaydet",
+  "cancel": "İptal et",
+  "aboutAs": "Hakkımızda",
+  "aboutAs_ar": "Hakkımızda Arapçada",
+  "aboutAs_en": "Hakkımızda İnglizcede",
+  "certificates": "Belgeler"
+}
