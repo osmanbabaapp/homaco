@@ -57,7 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           font-family: ${myFont.style.fontFamily};
         }
       `}</style> */}
-      <SessionProvider session={pageProps?.session}>
+      <SessionProvider session={pageProps?.session} refetchInterval={5 * 60}>
         <MobileNavContextProvider>
           <Component {...pageProps} />
         </MobileNavContextProvider>
