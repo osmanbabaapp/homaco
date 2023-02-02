@@ -13,6 +13,7 @@ import PageWithLayoutType from "../layouts/page-with-layout";
 
 import "animate.css/animate.min.css";
 import axios from "axios";
+import Founders from "@/components/sections/founders";
 
 const Home: NextPage = (props: any) => {
   return (
@@ -29,6 +30,7 @@ const Home: NextPage = (props: any) => {
           <MachineSection1 />
           <Services />
           <Posters />
+          <Founders />
           <Contact />
         </>
       </MainLayout>
