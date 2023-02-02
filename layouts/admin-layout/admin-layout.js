@@ -8,6 +8,7 @@ import { layoutTransitionWidth } from "./components/utils-styles";
 
 import LanguageSwitcher from "./components/language-switcher";
 import Theme from "../../config/theme";
+import { useRouter } from "next/router";
 
 // styles
 const Layout = styled.div`
@@ -16,7 +17,10 @@ const Layout = styled.div`
 
 const MainContent = styled.div`
   position: relative;
-  margin-left: auto;
+  ${(props) => {
+    if (props.locale === "ar") return "margin-right: auto;";
+    else return "margin-left: auto;";
+  }}
   ${layoutTransitionWidth}
   ${(props) => {
     if (props.sideOpen === true)
@@ -36,11 +40,12 @@ const Main = styled.main`
 
 export default function AdminLayout(props) {
   const { sideOpen } = useContext(LayoutContext);
+  const locale = useRouter().locale;
   return (
     <Theme>
       <Layout>
         <SideMenu />
-        <MainContent sideOpen={sideOpen}>
+        <MainContent locale={locale} sideOpen={sideOpen}>
           <Navbar />
           <Main>{props.children}</Main>
         </MainContent>

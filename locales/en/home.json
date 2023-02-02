@@ -7,6 +7,7 @@
   "benefi": "Beneficiary",
   "packagingServices": "Packaging services",
   "layout": {
+    "clients": "Clients",
     "analytics": "Analytics",
     "productManagement": "Product Management",
     "websiteManagement": "Website Management",

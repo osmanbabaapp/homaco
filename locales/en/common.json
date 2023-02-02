@@ -244,5 +244,24 @@
     "areYouSureToUpdateThisCategory": "Are you sure to update this category ?",
     "theCategoryHasBeenDeletedSuccessfully": "The Category has been deleted successfully",
     "theCategoryHasBeenUpdatedSuccessfully": "The Category has been updated successfully"
+  },
+  "clients": {
+    "categories": "Clients",
+    "newCategory": "New Client",
+    "categoryImage": "Client image",
+    "name": "Name",
+    "areYouSure": "Are You Sure ?",
+    "areYouSureToPermanentlyDeleteThisCategory": "Are you sure to permanently delete this Client ?",
+    "yes": "Yes",
+    "cancel": "Cancel",
+    "areYouSureToUpdateThisCategory": "Are you sure to update this Client ?",
+    "theCategoryHasBeenDeletedSuccessfully": "The Client has been deleted successfully",
+    "theCategoryHasBeenUpdatedSuccessfully": "The Client has been updated successfully",
+    "addClient": "Added Client Successfully",
+    "editClient": "Edited Client Successfully",
+    "deleteClient": "Delete Client",
+    "clientTr": "Client Name In Turkish",
+    "clientAr": "Client Name In Arabic",
+    "clientEn": "Client Name In English"
   }
 }

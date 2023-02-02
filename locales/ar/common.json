@@ -399,5 +399,24 @@
     "areYouSureToUpdateThisCategory": "هل أنت متأكد من تحديث هذه التصنيف؟",
     "theCategoryHasBeenDeletedSuccessfully": "تم حذف التصنيف بنجاح",
     "theCategoryHasBeenUpdatedSuccessfully": "تم تحديث التصنيف بنجاح"
+  },
+  "clients": {
+    "categories": "العملاء",
+    "newCategory": "عميل جديد",
+    "categoryImage": "صورة العميل",
+    "name": "اسم",
+    "areYouSure": "هل أنت متأكد ؟",
+    "areYouSureToPermanentlyDeleteThisCategory": "هل أنت متأكد من حذف هذا العميل بشكل دائم؟",
+    "yes": "نعم",
+    "cancel": "يلغي",
+    "areYouSureToUpdateThisCategory": "هل أنت متأكد من تحديث هذا العميل؟",
+    "theCategoryHasBeenDeletedSuccessfully": "تم حذف العميل بنجاح",
+    "theCategoryHasBeenUpdatedSuccessfully": "تم تحديث العميل بنجاح",
+    "addClient": "إضافة العميل بنجاح",
+    "editClient": "تحرير العميل بنجاح",
+    "deleteClient": "Delete Client",
+    "clientTr": "اسم العميل باللغة التركية",
+    "clientAr": "اسم العميل باللغة العربية",
+    "clientEn": "اسم العميل باللغة الإنجليزية"
   }
 }

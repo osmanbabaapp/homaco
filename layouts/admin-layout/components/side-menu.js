@@ -82,6 +82,12 @@ export default function SideMenu() {
               active={router.pathname === "/categories"}
             />
             <MenuItem
+              href="/admin/clients"
+              title={t("layout.clients")}
+              icon={<MdOutlineCategory />}
+              active={router.pathname === "/admin/clients"}
+            />
+            <MenuItem
               href="/admin/products"
               title={t("layout.products")}
               icon={<RiApps2Line />}

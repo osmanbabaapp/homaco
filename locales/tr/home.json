@@ -7,6 +7,7 @@
   "benefi": "Yararlanıcılar",
   "packagingServices": "Paketleme hizmetleri",
   "layout": {
+    "clients": "Müşteriler",
     "analytics": "Analitik",
     "productManagement": "Ürün Yönetimi",
     "websiteManagement": "Web sitesi yönetimi",

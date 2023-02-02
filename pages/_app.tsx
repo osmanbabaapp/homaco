@@ -11,6 +11,8 @@ import MobileNavContextProvider from "../context/mobile-nav-context";
 import { SessionProvider } from "next-auth/react";
 import Theme from "../config/theme";
 import LayoutContextProvider from "../context/layout.context";
+import GlobalStyles from "../styles/globalStyles";
+import { useRouter } from "next/router";
 
 // layout types
 type AppLayoutProps = AppProps & {
@@ -46,6 +48,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   // const Layout =
   //   Component.layout || ((children: ReactElement) => <>{children}</>);
 
+  const router = useRouter();
+
+  const imageBg = router.pathname.includes("/admin") ? false : true;
+  const locale = router.locale;
   return (
     <>
       <Head>
@@ -60,6 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="h1M0H97zNrzTcJCcNfZLBOSMdwm-awqkDV6pe24Wcb8"
         />
       </Head>
+      <GlobalStyles image={imageBg} dir={locale === "ar" ? "rtl" : "ltr"} />
       <div className={myFont.className}>
         {/* <style jsx global>{`
         body {

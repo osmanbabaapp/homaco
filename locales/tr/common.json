@@ -432,5 +432,24 @@
     "areYouSureToUpdateThisCategory": "Bu kategoriyi güncellediğinizden emin misiniz?",
     "theCategoryHasBeenDeletedSuccessfully": "Kategori başarıyla silindi",
     "theCategoryHasBeenUpdatedSuccessfully": "Kategori başarıyla güncellendi"
+  },
+  "clients": {
+    "categories": "Müşteriler",
+    "newCategory": "Yeni müşteri",
+    "categoryImage": "Müşteri görüntüsü",
+    "name": "İsim",
+    "areYouSure": "Emin misin ?",
+    "areYouSureToPermanentlyDeleteThisCategory": "Bu müşteriyi kalıcı olarak sileceğinizden emin misiniz?",
+    "yes": "Evet",
+    "cancel": "İptal etmek",
+    "areYouSureToUpdateThisCategory": "Bu müşteriyi güncelleyeceğinizden emin misiniz?",
+    "theCategoryHasBeenDeletedSuccessfully": "müşteriyi başarıyla silindi",
+    "theCategoryHasBeenUpdatedSuccessfully": "müşteriyi başarıyla güncellendi",
+    "addClient": "Müşteri başarıyla eklendi",
+    "editClient": "Müşteri başarılı bir şekilde düzenlendi",
+    "deleteClient": "Delete Client",
+    "clientTr": "Türkçe Müşteri Adı",
+    "clientAr": "Arapça Müşteri Adı",
+    "clientEn": "İngilizce Müşteri Adı"
   }
 }
