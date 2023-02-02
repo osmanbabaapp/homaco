@@ -4,7 +4,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import PageWithLayoutType from "../layouts/page-with-layout";
 import { ReactElement } from "react";
-
+import DrawerContainer from "../components/drawer/drawer-container";
 import { Titillium_Web } from "@next/font/google";
 import localFont from "@next/font/local";
 import MobileNavContextProvider from "../context/mobile-nav-context";
@@ -13,6 +13,8 @@ import Theme from "../config/theme";
 import LayoutContextProvider from "../context/layout.context";
 import GlobalStyles from "../styles/globalStyles";
 import { useRouter } from "next/router";
+import { Provider } from "react-redux";
+import { useStore } from "../redux/index";
 
 // layout types
 type AppLayoutProps = AppProps & {
@@ -50,6 +52,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const router = useRouter();
 
+  const store = useStore(pageProps.initialReduxState);
+
   const imageBg = router.pathname.includes("/admin") ? false : true;
   const locale = router.locale;
   return (
@@ -67,19 +71,25 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <GlobalStyles image={imageBg} dir={locale === "ar" ? "rtl" : "ltr"} />
-      <div className={myFont.className}>
-        {/* <style jsx global>{`
+      <div className={myFont.className} style={{ ...myFont.style }}>
+        <Provider store={store}>
+          {/* <style jsx global>{`
         body {
           font-family: ${myFont.style.fontFamily};
         }
       `}</style> */}
-        <SessionProvider session={pageProps?.session} refetchInterval={5 * 60}>
-          <MobileNavContextProvider>
-            <LayoutContextProvider>
-              <Component {...pageProps} />
-            </LayoutContextProvider>
-          </MobileNavContextProvider>
-        </SessionProvider>
+          <SessionProvider
+            session={pageProps?.session}
+            refetchInterval={5 * 60}
+          >
+            <MobileNavContextProvider>
+              <LayoutContextProvider>
+                <Component {...pageProps} />
+                <DrawerContainer />
+              </LayoutContextProvider>
+            </MobileNavContextProvider>
+          </SessionProvider>
+        </Provider>
       </div>
     </>
   );

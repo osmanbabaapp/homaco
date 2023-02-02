@@ -126,7 +126,7 @@ const Navbar = () => {
                 href="#"
                 className="flex overflow-hidden justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
               >
-                <img src="oslogo.png" alt="osmanbaba" />
+                <img src="/oslogo.png" alt="osmanbaba" />
               </a>
             </div>
             <div className="block sm:hidden">
