@@ -15,7 +15,7 @@ const data: any = {
       name: "Muhammed Ahmet Fellaha",
       role: "Teknik Direktör",
       phone: "+90 538 548 86 66",
-      plink: "00905385488666",
+      plink: "00905385488666", //
     },
   ],
   en: [
