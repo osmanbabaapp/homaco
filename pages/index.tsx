@@ -65,7 +65,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   `
 
-  const graphQLClient = new GraphQLClient('http://localhost:8080/graphql')
+  const graphQLClient = new GraphQLClient(
+    process.env.NEXT_PUBLIC_HOST! + 'graphql'
+  )
   const data = await graphQLClient.request(HomeQuery)
 
   return {
