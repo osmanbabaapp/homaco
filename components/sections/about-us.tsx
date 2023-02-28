@@ -1,10 +1,7 @@
-import { FC } from "react";
-import Container from "../container";
-import Button from "../elements/Button";
-import { FaShippingFast } from "react-icons/fa";
-import Shape from "../shape";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { FC } from 'react'
+import Container from '../container'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 // const AboutUs: FC = () => {
 //   return (
@@ -65,10 +62,10 @@ const AboutUs: FC = () => {
       <Container>
         <div className="md:w-[50%] sm:w-[70%] w-[80%] mt-[30vh] mr-[3vh] sm:mt-[0vh] sm:mr-[0vh]">
           <motion.div
-            style={{ position: "relative" }}
+            style={{ position: 'relative' }}
             whileInView={{
               opacity: 1,
-              left: 0,
+              right: 0,
               transition: {
                 delay: 0,
                 duration: 0.8,
@@ -76,23 +73,23 @@ const AboutUs: FC = () => {
             }}
             initial={{
               opacity: 0,
-              left: -100,
+              right: -100,
             }}
           >
             <Image
               alt="Homaco Logo"
-              src={"/imgs/logo.png"}
+              src={'/imgs/logo.png'}
               width={240}
               height={80}
-              className={"w-[180px] md:w-[380px]"}
+              className={'w-[180px] md:w-[380px]'}
             />
           </motion.div>
 
           <motion.div
-            style={{ position: "relative" }}
+            style={{ position: 'relative' }}
             whileInView={{
               opacity: 1,
-              left: 0,
+              right: 0,
               transition: {
                 delay: 0.4,
                 duration: 0.8,
@@ -100,7 +97,7 @@ const AboutUs: FC = () => {
             }}
             initial={{
               opacity: 0,
-              left: -100,
+              right: -100,
             }}
           >
             <p className="text-xl">اسم تثقون به</p>
@@ -115,7 +112,7 @@ const AboutUs: FC = () => {
         </div>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs
