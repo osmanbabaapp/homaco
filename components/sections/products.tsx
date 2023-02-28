@@ -1,39 +1,39 @@
-import Image from "next/image";
-import { FC, useRef } from "react";
-import Container from "../container";
-import Button from "../elements/Button";
-import { HiArrowNarrowRight } from "react-icons/hi";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
-import "swiper/css";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { makeURLFriendly } from "../../helpers/generate-url-withname";
-import { useRouter } from "next/router";
+import Image from 'next/image'
+import { FC, useRef } from 'react'
+import Container from '../container'
+import Button from '../elements/Button'
+import { HiArrowNarrowRight } from 'react-icons/hi'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper'
+import 'swiper/css'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { makeURLFriendly } from '../../helpers/generate-url-withname'
+import { useRouter } from 'next/router'
 
 const data = [
   {
     id: 0,
-    image: "/imgs/prod2.png",
-    title: "خلاط بودرة",
+    image: '/imgs/prod2.png',
+    title: 'خلاط بودرة',
     description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
+      'خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل',
   },
   {
     id: 1,
-    image: "/imgs/prod3.png",
-    title: "آلة طحن السمسم ميني",
+    image: '/imgs/prod3.png',
+    title: 'آلة طحن السمسم ميني',
     description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
+      'خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل',
   },
   {
     id: 2,
-    image: "/imgs/prod.png",
-    title: "آلة تعبئة السوائل",
+    image: '/imgs/prod.png',
+    title: 'آلة تعبئة السوائل',
     description:
-      "خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل",
+      'خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل',
   },
-];
+]
 
 const ProductItem: FC<any> = (props) => {
   return (
@@ -48,39 +48,39 @@ const ProductItem: FC<any> = (props) => {
             color="primary"
             className="absolute -left-[100%] top-[65%] border-red-600 opacity-0 delay-[350] group-hover:opacity-100 group-hover:left-[50%] -translate-x-1/2"
           >
-            التفاصيل <HiArrowNarrowRight style={{ display: "inline" }} />
+            التفاصيل <HiArrowNarrowRight style={{ display: 'inline' }} />
           </Button>
         </div>
         <Image
-          src={process.env.NEXT_PUBLIC_HOST + props.primaryImage}
+          src={props.primary_image}
           alt={props[`title_${props?.locale}`]}
           width={250}
           height={150}
           className="object-cover h-[300px] w-full"
         />
         <h3 className="font-bold text-[28px] my-2 self-center px-[50px] text-red-600 text-center">
-          {props.title}
+          {props[`title_${props?.locale}`]}
         </h3>
         <p className="font-bold text-[18px] line-clamp-2 ">
-          {props.description}
+          {props[`desc_${props?.locale}`]}
         </p>
       </div>
     </Link>
-  );
-};
+  )
+}
 
 const Products: FC<{ products: any }> = ({ products }) => {
   // const ref = useRef<HTMLDivElement>(null);
   // const onScreen = useEle
 
-  const locale = useRouter().locale;
+  const locale = useRouter().locale
 
   return (
     <div className="py-10 bg-white" id="products">
       <Container>
         <Image
           alt="Homaco Logo"
-          src={"/imgs/logo.png"}
+          src={'/imgs/logo.png'}
           className="m-auto w-[180px] md:w-[380px]"
           width={280}
           height={80}
@@ -93,14 +93,14 @@ const Products: FC<{ products: any }> = ({ products }) => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:my-[4vh]">
           {products?.map((item: any, index: number) => {
-            const slug = makeURLFriendly(item[`title_${locale}`]);
+            const slug = makeURLFriendly(item[`title_${locale}`])
 
             return (
               <motion.div
-                style={{ position: "relative" }}
+                style={{ position: 'relative' }}
                 whileInView={{
                   opacity: 1,
-                  msTransition: "linear",
+                  msTransition: 'linear',
                   top: 0,
                   transition: {
                     duration: 0.8,
@@ -116,7 +116,7 @@ const Products: FC<{ products: any }> = ({ products }) => {
                   locale={locale}
                 />
               </motion.div>
-            );
+            )
           })}
           {/* <Swiper spaceBetween={20} className="py-10 px-5" slidesPerView="auto">
             {data.map((item) => (
@@ -128,7 +128,7 @@ const Products: FC<{ products: any }> = ({ products }) => {
         </div>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default Products;
+export default Products

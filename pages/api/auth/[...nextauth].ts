@@ -16,15 +16,16 @@ export default NextAuth({
         }
         const website: string = process.env.NEXT_PUBLIC_WEBSITE!
         const url = `https://os-workspace-api.vercel.app/api/auth/login`
-
-        console.log('website')
-        console.log(website)
+        // const url = `http://localhost:8080/api/auth/login`
 
         try {
           const res = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(payload),
-            headers: { 'Content-Type': 'application/json', website: website },
+            headers: {
+              'Content-Type': 'application/json',
+              website: website,
+            },
           })
 
           const user = await res.json()

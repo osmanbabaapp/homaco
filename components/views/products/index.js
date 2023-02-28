@@ -38,6 +38,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
   const { t } = useTranslation('common')
 
   const getList = useCallback(async () => {
+    alert('start get data')
     const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/product?take=100'
     setLoading(true)
     try {
@@ -243,10 +244,8 @@ export default function ProductsPageContent({ locale, cookies, status }) {
   )
 
   useEffect(() => {
-    if (status !== 'loading') {
-      getList()
-    }
-  }, [getList, status])
+    getList()
+  }, [getList])
 
   const columns = [
     {

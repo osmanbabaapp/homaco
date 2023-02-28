@@ -15,10 +15,13 @@ import 'animate.css/animate.min.css'
 import axios from 'axios'
 import Founders from '@/components/sections/founders'
 import { useSession } from 'next-auth/react'
+import { gql, GraphQLClient } from 'graphql-request'
 
 const Home: NextPage = (props: any) => {
   const { data } = useSession()
   console.log('Session Data', data)
+  console.log('props')
+  console.log(props)
 
   return (
     <div>
@@ -47,65 +50,26 @@ const Home: NextPage = (props: any) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context
 
-  const reqUrlHomePage =
-    process.env.NEXT_PUBLIC_HOST! +
-    process.env.NEXT_PUBLIC_ALL_HOME_PAGE_SETTINGS
-
-  let props = {}
-  // get Data
-
-  // const reqUrlParentCat = process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_PARENT_CATEGORIES; // parent
-
-  // const httpsAgent = new https.Agent({
-  //   rejectUnauthorized: false,
-  // });
-
-  try {
-    const { data: res } = await axios.get(reqUrlHomePage, {
-      // httpsAgent: httpsAgent,
-      headers: { websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME },
-    })
-
-    if (res?.status === true) {
-      // if (resClients?.status === true) {
-      //   clients = resClients?.description?.slice(0, 16) ?? [];
-      // }
-      props = {
-        status: true,
-        data: res?.description || null,
-        banners: res?.banners || null,
-        products: res?.products.slice(0, 16) || null,
-        // clients: clients,
-        // headersT: headersT,
+  const HomeQuery = gql`
+    {
+      products {
+        id
+        title_${locale}
+        desc_${locale}
+        primary_image
+        slug_${locale}
       }
-
-      // if (resCat?.status === true) {
-      //   props.parentCategories = resCat.description.result;
-      // }
-    } else {
-      props = {
-        status: false,
-        data: res?.description || null,
-        banners: res?.banners || null,
-        products: res?.products.slice(0, 12) || null,
-        // clients: clients,
-        failCode: 400,
+      banners {
+        id
       }
     }
-  } catch (e: any) {
-    console.error('Error')
-    console.error(e.toString())
-    if (e?.response?.status === 400) {
-      props = {
-        failCode: 400,
-        status: false,
-        description: 'Something went wrong! Please try again later.',
-      }
-    }
-  }
+  `
+
+  const graphQLClient = new GraphQLClient('http://localhost:8080/graphql')
+  const data = await graphQLClient.request(HomeQuery)
 
   return {
-    props: props,
+    props: { ...data },
   }
 }
 

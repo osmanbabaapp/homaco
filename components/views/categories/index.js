@@ -30,6 +30,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { ExclamationCircleFilled } from '@ant-design/icons'
 import axios from 'axios'
 import useTranslation from 'next-translate/useTranslation'
+import { signOut } from 'next-auth/react'
 
 export default function CategoriesPageContent({ locale, cookies }) {
   const [list, setList] = useState([])
@@ -58,7 +59,20 @@ export default function CategoriesPageContent({ locale, cookies }) {
       }
     } catch (err) {
       setLoading(false)
-      alert('Error')
+      console.log(String(err))
+      if (err?.response?.status === 401) {
+        signOut({ callbackUrl: '/' })
+      } else if (err?.response?.status === 500) {
+        setError(
+          err?.response?.data || 'Something went wrong! Please try again later.'
+        )
+      } else if (err?.response?.status === 400) {
+        setError(
+          err?.response?.data || 'Something went wrong! Please try again later.'
+        )
+      } else if (err?.response?.status === 404) {
+        setError({ description: 'Wrong endpoint error' })
+      }
     }
   }, [cookies, locale])
 
