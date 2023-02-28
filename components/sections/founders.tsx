@@ -1,52 +1,52 @@
-import Image from "next/image";
-import { useRouter } from "next/router";
-import { FC } from "react";
-import Container from "../container";
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { FC } from 'react'
+import Container from '../container'
 
 const data: any = {
   tr: [
     {
-      name: "Abdulwahid gap alhasan",
-      role: "Genel Müdür",
-      phone: "+90 534 872 80 00",
-      plink: "00905348728000",
+      name: 'Abdulwahid gap alhasan',
+      role: 'Genel Müdür',
+      phone: '+90 534 872 80 00',
+      plink: '00905348728000',
     },
     {
-      name: "Muhammed Ahmet Fellaha",
-      role: "Teknik Direktör",
-      phone: "+90 538 548 86 66",
-      plink: "00905385488666", //
+      name: 'Muhammed Ahmet Fellaha',
+      role: 'Teknik Direktör',
+      phone: '+90 538 548 86 66',
+      plink: '00905385488666', //
     },
   ],
   en: [
     {
-      name: "Abdulwahid gap alhasan",
-      role: "General Director",
-      phone: "+90 534 872 80 00",
-      plink: "00905348728000",
+      name: 'Abdulwahid gap alhasan',
+      role: 'General Director',
+      phone: '+90 534 872 80 00',
+      plink: '00905348728000',
     },
     {
-      name: "Muhammed Ahmet Fellaha",
-      role: "Technical Director",
-      phone: "+90 534 872 80 00",
-      plink: "00905385488666",
+      name: 'Muhammed Ahmet Fellaha',
+      role: 'Technical Director',
+      phone: '+90 534 872 80 00',
+      plink: '00905385488666',
     },
   ],
   ar: [
     {
-      name: "عبد الواحد غاب الحسن",
-      role: "المدير العام",
-      phone: "+90 534 872 80 00",
-      plink: "00905348728000",
+      name: 'عبد الواحد غاب الحسن',
+      role: 'المدير العام',
+      phone: '+90 534 872 80 00',
+      plink: '00905348728000',
     },
     {
-      name: "محمد أحمد فلاحة",
-      role: "المدير الفني",
-      phone: "+90 534 872 80 00",
-      plink: "00905385488666",
+      name: 'محمد أحمد فلاحة',
+      role: 'المدير الفني',
+      phone: '+90 534 872 80 00',
+      plink: '00905385488666',
     },
   ],
-};
+}
 
 const FounderItem: FC<{ item: any }> = ({ item }) => {
   return (
@@ -58,21 +58,21 @@ const FounderItem: FC<{ item: any }> = ({ item }) => {
       </div>
       <Image
         src={
-          "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
+          'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'
         }
-        alt={"founder"}
-        className={"w-full"}
+        alt={'founder'}
+        className={'w-full'}
         width={300}
         height={100}
       />
     </div>
-  );
-};
+  )
+}
 const Founders: FC = () => {
-  const router = useRouter();
-  const locale = router.locale;
+  const router = useRouter()
+  const locale = router.locale
 
-  const __ = data[locale || "ar"];
+  const __ = data[locale || 'ar']
   return (
     <div className="py-24 text-white">
       <Container>
@@ -86,7 +86,7 @@ const Founders: FC = () => {
         </div>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default Founders;
+export default Founders

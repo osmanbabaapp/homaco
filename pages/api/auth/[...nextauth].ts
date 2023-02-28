@@ -15,7 +15,7 @@ export default NextAuth({
           password: credentials?.password,
         }
         const website: string = process.env.NEXT_PUBLIC_WEBSITE!
-        const url = process.env.NEXT_PUBLIC_HOST + `/api/auth/login`
+        const url = `https://os-workspace-api.vercel.app/api/auth/login`
 
         console.log('website')
         console.log(website)
