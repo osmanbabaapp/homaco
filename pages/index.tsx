@@ -65,9 +65,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   `
 
-  const graphQLClient = new GraphQLClient(
-    process.env.NEXT_PUBLIC_HOST! + 'graphql'
-  )
+  // const url =  'http://localhost:8080/graphql'
+  const url = 'https://os-workspace-api.vercel.app/graphql'
+
+  const graphQLClient = new GraphQLClient(url)
   const data = await graphQLClient.request(HomeQuery)
 
   return {
