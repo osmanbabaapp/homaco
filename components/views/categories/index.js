@@ -39,7 +39,7 @@ export default function CategoriesPageContent({ locale, cookies }) {
   const { t } = useTranslation('common')
 
   const getList = useCallback(async () => {
-    const reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/category'
+    const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/category'
 
     setLoading(true)
     try {
@@ -80,7 +80,7 @@ export default function CategoriesPageContent({ locale, cookies }) {
 
         onOk: async () => {
           const { data: res, status } = await axios.delete(
-            process.env.NEXT_PUBLIC_HOST + '/api/category',
+            process.env.NEXT_PUBLIC_HOST + 'api/category',
             {
               headers: {
                 Authorization: `Bearer ${cookies?.token}`,

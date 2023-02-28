@@ -94,7 +94,7 @@ function BannerPageContent({ id = null, cookies, status }) {
   const [form] = Form.useForm()
   const router = useRouter()
 
-  let reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/banner'
+  let reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/banner'
 
   const { t } = useTranslation(['common', 'addad'])
 
@@ -121,7 +121,7 @@ function BannerPageContent({ id = null, cookies, status }) {
     loading: getLoading,
     error: getError,
     executeFetch: getAd,
-  } = useFetch('/api/banner/' + id, 'GET', {}, false)
+  } = useFetch('api/banner/' + id, 'GET', {}, false)
 
   // functions
   const handleFormFinish = useCallback(

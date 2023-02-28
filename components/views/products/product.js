@@ -248,13 +248,13 @@ function AddPageContent({ id = null }) {
     loading: getLoading,
     error: getError,
     executeFetch: getAd,
-  } = useFetch('/api/product/' + id, 'GET', {}, false)
+  } = useFetch('api/product/' + id, 'GET', {}, false)
 
   // functions
   const handleFormFinish = useCallback(
     async (values) => {
       // setFormLoading(true);
-      let reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/product'
+      let reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/product'
 
       let formData = new FormData()
       // values.ModelID?.map((item) =>
@@ -358,7 +358,7 @@ function AddPageContent({ id = null }) {
     setLoadings('categoryList')
     try {
       const { data: res, status } = await axios.get(
-        process.env.NEXT_PUBLIC_HOST + '/api/category?take=100',
+        process.env.NEXT_PUBLIC_HOST + 'api/category?take=100',
         {
           headers: {
             Authorization: `Bearer ${cookies?.user?.token}`,

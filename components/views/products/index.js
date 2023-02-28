@@ -38,7 +38,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
   const { t } = useTranslation('common')
 
   const getList = useCallback(async () => {
-    const reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/product?take=100'
+    const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/product?take=100'
     setLoading(true)
     try {
       const { data: res, status } = await axios({
@@ -111,7 +111,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
         onOk: async () => {
           try {
             const { data: res, status } = await axios.delete(
-              process.env.NEXT_PUBLIC_HOST + '/api/product',
+              process.env.NEXT_PUBLIC_HOST + 'api/product',
               {
                 data: {
                   id,
@@ -192,7 +192,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
         onOk: async () => {
           try {
             const { data: res, status } = await axios.put(
-              process.env.NEXT_PUBLIC_HOST + '/api/product',
+              process.env.NEXT_PUBLIC_HOST + 'api/product',
               {
                 id,
                 active: !active,

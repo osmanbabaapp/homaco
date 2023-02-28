@@ -128,7 +128,7 @@ function CategoryPageContent({ id = null, cookies, locale }) {
   const [form] = Form.useForm()
   const router = useRouter()
 
-  const reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/category'
+  const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/category'
 
   const { t } = useTranslation('common')
   // states
@@ -256,7 +256,7 @@ function CategoryPageContent({ id = null, cookies, locale }) {
     if (id) {
       const getAdDetails = async () => {
         setLoading(true)
-        const reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/category/' + id
+        const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/category/' + id
 
         try {
           const { data: res, status } = await axios.get(reqUrl, {

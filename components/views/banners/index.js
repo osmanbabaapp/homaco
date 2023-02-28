@@ -44,7 +44,7 @@ export default function BannersPageContent({ locale, cookies }) {
   const { t } = useTranslation('common')
 
   const getList = useCallback(async () => {
-    const reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/banner?take=100'
+    const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/banner?take=100'
     setLoading(true)
     try {
       const { data: res, status } = await axios.get(reqUrl, {
@@ -99,7 +99,7 @@ export default function BannersPageContent({ locale, cookies }) {
         onOk: async () => {
           try {
             const { data: res, status } = await axios.delete(
-              process.env.NEXT_PUBLIC_HOST + '/api/banner',
+              process.env.NEXT_PUBLIC_HOST + 'api/banner',
               {
                 data: {
                   id,
@@ -181,7 +181,7 @@ export default function BannersPageContent({ locale, cookies }) {
         onOk: async () => {
           try {
             const { data: res, status } = await axios.put(
-              process.env.NEXT_PUBLIC_HOST + '/api/banner',
+              process.env.NEXT_PUBLIC_HOST + 'api/banner',
               {
                 id,
                 active: !active,
