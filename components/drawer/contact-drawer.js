@@ -1,87 +1,87 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from 'react'
 // import { AuthContext } from "context/auth-context/auth-context";
-import { CloseOutlined } from "@ant-design/icons";
-import { Button, Col, Divider, Row, Space, Form, Input, message } from "antd";
-import useTranslation from "next-translate/useTranslation";
+import { CloseOutlined } from '@ant-design/icons'
+import { Button, Col, Divider, Row, Space, Form, Input, message } from 'antd'
+import useTranslation from 'next-translate/useTranslation'
 // import { palette2 } from "../constants/colors";
 
 // context
 // import { AuthContext } from "context/auth-context/auth-context";
-import axios from "axios";
+import axios from 'axios'
 
 export default function ContactDrawer({ open, onClose, payload, locale }) {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
   //   const { id } = queryString.parse(window.location.search);
-  const { t } = useTranslation("common");
-  const { t: Taddad } = useTranslation("addad");
+  const { t } = useTranslation('common')
+  const { t: Taddad } = useTranslation('addad')
 
   const [descriptions, setDescriptions] = useState([
     {
-      id: "",
+      id: '',
       type: 1,
       values: [1],
     },
-  ]);
+  ])
 
-  const [minValueInput, setMinValueInput] = useState(0);
+  const [minValueInput, setMinValueInput] = useState(0)
 
-  const [listDescriptions, setListDescriptions] = useState([]);
+  const [listDescriptions, setListDescriptions] = useState([])
 
-  const [selected, setSelected] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [loadings, setLoadings] = useState(null);
+  const [selected, setSelected] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [loadings, setLoadings] = useState(null)
 
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null)
 
   const getListDescriptions = useCallback(async () => {
-    if (listDescriptions.length !== 0) return false;
+    if (listDescriptions.length !== 0) return false
 
-    setLoadings("listDescriptions");
+    setLoadings('listDescriptions')
     const { data: res } = await axios.get(
       process.env.NEXT_PUBLIC_HOST +
         process.env.NEXT_PUBLIC_GET_ALL_DESCRIPTIONS,
       {
         headers: { websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME },
       }
-    );
+    )
 
-    setLoadings(null);
+    setLoadings(null)
 
     if (res.status === true) {
-      setListDescriptions(res.description);
+      setListDescriptions(res.description)
     } else {
-      message.error("Something went wrong! Please try again.");
+      message.error('Something went wrong! Please try again.')
     }
-  }, [listDescriptions]);
+  }, [listDescriptions])
 
   const handleSubmitForm = useCallback(
     async (values) => {
       // send email
-      let messageJson = "";
+      let messageJson = ''
 
       descriptions.forEach((item) => {
-        const lol = listDescriptions.find((x) => x.id === item.id);
+        const lol = listDescriptions.find((x) => x.id === item.id)
         if (item.type == 4) {
-          const desName = t("form.labels.orderCount");
+          const desName = t('form.labels.orderCount')
 
-          const desValues = item.values[0];
+          const desValues = item.values[0]
 
-          messageJson += desName + ": " + desValues + ", ";
+          messageJson += desName + ': ' + desValues + ', '
         } else {
-          const desName = lol?.[`name_${locale}`];
+          const desName = lol?.[`name_${locale}`]
 
           const desValues = lol?.arrayPropertyValue
             ?.filter((x) => item.values.find((y) => y === x.id))
-            .map((x) => x[`name_${locale}`]);
+            .map((x) => x[`name_${locale}`])
 
-          messageJson += desName + ": " + desValues + ", ";
+          messageJson += desName + ': ' + desValues + ', '
         }
-      });
+      })
 
-      setLoading(true);
+      setLoading(true)
 
       const reqUrlEmail =
-        process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_ADD_EMAIL;
+        process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_ADD_EMAIL
 
       const reqBody = {
         Title: payload?.productData[`title_${locale}`],
@@ -94,9 +94,9 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
         CountryName: values.countryName,
         MessageID: null,
         Lang: locale,
-      };
+      }
 
-      console.log("reqBody :>> ", reqBody);
+      console.log('reqBody :>> ', reqBody)
 
       const { data: responseEmail } = await axios.post(reqUrlEmail, reqBody, {
         headers: {
@@ -104,29 +104,29 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
           locale: locale,
           websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
         },
-      });
+      })
 
-      setLoading(false);
+      setLoading(false)
 
       if (responseEmail.status === true) {
         message.success(
-          locale === "ar"
-            ? "تم إرسال الرسالة بنجاح"
-            : locale === "tr"
-            ? "Mesaj başarıyla gönderildi"
-            : "Message has been sended successfully"
-        );
-        onClose();
+          locale === 'ar'
+            ? 'تم إرسال الرسالة بنجاح'
+            : locale === 'tr'
+            ? 'Mesaj başarıyla gönderildi'
+            : 'Message has been sended successfully'
+        )
+        onClose()
       } else {
-        setError(responseEmail.description);
+        setError(responseEmail.description)
       }
     },
     [descriptions, listDescriptions, locale, onClose, payload?.productData, t]
-  );
+  )
 
   const onCheckbox = useCallback(
     ({ checkedValues, id }) => {
-      const itemIndex = descriptions?.findIndex((x) => x.id === id);
+      const itemIndex = descriptions?.findIndex((x) => x.id === id)
 
       if (itemIndex === -1) {
         setDescriptions((prev) => {
@@ -137,31 +137,31 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
               type: 3,
               values: checkedValues,
             },
-          ];
-        });
+          ]
+        })
       } else {
         setDescriptions((prev) => {
-          const oldArray = prev?.filter((y) => y.id !== id) ?? [];
+          const oldArray = prev?.filter((y) => y.id !== id) ?? []
 
-          const myItem = { id: id, type: 3, values: checkedValues };
+          const myItem = { id: id, type: 3, values: checkedValues }
 
           if (checkedValues.length === 0) {
-            return [...oldArray];
+            return [...oldArray]
           } else {
-            return [...oldArray, myItem];
+            return [...oldArray, myItem]
           }
-        });
+        })
       }
     },
     [descriptions]
-  );
+  )
 
   const onChangeInput = useCallback(
     ({ checkedValues, id }) => {
-      const itemIndex = descriptions?.findIndex((x) => x.id === id);
+      const itemIndex = descriptions?.findIndex((x) => x.id === id)
 
       if (checkedValues < minValueInput) {
-        message.error(`You cannot order less than ${minValueInput}`);
+        message.error(`You cannot order less than ${minValueInput}`)
       }
 
       if (itemIndex === -1) {
@@ -173,24 +173,24 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
               type: 4,
               values: [checkedValues],
             },
-          ];
-        });
+          ]
+        })
       } else {
         setDescriptions((prev) => {
-          const oldArray = prev?.filter((y) => y.id !== id) ?? [];
+          const oldArray = prev?.filter((y) => y.id !== id) ?? []
 
-          const lol = { id: id, type: 4, values: [checkedValues] };
+          const lol = { id: id, type: 4, values: [checkedValues] }
 
-          return [...oldArray, lol];
-        });
+          return [...oldArray, lol]
+        })
       }
     },
     [descriptions, minValueInput]
-  );
+  )
 
   const onCheckRadio = useCallback(
     ({ checkedValues, id }) => {
-      const itemIndex = descriptions?.findIndex((x) => x.id === id);
+      const itemIndex = descriptions?.findIndex((x) => x.id === id)
 
       if (itemIndex === -1) {
         setDescriptions((prev) => {
@@ -201,24 +201,24 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
               type: 2,
               values: [checkedValues],
             },
-          ];
-        });
+          ]
+        })
       } else {
         setDescriptions((prev) => {
-          const oldArray = prev?.filter((y) => y.id !== id) ?? [];
+          const oldArray = prev?.filter((y) => y.id !== id) ?? []
 
-          const lol = { id: id, type: 2, values: [checkedValues] };
+          const lol = { id: id, type: 2, values: [checkedValues] }
 
-          return [...oldArray, lol];
-        });
+          return [...oldArray, lol]
+        })
       }
     },
     [descriptions]
-  );
+  )
 
   const onChangeSelect = useCallback(
     ({ value, id }) => {
-      const itemIndex = descriptions?.findIndex((x) => x.id === id);
+      const itemIndex = descriptions?.findIndex((x) => x.id === id)
 
       if (itemIndex === -1) {
         setDescriptions((prev) => {
@@ -229,23 +229,23 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
               type: 0,
               values: [value],
             },
-          ];
-        });
+          ]
+        })
       } else {
         setDescriptions((prev) => {
-          const oldArray = prev?.filter((y) => y.id !== id) ?? [];
+          const oldArray = prev?.filter((y) => y.id !== id) ?? []
 
-          const lol = { id: id, type: 0, values: [value] };
+          const lol = { id: id, type: 0, values: [value] }
 
-          return [...oldArray, lol];
-        });
+          return [...oldArray, lol]
+        })
       }
     },
     [descriptions]
-  );
+  )
   const onChangeSelectMulti = useCallback(
     ({ value, id }) => {
-      const itemIndex = descriptions?.findIndex((x) => x.id === id);
+      const itemIndex = descriptions?.findIndex((x) => x.id === id)
 
       if (itemIndex === -1) {
         setDescriptions((prev) => {
@@ -256,27 +256,27 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
               type: 1,
               values: value,
             },
-          ];
-        });
+          ]
+        })
       } else {
         setDescriptions((prev) => {
-          const oldArray = prev?.filter((y) => y.id !== id) ?? [];
+          const oldArray = prev?.filter((y) => y.id !== id) ?? []
 
-          const myItem = { id: id, type: 1, values: value };
+          const myItem = { id: id, type: 1, values: value }
 
           if (value.length === 0) {
-            return [...oldArray];
+            return [...oldArray]
           } else {
-            return [...oldArray, myItem];
+            return [...oldArray, myItem]
           }
-        });
+        })
       }
     },
     [descriptions]
-  );
+  )
 
   useEffect(() => {
-    getListDescriptions();
+    getListDescriptions()
     // form.setFieldsValue({
     //   fullName: "user?.fullName",
     //   email: "user?.email",
@@ -285,43 +285,43 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
     const myDescriptions = payload?.productData?.descriptionsId?.map((x) => {
       const lolType = listDescriptions.find(
         (y) => y.id === x.descriptionId
-      )?.propertyDescType;
+      )?.propertyDescType
 
       if (lolType === 4) {
-        setMinValueInput(x.optionsId.map((z) => Number(z))[0]);
+        setMinValueInput(x.optionsId.map((z) => Number(z))[0])
       }
 
       return {
         id: x.descriptionId,
         type: lolType,
         values: x.optionsId.map((z) => Number(z)),
-      };
-    });
+      }
+    })
 
-    setDescriptions(myDescriptions);
+    setDescriptions(myDescriptions)
 
     // form.setFieldsValue({
     //   username: user?.userName,
     //   email: user?.email,
     // });
-    let obj = {};
+    let obj = {}
     for (let i = 0; i < payload?.adjs.length; i++) {
       // eslint-disable-next-line no-unused-expressions
       obj[
         `${
           payload?.adjs[i].result[
             `${
-              locale === "ar"
-                ? "adjactiveAR"
-                : locale === "tr"
-                ? "adjctiveTR"
-                : "adjactiveEN"
+              locale === 'ar'
+                ? 'adjactiveAR'
+                : locale === 'tr'
+                ? 'adjctiveTR'
+                : 'adjactiveEN'
             }`
           ]
         }`
-      ] = payload?.adjs[i].result["value"][0];
+      ] = payload?.adjs[i].result['value'][0]
     }
-    form.setFieldsValue(obj);
+    form.setFieldsValue(obj)
   }, [
     form,
     getListDescriptions,
@@ -330,7 +330,7 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
     open,
     payload?.adjs,
     payload.productData?.descriptionsId,
-  ]);
+  ])
 
   return (
     <div>
@@ -339,130 +339,130 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
         hideRequiredMark
         form={form}
         onFinish={handleSubmitForm}
-        okText={t("form.confirm")}
-        cancelText={t("form.cancel")}
+        okText={t('form.confirm')}
+        cancelText={t('form.cancel')}
       >
         <Row gutter={16}>
           <div
             style={{
-              width: "100%",
+              width: '100%',
               borderRadius: 14,
-              border: `0.5px solid ${"red"}`,
+              border: `0.5px solid ${'red'}`,
             }}
           >
             <h2
               style={{
-                color: "red",
-                alignSelf: "center",
-                justifySelf: "center",
-                textAlign: "center",
+                color: 'red',
+                alignSelf: 'center',
+                justifySelf: 'center',
+                textAlign: 'center',
                 padding: 4,
               }}
             >
-              {t("form.pleaseEnterYourDataToRespondToYourRequest")}
+              {t('form.pleaseEnterYourDataToRespondToYourRequest')}
             </h2>
-            <Col span={24} style={{ display: "flex", flexDirection: "row" }}>
+            <Col span={24} style={{ display: 'flex', flexDirection: 'row' }}>
               <Form.Item
                 name="fullName"
-                label={t("form.labels.fullName")}
+                label={t('form.labels.fullName')}
                 rules={[
                   {
                     required: true,
-                    message: t("form.validation.required.message", {
-                      name: t("form.labels.fullName"),
+                    message: t('form.validation.required.message', {
+                      name: t('form.labels.fullName'),
                     }),
                   },
                 ]}
-                style={{ width: "50%", padding: 4 }}
+                style={{ width: '50%', padding: 4 }}
               >
                 <Input
                   style={{
-                    backgroundColor: "#E7F0FE",
+                    backgroundColor: '#E7F0FE',
                     borderRadius: 4,
-                    color: "black",
-                    border: `0.5px solid ${"red"}`,
-                    boxShadow: "5px 10px #E7E7E7",
+                    color: 'black',
+                    border: `0.5px solid ${'red'}`,
+                    boxShadow: '5px 10px #E7E7E7',
                   }}
-                  placeholder={t("form.labels.fullName")}
+                  placeholder={t('form.labels.fullName')}
                 />
               </Form.Item>
 
               <Form.Item
                 name="email"
-                label={t("form.labels.email")}
+                label={t('form.labels.email')}
                 rules={[
                   {
                     required: true,
-                    message: t("form.validation.required.message", {
-                      name: t("form.labels.email"),
+                    message: t('form.validation.required.message', {
+                      name: t('form.labels.email'),
                     }),
                   },
                 ]}
-                style={{ width: "50%", padding: 4 }}
+                style={{ width: '50%', padding: 4 }}
               >
                 <Input
                   inputMode="email"
                   style={{
-                    backgroundColor: "#E7F0FE",
+                    backgroundColor: '#E7F0FE',
                     borderRadius: 4,
-                    color: "black",
-                    border: `0.5px solid ${"red"}`,
-                    boxShadow: "5px 10px #E7E7E7",
+                    color: 'black',
+                    border: `0.5px solid ${'red'}`,
+                    boxShadow: '5px 10px #E7E7E7',
                   }}
-                  placeholder={t("form.labels.email")}
+                  placeholder={t('form.labels.email')}
                 />
               </Form.Item>
             </Col>
-            <Col span={24} style={{ display: "flex", flexDirection: "row" }}>
+            <Col span={24} style={{ display: 'flex', flexDirection: 'row' }}>
               <Form.Item
                 name="phoneNumber"
-                label={t("form.labels.phoneNumber")}
+                label={t('form.labels.phoneNumber')}
                 rules={[
                   {
                     required: true,
-                    message: t("form.validation.required.message", {
-                      name: t("form.labels.phoneNumber"),
+                    message: t('form.validation.required.message', {
+                      name: t('form.labels.phoneNumber'),
                     }),
                   },
                 ]}
-                style={{ width: "50%", padding: 4 }}
+                style={{ width: '50%', padding: 4 }}
               >
                 <Input
                   style={{
-                    backgroundColor: "#E7F0FE",
+                    backgroundColor: '#E7F0FE',
                     borderRadius: 4,
-                    color: "black",
-                    border: `0.5px solid ${"red"}`,
-                    boxShadow: "5px 10px #E7E7E7",
+                    color: 'black',
+                    border: `0.5px solid ${'red'}`,
+                    boxShadow: '5px 10px #E7E7E7',
                   }}
                   inputMode="tel"
-                  placeholder={t("form.labels.phoneNumber")}
+                  placeholder={t('form.labels.phoneNumber')}
                 />
               </Form.Item>
 
               <Form.Item
                 name="countryName"
-                label={t("form.labels.countryName")}
+                label={t('form.labels.countryName')}
                 rules={[
                   {
                     required: true,
-                    message: t("form.validation.required.message", {
-                      name: t("form.labels.countryName"),
+                    message: t('form.validation.required.message', {
+                      name: t('form.labels.countryName'),
                     }),
                   },
                 ]}
-                style={{ width: "50%", padding: 4 }}
+                style={{ width: '50%', padding: 4 }}
               >
                 <Input
                   style={{
-                    backgroundColor: "#E7F0FE",
+                    backgroundColor: '#E7F0FE',
                     borderRadius: 4,
-                    color: "black",
-                    border: `0.5px solid ${"red"}`,
-                    boxShadow: "5px 10px #E7E7E7",
+                    color: 'black',
+                    border: `0.5px solid ${'red'}`,
+                    boxShadow: '5px 10px #E7E7E7',
                   }}
                   inputMode="text"
-                  placeholder={t("form.labels.countryName")}
+                  placeholder={t('form.labels.countryName')}
                 />
               </Form.Item>
             </Col>
@@ -470,9 +470,9 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
 
           <div
             style={{
-              width: "100%",
+              width: '100%',
               borderRadius: 14,
-              border: `0.5px solid ${"red"}`,
+              border: `0.5px solid ${'red'}`,
               padding: 6,
               marginTop: 6,
             }}
@@ -480,22 +480,22 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
             <Col span={24}>
               <label
                 style={{
-                  display: "block",
-                  color: "red",
-                  alignSelf: "center",
-                  justifySelf: "center",
-                  textAlign: "center",
+                  display: 'block',
+                  color: 'red',
+                  alignSelf: 'center',
+                  justifySelf: 'center',
+                  textAlign: 'center',
                   padding: 4,
-                  alignSelf: "center",
-                  width: "100%",
+                  alignSelf: 'center',
+                  width: '100%',
                 }}
               >
-                {" "}
-                {locale === "ar"
-                  ? "  الخصائص   "
-                  : locale === "tr"
-                  ? "   Özelikler"
-                  : " Features"}
+                {' '}
+                {locale === 'ar'
+                  ? '  الخصائص   '
+                  : locale === 'tr'
+                  ? '   Özelikler'
+                  : ' Features'}
               </label>
               <Row gutter={[24]}>
                 {payload?.adjs?.map((adj) => (
@@ -504,22 +504,22 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
                       name={
                         adj.result[
                           `${
-                            locale === "ar"
-                              ? "adjactiveAR"
-                              : locale === "tr"
-                              ? "adjctiveTR"
-                              : "adjactiveEN"
+                            locale === 'ar'
+                              ? 'adjactiveAR'
+                              : locale === 'tr'
+                              ? 'adjctiveTR'
+                              : 'adjactiveEN'
                           }`
                         ]
                       }
                       label={
                         adj.result[
                           `${
-                            locale === "ar"
-                              ? "adjactiveAR"
-                              : locale === "tr"
-                              ? "adjctiveTR"
-                              : "adjactiveEN"
+                            locale === 'ar'
+                              ? 'adjactiveAR'
+                              : locale === 'tr'
+                              ? 'adjctiveTR'
+                              : 'adjactiveEN'
                           }`
                         ]
                       }
@@ -528,11 +528,11 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
                         placeholder={
                           adj.result[
                             `${
-                              locale === "ar"
-                                ? "adjactiveAR"
-                                : locale === "tr"
-                                ? "adjctiveTR"
-                                : "adjactiveEN"
+                              locale === 'ar'
+                                ? 'adjactiveAR'
+                                : locale === 'tr'
+                                ? 'adjctiveTR'
+                                : 'adjactiveEN'
                             }`
                           ]
                         }
@@ -726,55 +726,55 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
 
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
             bottom: 20,
-            position: "absolute",
-            backgroundColor: "white",
+            position: 'absolute',
+            backgroundColor: 'white',
           }}
         >
           <div>
             <CloseOutlined onClick={onClose} />
-            <span style={{ margin: "0px 10px ", fontSize: "18px" }}>
-              {locale === "ar"
-                ? "  قم بإرسال ايميل للبائع"
-                : locale === "tr"
-                ? "     Satıcıyla mail attın"
-                : " Send Email To Company"}
+            <span style={{ margin: '0px 10px ', fontSize: '18px' }}>
+              {locale === 'ar'
+                ? '  قم بإرسال ايميل للبائع'
+                : locale === 'tr'
+                ? '     Satıcıyla mail attın'
+                : ' Send Email To Company'}
             </span>
           </div>
           <Space>
             <Button
               onClick={onClose}
               style={{
-                backgroundColor: "#707070",
-                border: "0px",
+                backgroundColor: '#707070',
+                border: '0px',
                 width: 80,
-                color: "white",
+                color: 'white',
                 borderRadius: 4,
                 height: 30,
               }}
             >
-              {t("form.cancel")}
+              {t('form.cancel')}
             </Button>
             <Button
               htmlType="submit"
               type="primary"
               loading={loading}
               style={{
-                backgroundColor: "red",
-                border: "0px",
+                backgroundColor: 'red',
+                border: '0px',
                 minWidth: 80,
                 borderRadius: 4,
                 height: 30,
               }}
             >
-              {t("form.send")}
+              {t('form.send')}
             </Button>
           </Space>
         </div>
       </Form>
     </div>
-  );
+  )
 }

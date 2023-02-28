@@ -1,7 +1,9 @@
 {
-  "locales": ["ar", "tr"],
-  "defaultLocale": "ar",
+  "locales": ["ar", "tr", "en"],
+  "defaultLocale": "en",
   "pages": {
-    "*": ["common", "addad", "profile", "translation", "home"]
+    "*": ["common"],
+    "/admin/products/product": ["addad"],
+    "/admin/products/[id]": ["addad"]
   }
 }

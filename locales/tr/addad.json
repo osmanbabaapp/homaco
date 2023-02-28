@@ -3,7 +3,6 @@
   "sections": {
     "adjects": "Ürün Özellikleri"
   },
-  "descriptions": "Açıklamalar",
   "productTr": "Ürün Adı Türkçe'de",
   "productAr": "اسم المنتج بالعربي",
   "productEn": "Product Name In English",
@@ -14,19 +13,6 @@
   "adjTr": "Ürün Özellikleri Türkçe'de",
   "adjEn": "Product Adjectives In English",
   "value": "Değer",
-  "additionalMetaTags1_en": "Ek Etiketler 1 İngilizce",
-  "additionalMetaTags2_en": "Ek Etiketler 2 İngilizce",
-  "additionalMetaTags3_en": "Ek Etiketler 3 İngilizce",
-  "additionalMetaTags4_en": "Ek Etiketler 4 İngilizce",
-  "additionalMetaTags1_ar": "Ek Etiketler 1 Arapça",
-  "additionalMetaTags2_ar": "Ek Etiketler 2 Arapça",
-  "additionalMetaTags3_ar": "Ek Etiketler 3 Arapça",
-  "additionalMetaTags4_ar": "Ek Etiketler 4 Arapça",
-  "additionalMetaTags1_tr": "Ek Etiketler 1 Türkçe",
-  "additionalMetaTags2_tr": "Ek Etiketler 2 Türkçe",
-  "additionalMetaTags3_tr": "Ek Etiketler 3 Türkçe",
-  "additionalMetaTags4_tr": "Ek Etiketler 4 Türkçe",
-  "priceForOneItem": "Bir ürün için fiyat",
   "tooltips": {
     "kategori": "Reklamı yapılacak makine veya ürünün kapsamının belirlenmesidir.",
     "productTr": "Makine veya ürün adı",
@@ -47,18 +33,6 @@
     "photo_3": "Reklamı yapılacak makinenin veya ürünün farklı açılardan net resimlerini yükleyin",
     "title_3": "Üçüncü Fotoğraf",
     "photo_4": "Reklamı yapılacak makinenin veya ürünün farklı açılardan net resimlerini yükleyin",
-    "title_4": "Ürün Fotoğrafı",
-    "additionalMetaTags1_en": "Ek Etiketler 1 İngilizce",
-    "additionalMetaTags2_en": "Ek Etiketler 2 İngilizce",
-    "additionalMetaTags3_en": "Ek Etiketler 3 İngilizce",
-    "additionalMetaTags4_en": "Ek Etiketler 4 İngilizce",
-    "additionalMetaTags1_ar": "Ek Etiketler 1 Arapça",
-    "additionalMetaTags2_ar": "Ek Etiketler 2 Arapça",
-    "additionalMetaTags3_ar": "Ek Etiketler 3 Arapça",
-    "additionalMetaTags4_ar": "Ek Etiketler 4 Arapça",
-    "additionalMetaTags1_tr": "Ek Etiketler 1 Türk",
-    "additionalMetaTags2_tr": "Ek Etiketler 2 Türk",
-    "additionalMetaTags3_tr": "Ek Etiketler 3 Türk",
-    "additionalMetaTags4_tr": "Ek Etiketler 4 Türk"
+    "title_4": "Ürün Fotoğrafı"
   }
 }

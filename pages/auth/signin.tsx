@@ -1,49 +1,45 @@
-import { NextPage } from "next";
-import { AuthOptions } from "next-auth";
-import { Formik, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { signIn } from "next-auth/react";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { NextPage } from 'next'
+import { AuthOptions } from 'next-auth'
+import { Formik, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { signIn } from 'next-auth/react'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 const SignIn: NextPage<AuthOptions> = ({ providers }) => {
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null)
 
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <div className="h-screen w-full flex justify-center items-center">
       <div className="w-[400px] p-5 border-2 rounded-md bg-white">
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ email: '', password: '' }}
           validationSchema={Yup.object({
-            email: Yup.string()
-              .email("الرجاء إدخال بريد الكتروني صحيح")
-              .required("الرجاء إدخال بريد الكتروني"),
-            password: Yup.string().required("الرجاء إدخال كلمة السر"),
+            username: Yup.string().required(
+              'الرجاء إدخال بريد الكتروني او اسم المستخدم'
+            ),
+            password: Yup.string().required('الرجاء إدخال كلمة السر'),
           })}
           onSubmit={async (values, { setSubmitting }) => {
             try {
-              console.log("values");
-              console.log(values);
-              const res = await signIn("credentials", {
+              const res = await signIn('credentials', {
                 ...values,
                 redirect: false,
-              });
+              })
               if (res?.error) {
-                console.log("error");
-                console.log(res.error);
-                setError(res.error);
+                setError(res.error)
               } else {
-                setError(null);
+                setError(null)
               }
 
-              if (res?.url) router.push(res.url);
-              setSubmitting(false);
+              if (res?.url) router.push(res.url.split('redirect=').at(-1)!)
+              setSubmitting(false)
             } catch (err: any) {
-              console.error("error !");
-              console.log(String(err));
-              setError(String(err));
+              console.error('error !')
+              console.log(String(err))
+              setError(String(err))
             }
           }}
         >
@@ -61,12 +57,12 @@ const SignIn: NextPage<AuthOptions> = ({ providers }) => {
                 </div>
                 <div className="mb-4">
                   <label
-                    htmlFor="email"
+                    htmlFor="username"
                     className="uppercase text-sm text-gray-600 font-bold"
                   >
                     البريد الإلكتروني
                     <Field
-                      name="email"
+                      name="username"
                       aria-label="enter your email"
                       aria-required="true"
                       type="text"
@@ -75,7 +71,7 @@ const SignIn: NextPage<AuthOptions> = ({ providers }) => {
                   </label>
 
                   <div className="text-red-600 text-sm">
-                    <ErrorMessage name="email" />
+                    <ErrorMessage name="username" />
                   </div>
                 </div>
                 <div className="mb-6">
@@ -102,7 +98,7 @@ const SignIn: NextPage<AuthOptions> = ({ providers }) => {
                     type="submit"
                     className="bg-green-400 text-gray-100 p-3 rounded-lg w-full"
                   >
-                    {formik.isSubmitting ? "الرجاء إنتظار..." : "تسجيل الدخول"}
+                    {formik.isSubmitting ? 'الرجاء إنتظار...' : 'تسجيل الدخول'}
                   </button>
                 </div>
               </div>
@@ -111,7 +107,7 @@ const SignIn: NextPage<AuthOptions> = ({ providers }) => {
         </Formik>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

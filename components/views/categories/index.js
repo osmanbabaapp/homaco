@@ -4,7 +4,7 @@ import {
   LockFilled,
   PlusOutlined,
   UnlockFilled,
-} from "@ant-design/icons";
+} from '@ant-design/icons'
 import {
   Button,
   Col,
@@ -15,131 +15,130 @@ import {
   Tooltip,
   Modal,
   message,
-} from "antd";
-import FlexDiv from "components/utils/flex-div";
-import Text from "components/utils/text";
-import Link from "next/link";
+  Alert,
+} from 'antd'
+import FlexDiv from 'components/utils/flex-div'
+import Text from 'components/utils/text'
+import Link from 'next/link'
 
-import { axiosInstance, httpsAgent, configHeader } from "helpers/constants";
+import { axiosInstance, httpsAgent, configHeader } from 'helpers/constants'
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react'
 // components
 // import DashPageHeader from "@/components/utils/dash-page-header";
 
-import { ExclamationCircleFilled } from "@ant-design/icons";
-import axios from "axios";
-import useTranslation from "next-translate/useTranslation";
+import { ExclamationCircleFilled } from '@ant-design/icons'
+import axios from 'axios'
+import useTranslation from 'next-translate/useTranslation'
 
 export default function CategoriesPageContent({ locale, cookies }) {
-  const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [list, setList] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common')
 
   const getList = useCallback(async () => {
-    const reqUrl =
-      process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_ALL_CATEGORIES;
-    setLoading(true);
-    const { data: res } = await axios.get(reqUrl, {
-      headers: {
-        Authorization: `Bearer ${cookies?.token}`,
-        lang: locale,
-        websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
-      },
-    });
-    setLoading(false);
-    if (res.status === true) {
-      setList(res.description);
-    } else {
-      setError("Something went wrong! Please try again");
+    const reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/category'
+
+    setLoading(true)
+    try {
+      const { data: res, status } = await axios.get(reqUrl, {
+        headers: {
+          Authorization: `Bearer ${cookies?.token}`,
+          lang: locale,
+          website: process.env.NEXT_PUBLIC_WEBSITE,
+        },
+      })
+      setLoading(false)
+
+      if (status === 200) {
+        setList(res?.description?.data)
+      } else {
+      }
+    } catch (err) {
+      setLoading(false)
+      alert('Error')
     }
-  }, [cookies?.token, locale]);
+  }, [cookies?.token, locale])
 
   const handleDeleteAd = useCallback(
     async (e, id) => {
-      e.preventDefault();
+      e.preventDefault()
       Modal.confirm({
-        title: t("categories.areYouSure"),
+        title: t('categories.areYouSure'),
         icon: <ExclamationCircleFilled />,
-        content: t("categories.areYouSureToPermanentlyDeleteThisCategory"),
+        content: t('categories.areYouSureToPermanentlyDeleteThisCategory'),
         // content: "Are you sure about deleting this ad ?",
-        okText: t("categories.yes"),
-        cancelText: t("categories.cancel"),
+        okText: t('categories.yes'),
+        okButtonProps: { type: 'default' },
+        cancelText: t('categories.cancel'),
         cancelButtonProps: {
-          type: "primary",
+          type: 'primary',
           danger: true,
         },
 
         onOk: async () => {
-          const { data: res } = await axiosInstance.post(
-            process.env.NEXT_PUBLIC_HOST +
-              process.env.NEXT_PUBLIC_DELETE_CATEGORY,
+          const { data: res, status } = await axios.delete(
+            process.env.NEXT_PUBLIC_HOST + '/api/category',
             {
-              id,
-            },
-            // {
-            //   headers: {
-            //     Authorization: `Bearer ${cookies?.token}`,
-            //   },
-            // }
-            { httpsAgent: httpsAgent },
-            configHeader
-          );
+              headers: {
+                Authorization: `Bearer ${cookies?.token}`,
+                lang: locale,
+                website: process.env.NEXT_PUBLIC_WEBSITE,
+              },
+              data: { id },
+            }
+          )
 
-          if (res.status === true) {
-            message.success(
-              t("categories.theCategoryHasBeenDeletedSuccessfully")
-            );
-            getList();
-          } else {
-            message.error("Something went wrong! Please try again later");
+          if (status === 200) {
+            message.success('Item has been deleted successfully.')
+            await getList()
+          } else if (status === 204) {
+            setError({
+              header: 'No Content Found',
+              description: 'Something went wrong! Please try again later.',
+            })
           }
         },
-      });
+      })
     },
     [getList, t]
-  );
+  )
 
   useEffect(() => {
-    getList();
-  }, [getList]);
+    getList()
+  }, [getList])
 
   const columns = [
     {
-      title: t("categories.categoryImage"),
-      dataIndex: "image",
-      key: "id",
-      width: "200px",
+      title: t('image'),
+      dataIndex: 'image',
+      key: '_id',
+      width: 100,
       render: (data) => {
         return (
-          <Image
-            src={process.env.NEXT_PUBLIC_HOST + data}
-            alt="category image"
-            width={200}
-            height={200}
-          />
-        );
+          <Image src={data} alt="category image" width={200} height={200} />
+        )
       },
     },
     {
-      title: t("categories.name"),
-      dataIndex: `name_${locale}`,
-      width: "20%",
-      key: "id",
+      title: t('name'),
+      dataIndex: `title_${locale}`,
+      key: '_id',
     },
 
     {
-      title: t("tables.columns.actions"),
-      dataIndex: "",
-      width: "20%",
-      key: "x",
+      title: t('tables.columns.actions'),
+      dataIndex: '',
+      width: 50,
+      key: '_id',
       render: (data) => {
         return (
           <Space key={data.id}>
-            <Tooltip placement="top" title={t("actions.editCategory")}>
+            <Tooltip placement="top" title={t('actions.editCategory')}>
               <Link
-                href={`/admin/categories/${data.id}`}
+                href={`/admin/categories/${data?._id}`}
                 passHref
                 scroll={true}
               >
@@ -148,11 +147,11 @@ export default function CategoriesPageContent({ locale, cookies }) {
                 </Button>
               </Link>
             </Tooltip>
-            <Tooltip placement="top" title={t("actions.deleteCategory")}>
+            <Tooltip placement="top" title={t('actions.deleteCategory')}>
               <a href="#">
                 <Button
                   shape="circle"
-                  onClick={(e) => handleDeleteAd(e, data.id)}
+                  onClick={(e) => handleDeleteAd(e, data?._id)}
                   danger
                 >
                   <DeleteFilled />
@@ -160,22 +159,32 @@ export default function CategoriesPageContent({ locale, cookies }) {
               </a>
             </Tooltip>
           </Space>
-        );
+        )
       },
     },
-  ];
+  ]
 
   return (
     <Row gutter={[24, 24]}>
+      {error && (
+        <Col span={24}>
+          <Alert
+            showIcon
+            type="error"
+            message={error?.header}
+            description={error?.description}
+          />
+        </Col>
+      )}
       <Col span={24}>
         <FlexDiv justifyContent="space-between" alignItems="center">
           <FlexDiv>
-            <Text as="h1">{t("categories.categories")}</Text>
+            <Text as="h1">{t('categories.categories')}</Text>
           </FlexDiv>
           <FlexDiv>
             <Link href="/admin/categories/category">
               <Button type="dashed" icon={<PlusOutlined />}>
-                {t("categories.newCategory")}
+                {t('categories.newCategory')}
               </Button>
             </Link>
           </FlexDiv>
@@ -185,5 +194,5 @@ export default function CategoriesPageContent({ locale, cookies }) {
         <Table bordered rowKey="id" dataSource={list} columns={columns} />
       </Col>
     </Row>
-  );
+  )
 }

@@ -3,7 +3,6 @@
   "sections": {
     "adjects": "الصفات"
   },
-  "descriptions": "الأوصاف",
   "productTr": "Ürün Adı Türkçe'de",
   "productAr": "اسم المنتج بالعربي",
   "productEn": "Product Name In English",
@@ -14,19 +13,6 @@
   "adjTr": "Ürün Özellikleri Türkçe'de",
   "adjEn": "Product Adjectives In English",
   "value": "القيمة",
-  "additionalMetaTags1_en": "علامات إضافية 1 الإنجليزية",
-  "additionalMetaTags2_en": "علامات إضافية 2 الإنجليزية",
-  "additionalMetaTags3_en": "علامات إضافية 3 الإنجليزية",
-  "additionalMetaTags4_en": "علامات إضافية 4 الإنجليزية",
-  "additionalMetaTags1_ar": "علامات إضافية 1 عربية",
-  "additionalMetaTags2_ar": "علامات إضافية 2 العربية",
-  "additionalMetaTags3_ar": "علامات إضافية 3 عربية",
-  "additionalMetaTags4_ar": "علامات إضافية 4 عربية",
-  "additionalMetaTags1_tr": "علامات إضافية 1 التركية",
-  "additionalMetaTags2_tr": "علامات إضافية 2 التركية",
-  "additionalMetaTags3_tr": "علامات إضافية 3 التركية",
-  "additionalMetaTags4_tr": "علامات إضافية 4 تركية",
-  "priceForOneItem": "سعر عنصر واحد",
   "tooltips": {
     "kategori": "التصنيف هو تحديد لمجال الآالة أو المنتج المرد الإعلان عنه",
     "productTr": "Makine veya ürün adı",
@@ -47,18 +33,6 @@
     "photo_3": "إرفع صور واضحة و من زوايا مختلفة للآلة او المنتج المراد الإعلان عنه",
     "title_3": "الصورة الثالثة",
     "photo_4": "إرفع صور واضحة و من زوايا مختلفة للآلة او المنتج المراد الإعلان عنه",
-    "title_4": "صورة المنتج",
-    "additionalMetaTags1_en": "علامات إضافية 1 الإنجليزية",
-    "additionalMetaTags2_en": "علامات إضافية 2 الإنجليزية",
-    "additionalMetaTags3_en": "علامات إضافية 3 الإنجليزية",
-    "additionalMetaTags4_en": "علامات إضافية 4 الإنجليزية",
-    "additionalMetaTags1_ar": "علامات إضافية 1 عربية",
-    "additionalMetaTags2_ar": "علامات إضافية 2 العربية",
-    "additionalMetaTags3_ar": "علامات إضافية 3 عربية",
-    "additionalMetaTags4_ar": "علامات إضافية 4 عربية",
-    "additionalMetaTags1_tr": "علامات إضافية 1 التركية",
-    "additionalMetaTags2_tr": "علامات إضافية 2 التركية",
-    "additionalMetaTags3_tr": "علامات إضافية 3 التركية",
-    "additionalMetaTags4_tr": "علامات إضافية 4 تركية"
+    "title_4": "صورة المنتج"
   }
 }

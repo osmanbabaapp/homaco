@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import Logo from "./logo";
-import { MenuGroup, MenuItem } from "./menu-items";
+import styled, { css } from 'styled-components'
+import Logo from './logo'
+import { MenuGroup, MenuItem } from './menu-items'
 import {
   BookOutlined,
   HomeOutlined,
@@ -8,30 +8,30 @@ import {
   PlayCircleOutlined,
   SettingOutlined,
   StarOutlined,
-} from "@ant-design/icons";
-import { LayoutContext } from "../../../context/layout.context";
-import { TbApps } from "react-icons/tb";
-import { RiApps2Line } from "react-icons/ri";
-import { MdOutlineCategory } from "react-icons/md";
-import { CgWebsite } from "react-icons/cg";
-import { useContext } from "react";
-import { containerPadding } from "./utils-styles";
-import { useRouter } from "next/router";
-import useTranslation from "next-translate/useTranslation";
+} from '@ant-design/icons'
+import { LayoutContext } from '../../../context/layout.context'
+import { TbApps } from 'react-icons/tb'
+import { RiApps2Line } from 'react-icons/ri'
+import { MdOutlineCategory } from 'react-icons/md'
+import { CgWebsite } from 'react-icons/cg'
+import { useContext } from 'react'
+import { containerPadding } from './utils-styles'
+import { useRouter } from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 
 // styles
 const StyledSideMenu = styled.aside`
   transition: width 0.4s;
   width: ${(props) => {
     if (props.sideOpen === true)
-      return props.theme.layout.side_uncollapsed_width;
-    else return props.theme.layout.side_collapsed_width;
+      return props.theme.layout.side_uncollapsed_width
+    else return props.theme.layout.side_collapsed_width
   }};
   position: fixed;
   top: 0;
   height: 100%;
   border-inline-end: 1px solid ${(props) => props.theme.colors.secondary};
-`;
+`
 
 const StyledMenuContainer = styled.div`
   display: block;
@@ -40,82 +40,74 @@ const StyledMenuContainer = styled.div`
   -webkit-box-shadow: 1px -1px 5px 0px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 1px -1px 5px 0px rgba(0, 0, 0, 0.1) inset;
   ${containerPadding}
-`;
+`
 
 const StyledSettingsContainer = styled.div`
   display: flex;
   flex-direction: column;
   ${containerPadding}
-`;
+`
 
 export default function SideMenu() {
-  const router = useRouter();
+  const router = useRouter()
 
-  const { t } = useTranslation("home");
+  const { t } = useTranslation('common')
 
-  const locale = router.locale;
+  const locale = router.locale
 
-  const { sideOpen } = useContext(LayoutContext);
+  const { sideOpen } = useContext(LayoutContext)
 
   return (
     <StyledSideMenu sideOpen={sideOpen}>
       <div className="flex flex-col h-full">
         <Logo
-          src={"/media/dahir/logo2.png"}
+          src={'/media/dahir/logo2.png'}
           title="Homaco"
           sideOpen={sideOpen}
         />
         <StyledMenuContainer>
-          <MenuGroup title={t("layout.analytics")}>
+          <MenuGroup title={t('layout.analytics')}>
             <MenuItem
-              href="/admin/home-page"
-              title={t("layout.home")}
+              href="/admin"
+              title={t('layout.home')}
               icon={<HomeOutlined />}
-              active={router.pathname === "/"}
+              active={router.pathname === '/admin'}
             />
           </MenuGroup>
-          <MenuGroup title={t("layout.productManagement")}>
+          <MenuGroup title={t('layout.management')}>
             <MenuItem
               href="/admin/categories"
-              title={t("layout.categories")}
+              title={t('layout.category')}
               icon={<MdOutlineCategory />}
-              active={router.pathname === "/categories"}
+              active={router.pathname.startsWith('/admin/categories')}
             />
             <MenuItem
               href="/admin/clients"
-              title={t("layout.clients")}
+              title={t('layout.clients')}
               icon={<MdOutlineCategory />}
-              active={router.pathname === "/admin/clients"}
+              active={router.pathname.startsWith('/admin/clients')}
             />
             <MenuItem
               href="/admin/products"
-              title={t("layout.products")}
+              title={t('layout.products')}
               icon={<RiApps2Line />}
-              active={router.pathname === "/products"}
+              active={router.pathname.startsWith('/products')}
             />
             <MenuItem
               href="/admin/products/product"
-              title={t("layout.newProduct")}
+              title={t('layout.products')}
               icon={<TbApps />}
-              active={router.pathname === "/products/product"}
+              active={router.pathname.startsWith('/products/product')}
             />
-          </MenuGroup>
-          <MenuGroup title={t("layout.websiteManagement")}>
             <MenuItem
               href="/admin/banners"
-              title={t("layout.bannerVideo")}
+              title={t('layout.banners')}
               icon={<PlayCircleOutlined />}
-              active={router.pathname === "/banners"}
+              active={router.pathname.startsWith('/admin/banners')}
             />
           </MenuGroup>
-          <MenuGroup title={t("layout.website")}>
-            {/* <MenuItem
-              href="/admin/edit-website"
-              title={t("layout.editWebsite")}
-              icon={<CgWebsite />}
-              active={router.pathname === "/edit-website"}
-            /> */}
-          </MenuGroup>
+          {/* <MenuGroup title={t('layout.websiteManagement')}>
+          </MenuGroup> */}
         </StyledMenuContainer>
         <StyledSettingsContainer noFlex={true}>
           {/* <MenuItem
@@ -131,5 +123,5 @@ export default function SideMenu() {
         </StyledSettingsContainer>
       </div>
     </StyledSideMenu>
-  );
+  )
 }

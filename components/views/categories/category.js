@@ -1,18 +1,12 @@
-import { useState, useCallback, useEffect } from "react";
-import FlexDiv from "../../../components/utils/flex-div";
-// import { Col, Row, Form, Input, Upload, Button } from "antd";
-import Text from "../../../components/utils/text";
+import { useState, useCallback, useEffect } from 'react'
+import FlexDiv from '../../../components/utils/flex-div'
+import Text from '../../../components/utils/text'
 
-import {
-  axiosInstance,
-  httpsAgent,
-  configHeader,
-} from "../../../helpers/constants";
-
-import Image from "next/image";
-import styled, { css } from "styled-components";
+import Image from 'next/image'
+import styled, { css } from 'styled-components'
 // components
 import {
+  Alert,
   Button,
   Col,
   Form,
@@ -23,7 +17,7 @@ import {
   Space,
   Tooltip,
   Upload,
-} from "antd";
+} from 'antd'
 // modules
 import {
   DeleteOutlined,
@@ -32,15 +26,16 @@ import {
   MinusOutlined,
   PlusCircleFilled,
   PlusOutlined,
-} from "@ant-design/icons";
-import axios from "axios";
-import useTranslation from "next-translate/useTranslation";
-import { useRouter } from "next/router";
+} from '@ant-design/icons'
+import axios from 'axios'
+import useTranslation from 'next-translate/useTranslation'
+import { useRouter } from 'next/router'
+import { signOut } from 'next-auth/react'
 // styles
 const FormContainer = styled.div`
   background-color: #fff;
   padding: 10px;
-`;
+`
 
 const UploadPrimary = styled(Upload)`
   display: block;
@@ -49,7 +44,7 @@ const UploadPrimary = styled(Upload)`
   > div {
     width: 100%;
   }
-`;
+`
 
 const PrimaryImageOuter = styled.div`
   width: 100%;
@@ -66,30 +61,30 @@ const PrimaryImageOuter = styled.div`
         &:hover {
             border-width: 3px;
         }
-      `;
+      `
     else
       return `
     
-    `;
+    `
   }}
   ${(props) => {
     if (props.error)
       return `
         border: 3px dashed ${props.theme.colors.danger};
-      `;
+      `
   }}
-`;
+`
 const PrimaryImagePreview = styled.div`
   width: 100%;
   height: auto;
   max-height: 470px;
-`;
+`
 
 const RemoveButton = styled(Button)`
   position: absolute;
   right: 20px;
   bottom: 20px;
-`;
+`
 
 const ProcessingImage = styled.div`
   position: absolute;
@@ -100,7 +95,7 @@ const ProcessingImage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 // styles
 const StyledUploadImage = styled(FlexDiv)`
@@ -109,7 +104,7 @@ const StyledUploadImage = styled(FlexDiv)`
   &:hover {
     border-width: 2px;
   }
-`;
+`
 
 const StyledUploadComponent = styled(Upload)`
   display: flex;
@@ -122,52 +117,44 @@ const StyledUploadComponent = styled(Upload)`
       return `
       width: 150px;
       height: 150px;
-    `;
+    `
   }}
   > div {
     width: 100%;
   }
-`;
+`
 
-function CategoryPageContent({ id = null }) {
-  const [form] = Form.useForm();
-  const router = useRouter();
+function CategoryPageContent({ id = null, cookies, locale }) {
+  const [form] = Form.useForm()
+  const router = useRouter()
 
-  let reqUrl;
-  if (id) {
-    reqUrl =
-      process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_UPDATE_CATEGORY;
-  } else {
-    reqUrl =
-      process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_ADD_NEW_CATEGORY;
-    // reqUrl = "/api/add-ad";
-  }
+  const reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/category'
 
-  const { t } = useTranslation(["common", "addad"]);
+  const { t } = useTranslation('common')
   // states
   const [primaryFile, setPrimaryFile] = useState({
     prev: null,
     file: null,
     ready: null,
     validate: false,
-  });
+  })
 
   // category list
-  const [listCategory, setListCategory] = useState([]);
-  const [processing, setProcessing] = useState(false);
+  const [listCategory, setListCategory] = useState([])
+  const [processing, setProcessing] = useState(false)
   const [prevModalVisible, setPrevModalVisible] = useState({
     visible: false,
     target: null,
     file: null,
     ready: null,
-  });
+  })
   // lines state
 
   // loadings
-  const [loading, setLoading] = useState(null);
-  const [loadings, setLoadings] = useState(null);
-  const [formError, setFormError] = useState(null);
-  const [formLoading, setFormLoading] = useState(false);
+  const [loading, setLoading] = useState(null)
+  const [loadings, setLoadings] = useState(null)
+  const [formError, setFormError] = useState(null)
+  const [formLoading, setFormLoading] = useState(false)
 
   // functions
   const handleFormFinish = useCallback(
@@ -175,75 +162,65 @@ function CategoryPageContent({ id = null }) {
       // if (!cookies) message.warning("Please login to complete this operation");
       // setFormLoading(true);
 
-      let formData = new FormData();
+      let formData = new FormData()
 
-      formData.append("name_ar", values.name_ar);
-      formData.append("name_tr", values.name_tr);
-      formData.append("name_en", values.name_en);
-      formData.append("googleCode", values.googleCode);
+      formData.append('title_ar', values.title_ar)
+      formData.append('title_tr', values.title_tr)
+      formData.append('title_en', values.title_en)
+      formData.append('googleCode', values.googleCode)
 
       if (!!values.parentId) {
-        formData.append("parentId", values.parentId);
+        formData.append('parent', values.parentId)
       }
-      formData.append("image", primaryFile.file);
+      formData.append('image', primaryFile.file)
 
       // start send data
       if (id) {
-        formData.append("id", id);
-
-        const { data: res } = await axios.post(
-          reqUrl,
-          formData,
-          {
-            httpsAgent: httpsAgent,
-            headers: {
-              websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
-            },
+        formData.append('id', id)
+      }
+      try {
+        const { data: res, status } = await axios({
+          url: reqUrl,
+          method: id ? 'PUT' : 'POST',
+          headers: {
+            Authorization: `Bearer ${cookies?.token}`,
+            website: process.env.NEXT_PUBLIC_WEBSITE,
           },
-          configHeader
-        );
-
-        if (res.status === true) {
-          if (res.status === true) {
-            message.success(t("common:messages.editCategory"));
-            router.push("/admin/categories");
-          } else {
-            setFormError("Something went wrong! Please try again.");
-          }
-        }
-      } else {
-        const { data: res } = await axios.post(
-          reqUrl,
-          formData,
-          {
-            httpsAgent: httpsAgent,
-            headers: {
-              websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
-            },
-          },
-          configHeader
-        );
-
-        if (res.status === true) {
-          if (res.status === true) {
-            message.success(t("common:messages.addCategory"));
-            router.push("/categories");
-          }
+          data: formData,
+        })
+        if (status === 200 || status === 201) {
+          message.success(String(res?.description))
+          router.push('/admin/categories')
         } else {
-          setFormError("Something went wrong! Please try again.");
+        }
+      } catch (err) {
+        if (err?.response?.status === 401) {
+          signOut({ callbackUrl: '/' })
+        } else if (err?.response?.status === 500) {
+          setFormError(
+            err?.response?.data ||
+              'Something went wrong! Please try again later.'
+          )
+        } else if (err?.response?.status === 400) {
+          setFormError(
+            err?.response?.data ||
+              'Something went wrong! Please try again later.'
+          )
+        } else if (err?.response?.status === 404) {
+          setFormError({ description: 'Wrong endpoint error' })
         }
       }
 
-      setFormLoading(false);
+      setFormLoading(false)
     },
 
-    [primaryFile.file, id, reqUrl, t, router]
-  );
+    [primaryFile.file, id, reqUrl, t, router, cookies]
+  )
 
   const getListCategory = useCallback(async () => {
-    if (listCategory.length !== 0) return false;
+    if (listCategory.length !== 0) return false
 
-    setLoadings("categoryList");
+    setLoadings('categoryList')
     const { data: res } = await axios.get(
       process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_ALL_CATEGORIES,
       {
@@ -251,18 +228,18 @@ function CategoryPageContent({ id = null }) {
           websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
         },
       }
-    );
+    )
 
-    setLoadings(null);
+    setLoadings(null)
 
-    console.log("res categoryList :>> ", res);
+    console.log('res categoryList :>> ', res)
 
     if (res.status === true) {
-      setListCategory(res.description.filter((x) => x.id != id));
+      setListCategory(res.description.filter((x) => x.id != id))
     } else {
-      message.error("Something went wrong! Please try again.");
+      message.error('Something went wrong! Please try again.')
     }
-  }, [id, listCategory.length]);
+  }, [id, listCategory.length])
 
   const imageValidate = useCallback((file) => {
     // const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
@@ -271,61 +248,76 @@ function CategoryPageContent({ id = null }) {
     //   return false;
     // }
     // return true;
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // useEffects
   useEffect(() => {
     if (id) {
       const getAdDetails = async () => {
-        setLoading(true);
-        const reqUrl =
-          process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_GET_CATEGORY;
+        setLoading(true)
+        const reqUrl = process.env.NEXT_PUBLIC_HOST + '/api/category/' + id
 
-        console.log("id :>> ", id);
-
-        const { data: res } = await axios.post(
-          reqUrl,
-          { id },
-          {
+        try {
+          const { data: res, status } = await axios.get(reqUrl, {
             headers: {
-              websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
+              website: process.env.NEXT_PUBLIC_WEBSITE,
+              Authorization: `Bearer ${cookies?.token}`,
             },
+          })
+          console.log('status', status)
+          if (status === 200) {
+            console.log('Setting data')
+            const myData = res?.description?.data
+            console.log('myData', myData)
+            // await getListCategory()
+            // let categories =
+            //   res.category?.map((item, i) => item?.categoryID) ?? []
+            // setting form values
+            console.log('setting form values _____')
+            form.setFieldsValue({
+              title_tr: myData?.title_tr,
+              title_en: myData?.title_en,
+              title_ar: myData?.title_ar,
+              googleCode: myData?.googleCode,
+              parentId: myData?.parent,
+            })
+
+            if (myData?.image) {
+              setPrimaryFile({
+                prev: myData?.image,
+                file: true,
+                validate: false,
+              })
+            }
+          } else if (status === 204) {
+            setFormError({
+              header: 'No Content Found',
+              description: 'Something went wrong! Please try again. 204',
+            })
           }
-        );
-
-        console.log("res :>> ", res);
-
-        const myData = res.description.result;
-
-        if (res.status === true) {
-          await getListCategory();
-          let categories =
-            res.category?.map((item, i) => item?.categoryID) ?? [];
-
-          form.setFieldsValue({
-            name_tr: myData?.name_tr,
-            name_en: myData?.name_en,
-            name_ar: myData?.name_ar,
-            googleCode: ["623"],
-            parentId: myData?.parentId,
-          });
-
-          if (myData?.image !== "{}") {
-            setPrimaryFile({
-              prev: process.env.NEXT_PUBLIC_HOST + myData?.image,
-              file: true,
-              validate: false,
-            });
+        } catch (err) {
+          if (err?.response?.status === 401) {
+            signOut({ callbackUrl: '/' })
+          } else if (err?.response?.status === 500) {
+            setFormError(
+              err?.response?.data ||
+                'Something went wrong! Please try again later.'
+            )
+          } else if (err?.response?.status === 400) {
+            setFormError(
+              err?.response?.data ||
+                'Something went wrong! Please try again later.'
+            )
+          } else if (err?.response?.status === 404) {
+            setFormError({ description: 'Wrong endpoint error' })
           }
-        } else {
-          alert("Something went wrong! Please try again.");
         }
-        setLoading(false);
-      };
-      getAdDetails();
+        setLoading(false)
+      }
+      getAdDetails()
     }
-  }, [form, getListCategory, id]);
+  }, [form, getListCategory, id])
 
   // primary image props
   const primaryFileProps = {
@@ -334,56 +326,68 @@ function CategoryPageContent({ id = null }) {
     disabled: primaryFile.file ?? false,
     onRemove: (file) => {
       setPrimaryFile((prevF) => {
-        let newObj = prevF;
-        newObj.file = null;
-        newObj.prev = null;
-        newObj.validate = false;
-        return { ...newObj };
-      });
+        let newObj = prevF
+        newObj.file = null
+        newObj.prev = null
+        newObj.validate = false
+        return { ...newObj }
+      })
     },
     beforeUpload: (file) => {
       // check file size
       if (file.size >= 1048576 * 5) {
-        message.error("File size must be less than 1Mb");
-        return false;
+        message.error('File size must be less than 1Mb')
+        return false
       }
 
       setPrimaryFile((prev) => {
         // check image file..
-        const validate = imageValidate(file);
-        if (!validate) return prev;
+        const validate = imageValidate(file)
+        if (!validate) return prev
         // set image
-        let newObj = prev;
-        newObj.file = file;
-        newObj.prev = URL.createObjectURL(file);
-        newObj.validate = false;
-        return { ...newObj };
-      });
+        let newObj = prev
+        newObj.file = file
+        newObj.prev = URL.createObjectURL(file)
+        newObj.validate = false
+        return { ...newObj }
+      })
       setPrevModalVisible({
         visible: true,
-        target: "primary",
+        target: 'primary',
         file: primaryFile,
         ready: null,
-      });
-      return false;
+      })
+      return false
     },
     primaryFile,
-  };
+  }
 
   const clearSelected = useCallback(() => {
     form.setFieldsValue({
-      parentId: "",
-    });
-  }, [form]);
+      parentId: '',
+    })
+  }, [form])
+
+  if (loading) return <h2>Loading ...</h2>
 
   return (
     <FormContainer>
       <Form form={form} layout="vertical" onFinish={handleFormFinish}>
         <Row>
+          {formError && (
+            <Col span={24}>
+              <Alert
+                type="error"
+                showIcon
+                description={formError?.description}
+                message={formError?.header}
+              />
+            </Col>
+          )}
           <Col xs={24} sm={24} md={12} lg={12}>
             <Row gutter={[24, 24]}>
               <Col span={24}>
-                <Tooltip title={t("addad:tooltips.primary_photo")}>
+                <Tooltip title={t('image')}>
                   <UploadPrimary name="PrimaryImage" {...primaryFileProps}>
                     <PrimaryImageOuter error={primaryFile.validate !== false}>
                       {primaryFile.prev ? (
@@ -412,20 +416,20 @@ function CategoryPageContent({ id = null }) {
                               })
                             }
                           >
-                            {t("common:actions.delete", {
+                            {t('delete', {
                               name:
-                                router.locale === "ar"
-                                  ? "ملف"
-                                  : router.locale === "en"
-                                  ? "Photo"
-                                  : "Fotoğrafı",
+                                router.locale === 'ar'
+                                  ? 'ملف'
+                                  : router.locale === 'en'
+                                  ? 'Photo'
+                                  : 'Fotoğrafı',
                             })}
                           </RemoveButton>
-                          {processing === "primary" && (
+                          {processing === 'primary' && (
                             <ProcessingImage>
                               <LoadingOutlined
                                 spin
-                                style={{ color: "orange", fontSize: 42 }}
+                                style={{ color: 'orange', fontSize: 42 }}
                               />
                               <Text as="h1" type="primary">
                                 Processing Image
@@ -436,7 +440,7 @@ function CategoryPageContent({ id = null }) {
                       ) : (
                         <h2>
                           {primaryFile.validate === false
-                            ? t("addad:tooltips.primary_photo_title")
+                            ? t('image')
                             : primaryFile.validate}
                         </h2>
                       )}
@@ -450,113 +454,98 @@ function CategoryPageContent({ id = null }) {
             <Row gutter={24}>
               <Col span={24}>
                 <Form.Item
-                  name="name_tr"
-                  label={t("addad:categoryTr")}
+                  name="title_tr"
+                  label={t('categories.trTitle')}
                   rules={[
                     {
                       required: true,
-                      message: t("common:form.validation.required.message", {
-                        name: t("addad:categoryTr"),
-                      }),
                     },
                   ]}
-                  tooltip={t("addad:categoryTr")}
+                  tooltip={t('categories.trTitle')}
                 >
-                  <Input placeholder={t("addad:categoryTr")} />
+                  <Input placeholder={t('categories.trTitle')} />
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item
-                  name="name_ar"
-                  tooltip={t("addad:categoryAr")}
-                  label={t("addad:categoryAr")}
+                  name="title_ar"
+                  tooltip={t('categories.arTitle')}
+                  label={t('categories.arTitle')}
                   rules={[
                     {
-                      required: false,
-                      message: t("common:form.validation.required.message", {
-                        name: t("addad:categoryAr"),
-                      }),
+                      required: true,
                     },
                   ]}
                 >
-                  <Input placeholder={t("addad:categoryAr")} />
+                  <Input placeholder={t('categories.arTitle')} />
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item
-                  name="name_en"
-                  label={t("addad:categoryEn")}
-                  tooltip={t("addad:categoryEn")}
+                  name="title_en"
+                  label={t('categories.enTitle')}
+                  tooltip={t('categories.enTitle')}
                   rules={[
                     {
-                      required: false,
-                      message: t("common:form.validation.required.message", {
-                        name: t("addad:categoryEn"),
-                      }),
+                      required: true,
                     },
                   ]}
                 >
-                  <Input placeholder={t("addad:categoryEn")} />
+                  <Input placeholder={t('categories.enTitle')} />
                 </Form.Item>
               </Col>
 
               <Col span={24}>
                 <Form.Item
                   name="googleCode"
-                  label={t("addad:googleCode")}
-                  tooltip={t("addad:googleCode")}
+                  label={t('googleCode')}
+                  tooltip={t('googleCode')}
                   rules={[
                     {
                       required: false,
-                      message: t("common:form.validation.required.message", {
-                        name: t("addad:googleCode"),
-                      }),
                     },
                   ]}
                 >
-                  <Input placeholder={t("addad:googleCode")} />
+                  <Input placeholder={t('googleCode')} />
                 </Form.Item>
               </Col>
 
               <Col span={24}>
                 <Form.Item
                   name="parentId"
-                  label={t("addad:parentCategory")}
+                  label={t('categories.parent')}
                   rules={[
                     {
                       required: false,
-                      message: t("common:form.validation.required.message", {
-                        name: t("addad:parentCategory"),
-                      }),
                     },
                   ]}
                   tooltip={{
-                    title: t("addad:tooltips.kategori"),
-                    placement: router.locale === "ar" ? "left" : "right",
+                    title: t('categories.tooltips.kategori'),
+                    placement: router.locale === 'ar' ? 'left' : 'right',
                   }}
                 >
                   <Select
                     showSearch
-                    style={{ width: "100%" }}
-                    placeholder={t("addad:parentCategory")}
+                    style={{ width: '100%' }}
+                    placeholder={t('categories.parent')}
                     optionFilterProp="children"
                     // onChange={() => console.log("on change")}
                     onFocus={getListCategory}
-                    loading={loadings === "categoryList"}
+                    loading={loadings === 'categoryList'}
                     // mode="multiple"
                     // onSearch={(value) => countryListSearch(value)}
                     filterOption={(input, option) => {
                       return option.children
                         .toLowerCase()
-                        .includes(input.toLowerCase());
+                        .includes(input.toLowerCase())
                     }}
                   >
                     {listCategory.map((item, i) => {
                       return (
-                        <Select.Option key={item.id} value={item.id}>
-                          {item[`name_${router.locale}`]}
+                        <Select.Option key={item?._id} value={item?._id}>
+                          {item[`title_${router.locale}`]}
                         </Select.Option>
-                      );
+                      )
                     })}
                   </Select>
                 </Form.Item>
@@ -575,7 +564,7 @@ function CategoryPageContent({ id = null }) {
                 // onClick={handleValidateFiles}
                 loading={formLoading}
               >
-                {id ? t("common:form.edit") : t("common:form.confirm")}
+                {id ? t('edit') : t('confirm')}
               </Button>
               <Button
                 onClick={() => router.back()}
@@ -583,14 +572,14 @@ function CategoryPageContent({ id = null }) {
                 danger
                 disabled={formLoading}
               >
-                {t("common:form.cancel")}
+                {t('cancel')}
               </Button>
             </Space>
           </Col>
         </Row>
       </Form>
     </FormContainer>
-  );
+  )
 }
 
-export default CategoryPageContent;
+export default CategoryPageContent

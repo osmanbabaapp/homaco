@@ -1,11 +1,12 @@
-import ProductPageContent from "components/views/products/product";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import AdminLayout from "../../../layouts/admin-layout/admin-layout";
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import AdminLayout from '../../../layouts/admin-layout/admin-layout'
+import ProductPageContent from '../../../components/views/products/product'
 
 function EditAdPage(props) {
-  const router = useRouter();
-  const { id } = router.query;
+  const router = useRouter()
+  const { id } = router.query
+
   return (
     <>
       <Head>
@@ -15,9 +16,9 @@ function EditAdPage(props) {
         <ProductPageContent id={id} />
       </AdminLayout>
     </>
-  );
+  )
 }
 
-export default EditAdPage;
+export default EditAdPage
 
-EditAdPage.layout = "dashboard";
+EditAdPage.layout = 'dashboard'

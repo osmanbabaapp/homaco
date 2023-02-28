@@ -1,21 +1,25 @@
-import type { GetServerSideProps, NextPage } from "next";
-import Head from "next/head";
-import Container from "../components/container";
-import AboutUs from "../components/sections/about-us";
-import Banner from "../components/sections/banner";
-import Contact from "../components/sections/contact";
-import MachineSection1 from "../components/sections/mach1-section";
-import Posters from "../components/sections/posters";
-import Products from "../components/sections/products";
-import Services from "../components/sections/services";
-import MainLayout from "../layouts/main-layout";
-import PageWithLayoutType from "../layouts/page-with-layout";
+import type { GetServerSideProps, NextPage } from 'next'
+import Head from 'next/head'
+import Container from '../components/container'
+import AboutUs from '../components/sections/about-us'
+import Banner from '../components/sections/banner'
+import Contact from '../components/sections/contact'
+import MachineSection1 from '../components/sections/mach1-section'
+import Posters from '../components/sections/posters'
+import Products from '../components/sections/products'
+import Services from '../components/sections/services'
+import MainLayout from '../layouts/main-layout'
+import PageWithLayoutType from '../layouts/page-with-layout'
 
-import "animate.css/animate.min.css";
-import axios from "axios";
-import Founders from "@/components/sections/founders";
+import 'animate.css/animate.min.css'
+import axios from 'axios'
+import Founders from '@/components/sections/founders'
+import { useSession } from 'next-auth/react'
 
 const Home: NextPage = (props: any) => {
+  const { data } = useSession()
+  console.log('Session Data', data)
+
   return (
     <div>
       <Head>
@@ -35,19 +39,19 @@ const Home: NextPage = (props: any) => {
         </>
       </MainLayout>
     </div>
-  );
-};
+  )
+}
 
 // Home.layout = MainLayout;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { locale } = context;
+  const { locale } = context
 
   const reqUrlHomePage =
     process.env.NEXT_PUBLIC_HOST! +
-    process.env.NEXT_PUBLIC_ALL_HOME_PAGE_SETTINGS;
+    process.env.NEXT_PUBLIC_ALL_HOME_PAGE_SETTINGS
 
-  let props = {};
+  let props = {}
   // get Data
 
   // const reqUrlParentCat = process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_PARENT_CATEGORIES; // parent
@@ -60,7 +64,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { data: res } = await axios.get(reqUrlHomePage, {
       // httpsAgent: httpsAgent,
       headers: { websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME },
-    });
+    })
 
     if (res?.status === true) {
       // if (resClients?.status === true) {
@@ -73,7 +77,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         products: res?.products.slice(0, 16) || null,
         // clients: clients,
         // headersT: headersT,
-      };
+      }
 
       // if (resCat?.status === true) {
       //   props.parentCategories = resCat.description.result;
@@ -86,23 +90,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         products: res?.products.slice(0, 12) || null,
         // clients: clients,
         failCode: 400,
-      };
+      }
     }
   } catch (e: any) {
-    console.error("Error");
-    console.error(e.toString());
+    console.error('Error')
+    console.error(e.toString())
     if (e?.response?.status === 400) {
       props = {
         failCode: 400,
         status: false,
-        description: "Something went wrong! Please try again later.",
-      };
+        description: 'Something went wrong! Please try again later.',
+      }
     }
   }
 
   return {
     props: props,
-  };
-};
+  }
+}
 
-export default Home;
+export default Home

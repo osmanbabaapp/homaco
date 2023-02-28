@@ -3,7 +3,6 @@
   "sections": {
     "adjects": "Adjects"
   },
-  "descriptions": "Descriptions",
   "productTr": "Ürün Adı Türkçe'de",
   "productAr": "اسم المنتج بالعربي",
   "productEn": "Product Name In English",
@@ -14,19 +13,6 @@
   "adjTr": "Ürün Özellikleri Türkçe'de",
   "adjEn": "Product Adjectives In English",
   "value": "Value",
-  "additionalMetaTags1_en": "Additional tags1 English",
-  "additionalMetaTags2_en": "Additional tags2 English",
-  "additionalMetaTags3_en": "Additional tags3 English",
-  "additionalMetaTags4_en": "Additional tags4 English",
-  "additionalMetaTags1_ar": "Additional tags1 Arabic",
-  "additionalMetaTags2_ar": "Additional tags2 Arabic",
-  "additionalMetaTags3_ar": "Additional tags3 Arabic",
-  "additionalMetaTags4_ar": "Additional tags4 Arabic",
-  "additionalMetaTags1_tr": "Additional tags1 Turkish",
-  "additionalMetaTags2_tr": "Additional tags2 Turkish",
-  "additionalMetaTags3_tr": "Additional tags3 Turkish",
-  "additionalMetaTags4_tr": "Additional tags4 Turkish",
-  "priceForOneItem": "Price for one item",
   "tooltips": {
     "kategori": "To determine the scope of the machine or product to be advertised",
     "productTr": "Makine veya ürün adı",
@@ -47,18 +33,6 @@
     "photo_3": "Upload clear pictures from different angles of the machine or product to be advertised",
     "title_3": "Third Photo",
     "photo_4": "Upload clear pictures from different angles of the machine or product to be advertised",
-    "title_4": "Product Photo",
-    "additionalMetaTags1_en": "Additional meta tags1 en",
-    "additionalMetaTags2_en": "Additional meta tags2 en",
-    "additionalMetaTags3_en": "Additional meta tags3 en",
-    "additionalMetaTags4_en": "Additional meta tags4 en",
-    "additionalMetaTags1_ar": "Additional tags1 Arabic",
-    "additionalMetaTags2_ar": "Additional tags2 Arabic",
-    "additionalMetaTags3_ar": "Additional tags3 Arabic",
-    "additionalMetaTags4_ar": "Additional tags4 Arabic",
-    "additionalMetaTags1_tr": "Additional tags1 Turkish",
-    "additionalMetaTags2_tr": "Additional tags2 Turkish",
-    "additionalMetaTags3_tr": "Additional tags3 Turkish",
-    "additionalMetaTags4_tr": "Additional tags4 Turkish"
+    "title_4": "Product Photo"
   }
 }

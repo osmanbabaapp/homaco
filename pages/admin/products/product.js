@@ -1,6 +1,6 @@
-import ProductPageContent from "../../../components/views/products/product";
-import Head from "next/head";
-import AdminLayout from "../../../layouts/admin-layout/admin-layout";
+import ProductPageContent from '../../../components/views/products/product'
+import Head from 'next/head'
+import AdminLayout from '../../../layouts/admin-layout/admin-layout'
 
 export default function ProductPage() {
   return (
@@ -12,7 +12,7 @@ export default function ProductPage() {
         <ProductPageContent />
       </AdminLayout>
     </>
-  );
+  )
 }
 
-ProductPage.layout = "dashboard";
+ProductPage.layout = 'dashboard'
