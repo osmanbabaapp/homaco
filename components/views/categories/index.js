@@ -60,7 +60,7 @@ export default function CategoriesPageContent({ locale, cookies }) {
       setLoading(false)
       alert('Error')
     }
-  }, [cookies?.token, locale])
+  }, [cookies, locale])
 
   const handleDeleteAd = useCallback(
     async (e, id) => {

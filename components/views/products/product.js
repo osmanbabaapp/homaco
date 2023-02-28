@@ -35,7 +35,7 @@ const FormContainer = styled.div`
   padding: 10px;
 `
 
-const UploadPrimary = styled(Upload)`
+export const UploadPrimary = styled(Upload)`
   display: block;
   padding: 0 20px;
 
@@ -678,8 +678,6 @@ function AddPageContent({ id = null }) {
       getAd()
     }
   }, [id, status])
-  console.log('primaryFile')
-  console.log(primaryFile)
   useEffect(() => {
     if (!getLoading && !getError && getData) {
       getListCategory()
