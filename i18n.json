@@ -4,6 +4,7 @@
   "pages": {
     "*": ["common"],
     "/admin/products/product": ["addad"],
-    "/admin/products/[id]": ["addad"]
+    "/admin/products/[id]": ["addad"],
+    "/product/[id]": ["addad"]
   }
 }

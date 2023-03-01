@@ -1,5 +1,7 @@
 {
   "title": "Add Product Ad",
+  "askDet": "Ask Details",
+  "price": "Price",
   "sections": {
     "adjects": "Adjects"
   },

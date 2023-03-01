@@ -1,5 +1,7 @@
 {
   "title": "Rekalm Ekle",
+  "askDet": "Detaylari Sorun",
+  "price": "Fiyat",
   "sections": {
     "adjects": "Ürün Özellikleri"
   },

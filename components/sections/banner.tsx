@@ -94,9 +94,12 @@ const Banner: FC<{
     // return () => window?.clearInterval(timer)
   }, [])
 
+  console.log('banners')
+  console.log(banners)
+
   return (
     <section className="pb-2 relative">
-      {banners.map((item, index) => {
+      {banners?.map((item, index) => {
         if (index === active)
           return (
             <motion.div

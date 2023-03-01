@@ -9,10 +9,7 @@ import Posters from '../components/sections/posters'
 import Products from '../components/sections/products'
 import Services from '../components/sections/services'
 import MainLayout from '../layouts/main-layout'
-import PageWithLayoutType from '../layouts/page-with-layout'
 
-import 'animate.css/animate.min.css'
-import axios from 'axios'
 import Founders from '@/components/sections/founders'
 import { useSession } from 'next-auth/react'
 import { gql, GraphQLClient } from 'graphql-request'
@@ -32,7 +29,7 @@ const Home: NextPage = (props: any) => {
         <>
           <Banner
             locale={router.locale!}
-            banners={props?.banners?.length > 0 ? props?.banners?.length : []}
+            banners={props?.banners || []}
             cookies={data}
           />
           <Products products={props?.products} />
@@ -77,8 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   `
 
-  // const url = 'http://localhost:8080/graphql'
-  const url = 'https://os-workspace-api.vercel.app/graphql'
+  const url = process.env.NEXT_PUBLIC_HOST + 'graphql'
 
   const graphQLClient = new GraphQLClient(url)
   const data = await graphQLClient.request(HomeQuery, {

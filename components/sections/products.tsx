@@ -3,37 +3,9 @@ import { FC, useRef } from 'react'
 import Container from '../container'
 import Button from '../elements/Button'
 import { HiArrowNarrowRight } from 'react-icons/hi'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper'
-import 'swiper/css'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { makeURLFriendly } from '../../helpers/generate-url-withname'
 import { useRouter } from 'next/router'
-
-const data = [
-  {
-    id: 0,
-    image: '/imgs/prod2.png',
-    title: 'خلاط بودرة',
-    description:
-      'خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل',
-  },
-  {
-    id: 1,
-    image: '/imgs/prod3.png',
-    title: 'آلة طحن السمسم ميني',
-    description:
-      'خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل',
-  },
-  {
-    id: 2,
-    image: '/imgs/prod.png',
-    title: 'آلة تعبئة السوائل',
-    description:
-      'خلاط مخروطي يقوم بتعبئة السوائل الكيميائية السائلة منها و اللزجة وايضا بعض من نصوص تجربة نص طويل',
-  },
-]
 
 const ProductItem: FC<any> = (props) => {
   return (
@@ -58,7 +30,7 @@ const ProductItem: FC<any> = (props) => {
           height={150}
           className="object-cover h-[300px] w-full"
         />
-        <h3 className="font-bold text-[28px] my-2 self-center px-[50px] text-red-600 text-center">
+        <h3 className="font-bold text-[28px] my-2 self-center px-[50px] text-red-600 text-center line-clamp-2">
           {props[`title_${props?.locale}`]}
         </h3>
         <p className="font-bold text-[18px] line-clamp-2 ">
@@ -93,8 +65,6 @@ const Products: FC<{ products: any }> = ({ products }) => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:my-[4vh]">
           {products?.map((item: any, index: number) => {
-            const slug = makeURLFriendly(item[`title_${locale}`])
-
             return (
               <motion.div
                 style={{ position: 'relative' }}
@@ -112,7 +82,7 @@ const Products: FC<{ products: any }> = ({ products }) => {
               >
                 <ProductItem
                   {...item}
-                  slug={`${item?.serialNumber}_${slug}`}
+                  slug={item?.[`slug_${locale}`]}
                   locale={locale}
                 />
               </motion.div>
