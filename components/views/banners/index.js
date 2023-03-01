@@ -21,17 +21,11 @@ import FlexDiv from 'components/utils/flex-div'
 import Text from 'components/utils/text'
 import Link from 'next/link'
 
-import { axiosInstance, httpsAgent, configHeader } from 'helpers/constants'
-
 import { useState, useEffect, useCallback } from 'react'
 // components
 // import DashPageHeader from "@/components/utils/dash-page-header";
 
-import {
-  DeleteOutlined,
-  EditOutlined,
-  ExclamationCircleFilled,
-} from '@ant-design/icons'
+import { ExclamationCircleFilled } from '@ant-design/icons'
 import axios from 'axios'
 import useTranslation from 'next-translate/useTranslation'
 import { RiH1 } from 'react-icons/ri'
@@ -241,8 +235,23 @@ export default function BannersPageContent({ locale, cookies }) {
       dataIndex: 'image',
       key: '_id',
       width: 200,
-      render: (data) => {
-        return <Image src={data} alt="product image" width={200} height={200} />
+      render: (data, record) => {
+        if (record?.file_type === 'video') {
+          return (
+            <video
+              src={data}
+              style={{
+                width: '200px',
+                height: '200px',
+              }}
+              controls
+            ></video>
+          )
+        } else {
+          return (
+            <Image src={data} alt="product image" width={200} height={200} />
+          )
+        }
       },
     },
     {

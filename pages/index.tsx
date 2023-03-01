@@ -16,12 +16,11 @@ import axios from 'axios'
 import Founders from '@/components/sections/founders'
 import { useSession } from 'next-auth/react'
 import { gql, GraphQLClient } from 'graphql-request'
+import { useRouter } from 'next/router'
 
 const Home: NextPage = (props: any) => {
   const { data } = useSession()
-  console.log('Session Data', data)
-  console.log('props')
-  console.log(props)
+  const router = useRouter()
 
   return (
     <div>
@@ -31,7 +30,11 @@ const Home: NextPage = (props: any) => {
       </Head>
       <MainLayout>
         <>
-          <Banner />
+          <Banner
+            locale={router.locale!}
+            banners={props?.banners}
+            cookies={data}
+          />
           <Products products={props?.products} />
           <AboutUs />
           <MachineSection1 />
@@ -49,27 +52,38 @@ const Home: NextPage = (props: any) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context
-
+  const website: string = process.env.NEXT_PUBLIC_WEBSITE!
+  if (!website)
+    return {
+      props: {},
+    }
   const HomeQuery = gql`
-    {
-      products {
+    query($website: String!){
+      products(website: $website) {
         id
         title_${locale}
         desc_${locale}
         primary_image
         slug_${locale}
       }
-      banners {
+      banners(website: $website) {
         id
+        image
+        file_type
+        title_${locale}
+        desc_${locale}
+        type
       }
     }
   `
 
-  // const url =  'http://localhost:8080/graphql'
+  // const url = 'http://localhost:8080/graphql'
   const url = 'https://os-workspace-api.vercel.app/graphql'
 
   const graphQLClient = new GraphQLClient(url)
-  const data = await graphQLClient.request(HomeQuery)
+  const data = await graphQLClient.request(HomeQuery, {
+    website: website,
+  })
 
   return {
     props: { ...data },

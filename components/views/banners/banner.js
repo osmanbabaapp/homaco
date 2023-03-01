@@ -81,7 +81,8 @@ const PrimaryImageOuter = styled.div`
 const PrimaryImagePreview = styled.div`
   width: 100%;
   height: auto;
-  max-height: 470px;
+  height: 470px;
+  max-height: 100%;
 `
 
 const RemoveButton = styled(Button)`
@@ -104,16 +105,15 @@ function BannerPageContent({ id = null, cookies, status }) {
     file: null,
     ready: null,
     validate: false,
+    fileType: 'image',
   })
 
   // loadings
-  const [loading, setLoading] = useState(null)
   const [formError, setFormError] = useState(null)
   const [formLoading, setFormLoading] = useState(false)
-  const [isVideo, toggleIsVideo] = useState(false)
-  const [isActive, toggleIsActive] = useState(false)
-
-  const [myDataState, setMyDataState] = useState(undefined)
+  const [bannerType, setBannerType] = useState(
+    cookies.user?.websites?.[0]?.settings?.banner_type
+  )
 
   // apis fetch
   const {
@@ -140,7 +140,10 @@ function BannerPageContent({ id = null, cookies, status }) {
 
       const data = setupFormData(values)
 
-      if (primaryFile?.file) data?.append('image', primaryFile.file)
+      if (primaryFile?.file) {
+        data?.append('image', primaryFile.file)
+        data?.append('file_type', primaryFile.fileType)
+      }
       if (id) data?.append('id', id)
 
       setFormLoading(true)
@@ -261,9 +264,13 @@ function BannerPageContent({ id = null, cookies, status }) {
     },
     beforeUpload: (file) => {
       // check file size
-      if (file.size >= 1048576) {
-        message.error('File size must be less than 1Mb')
-        return false
+      // if (file.size >= 1048576) {
+      //   message.error('File size must be less than 1Mb')
+      //   return false
+      // }
+      let fileType = 'image'
+      if (file?.type?.startsWith('video/')) {
+        fileType = 'video'
       }
 
       setPrimaryFile((prev) => {
@@ -275,6 +282,7 @@ function BannerPageContent({ id = null, cookies, status }) {
         newObj.file = file
         newObj.prev = URL.createObjectURL(file)
         newObj.validate = false
+        newObj.fileType = fileType
         return { ...newObj }
       })
 
@@ -282,6 +290,9 @@ function BannerPageContent({ id = null, cookies, status }) {
     },
     primaryFile,
   }
+
+  console.log('primaryFile')
+  console.log(primaryFile)
 
   if (getError)
     return (
@@ -336,16 +347,31 @@ function BannerPageContent({ id = null, cookies, status }) {
                       {primaryFile.prev ? (
                         <>
                           <PrimaryImagePreview>
-                            <Image
-                              alt="primary image"
-                              src={
-                                primaryFile?.ready
-                                  ? primaryFile?.ready
-                                  : primaryFile.prev
-                              }
-                              layout="fill"
-                              objectFit="contain"
-                            />
+                            {primaryFile.fileType === 'video' ? (
+                              <video
+                                src={
+                                  primaryFile?.ready
+                                    ? primaryFile?.ready
+                                    : primaryFile.prev
+                                }
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                }}
+                                controls
+                              ></video>
+                            ) : (
+                              <Image
+                                alt="primary image"
+                                src={
+                                  primaryFile?.ready
+                                    ? primaryFile?.ready
+                                    : primaryFile.prev
+                                }
+                                layout="fill"
+                                objectFit="contain"
+                              />
+                            )}
                           </PrimaryImagePreview>
                           <RemoveButton
                             danger

@@ -11,6 +11,11 @@ export default function AuthGuard({
   // get session
   const { data, status } = useSession()
 
+  console.log('Session Data')
+  console.log(data)
+  console.log('status')
+  console.log(status)
+
   useEffect(() => {
     if (status !== 'loading') {
       //auth is initialized and there is no user

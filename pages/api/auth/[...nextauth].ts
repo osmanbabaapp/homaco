@@ -59,23 +59,32 @@ export default NextAuth({
       console.log('user', user)
       console.log('account', account)
 
-      if (account && user) {
-        return {
-          ...token,
-          token: user.token,
-          id: user.id,
-        }
+      // if (account && user) {
+      return {
+        // token: user.token,
+        // websites: user?.websites,
+        // username: user?.username,
+        // email: user?.email,
+        // id: user.id,
+        ...token,
+        ...user,
       }
+      // }
 
       return token
     },
 
-    async session({ session, token }) {
+    async session({ session, token, user }) {
       console.log('session ___')
       console.log('session', session)
       console.log('token', token)
 
-      session.user.token = token.token
+      // session.user.token = token.token
+      // session.user.websites = user?.websites
+
+      session.user = token
+
+      // session.user.websites = token.
       return session
     },
     async redirect({ url, baseUrl }) {
