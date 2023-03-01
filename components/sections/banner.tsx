@@ -62,7 +62,7 @@ const Banner: FC<{
   cookies: any
   locale: string
 }> = ({ banners, cookies, locale }) => {
-  let __type = banners[0].file_type
+  let __type = banners?.[0].file_type
 
   let timer: any
   const [active, setActive] = useState<number>(0)
