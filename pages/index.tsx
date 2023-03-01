@@ -32,7 +32,7 @@ const Home: NextPage = (props: any) => {
         <>
           <Banner
             locale={router.locale!}
-            banners={props?.banners}
+            banners={props?.banners?.length > 0 ? props?.banners?.length : []}
             cookies={data}
           />
           <Products products={props?.products} />

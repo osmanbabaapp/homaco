@@ -43,26 +43,28 @@ const itemsAni = {
 
 let curActive = 0
 const Banner: FC<{
-  banners: [
-    {
-      id: string
-      title_ar: string
-      title_tr: string
-      title_en: string
-      desc_ar: string
-      desc_tr: string
-      desc_en: string
-      website: any
-      type: 'text' | 'image' | 'banner'
-      image: string
-      active: boolean
-      file_type: 'video' | 'image'
-    }
-  ]
+  banners:
+    | [
+        {
+          id: string
+          title_ar: string
+          title_tr: string
+          title_en: string
+          desc_ar: string
+          desc_tr: string
+          desc_en: string
+          website: any
+          type: 'text' | 'image' | 'banner'
+          image: string
+          active: boolean
+          file_type: 'video' | 'image'
+        }
+      ]
+    | []
   cookies: any
   locale: string
 }> = ({ banners, cookies, locale }) => {
-  let __type = banners?.[0].file_type
+  let __type = banners?.[0]?.file_type
 
   let timer: any
   const [active, setActive] = useState<number>(0)
