@@ -294,7 +294,7 @@ export async function getStaticPaths(ctx) {
     for (const locale of ctx?.locales) {
       paths.push({
         params: {
-          id: item[`slug_${locale}`],
+          id: locale === 'ar' ? item[`slug_en`] : item[`slug_${locale}`],
           locale,
         },
         locale,
