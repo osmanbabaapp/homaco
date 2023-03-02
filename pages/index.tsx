@@ -20,6 +20,9 @@ const Home: NextPage = (props: any) => {
   const { data } = useSession()
   const router = useRouter()
 
+  console.log('home props')
+  console.log(props)
+
   return (
     <div>
       <Head>
