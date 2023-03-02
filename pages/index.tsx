@@ -41,7 +41,7 @@ const Home: NextPage = (props: any) => {
           <MachineSection1 />
           <Services />
           <Posters />
-          <Founders />
+          <Founders data={props?.partners} />
           <Contact />
         </>
       </MainLayout>
@@ -74,6 +74,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         title_${locale}
         desc_${locale}
         type
+      }
+      partners(website: $website) {
+        id
+        image
+        name
+        whatsapp
+        phone
+        role
       }
     }
   `

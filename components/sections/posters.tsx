@@ -1,16 +1,16 @@
-import Image from "next/image";
-import { FC, useCallback, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Container from "../container";
-import { motion } from "framer-motion";
-import { MdClose } from "react-icons/md";
+import Image from 'next/image'
+import { FC, useCallback, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import Container from '../container'
+import { motion } from 'framer-motion'
+import { MdClose } from 'react-icons/md'
 
 const data = [
-  "/imgs/poster.jpeg",
-  "/imgs/poster.jpeg",
-  "/imgs/poster.jpeg",
-  "/imgs/poster.jpeg",
-];
+  '/imgs/poster.jpeg',
+  '/imgs/poster.jpeg',
+  '/imgs/poster.jpeg',
+  '/imgs/poster.jpeg',
+]
 
 const modalVariants = {
   show: {
@@ -24,17 +24,17 @@ const modalVariants = {
     opacity: 0,
     top: -40,
   },
-};
+}
 
 const Posters: FC<{}> = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false)
 
   // toggle modal
   const toggleModal = useCallback((open: boolean) => {
-    console.log("toggle modal !");
-    console.log(open);
-    setOpen(!open);
-  }, []);
+    console.log('toggle modal !')
+    console.log(open)
+    setOpen(!open)
+  }, [])
   return (
     <div className="py-10 bg-white">
       <Container>
@@ -43,7 +43,7 @@ const Posters: FC<{}> = () => {
             {data.map((item, index) => (
               <SwiperSlide className="w-[250px]" key={index}>
                 <motion.div
-                  style={{ position: "relative" }}
+                  style={{ position: 'relative' }}
                   whileInView={{
                     opacity: 1,
                     top: 0,
@@ -82,8 +82,8 @@ const Posters: FC<{}> = () => {
               href="#"
               className="text-4xl text-white absolute right-2 md:-right-8 -top-8"
               onClick={(e) => {
-                e.preventDefault();
-                toggleModal(open);
+                e.preventDefault()
+                toggleModal(open)
               }}
             >
               <MdClose />
@@ -93,6 +93,6 @@ const Posters: FC<{}> = () => {
         </motion.div>
       )}
     </div>
-  );
-};
-export default Posters;
+  )
+}
+export default Posters

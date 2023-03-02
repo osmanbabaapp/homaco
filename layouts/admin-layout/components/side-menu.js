@@ -105,6 +105,12 @@ export default function SideMenu() {
               icon={<PlayCircleOutlined />}
               active={router.pathname.startsWith('/admin/banners')}
             />
+            <MenuItem
+              href="/admin/partners"
+              title={t('Partners')}
+              icon={<PlayCircleOutlined />}
+              active={router.pathname.startsWith('/admin/partners')}
+            />
           </MenuGroup>
           {/* <MenuGroup title={t('layout.websiteManagement')}>
           </MenuGroup> */}

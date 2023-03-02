@@ -58,6 +58,7 @@ const FounderItem: FC<{ item: any }> = ({ item }) => {
       </div>
       <Image
         src={
+          item?.image ||
           'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'
         }
         alt={'founder'}
@@ -68,21 +69,21 @@ const FounderItem: FC<{ item: any }> = ({ item }) => {
     </div>
   )
 }
-const Founders: FC = () => {
+const Founders: FC<{ data: any }> = ({ data }) => {
   const router = useRouter()
   const locale = router.locale
 
-  const __ = data[locale || 'ar']
   return (
     <div className="py-24 text-white">
       <Container>
         <h2 className="text-center text-4xl mb-5">Founders</h2>
         <div className="grid grid-cols-2">
-          {__.map((item: any, index: number) => (
-            <div key={index} className="flex justify-center">
-              <FounderItem item={item} />
-            </div>
-          ))}
+          {data?.length > 0 &&
+            data?.map((item: any, index: number) => (
+              <div key={index} className="flex justify-center">
+                <FounderItem item={item} />
+              </div>
+            ))}
         </div>
       </Container>
     </div>
