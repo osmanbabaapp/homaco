@@ -7,6 +7,7 @@ import { axiosInstance, httpsAgent, configHeader } from 'helpers/constants'
 
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
+import { uploadToS3 } from '../../../helpers/aws'
 // components
 import {
   Button,
@@ -126,6 +127,7 @@ function BannerPageContent({ id = null, cookies, status }) {
   // functions
   const handleFormFinish = useCallback(
     async (values) => {
+      setFormLoading(true)
       if (
         (values?.type === 'image' || values?.type === 'banner') &&
         !primaryFile?.file
@@ -141,12 +143,17 @@ function BannerPageContent({ id = null, cookies, status }) {
       const data = setupFormData(values)
 
       if (primaryFile?.file) {
-        data?.append('image', primaryFile.file)
+        console.log('upload file ___')
+        // upload data
+        const url = await uploadToS3(primaryFile?.file)
+        data?.append('image', url)
         data?.append('file_type', primaryFile.fileType)
       }
+      console.log('values')
+      console.log(values)
+
       if (id) data?.append('id', id)
 
-      setFormLoading(true)
       // start request
       try {
         const { data: res, status } = await axios({
