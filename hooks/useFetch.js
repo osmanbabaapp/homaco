@@ -25,7 +25,8 @@ const useFetch = (
 
   console.log('UseFetch Big cookies => ', url)
   console.log(cookies)
-
+  const website = process.env.NEXT_PUBLIC_WEBSITE
+  console.log('Fetch: Website', website)
   // useCallBack for post submit ..
   const executeFetch = useCallback(
     async (data, formData = false) => {
@@ -56,7 +57,7 @@ const useFetch = (
             ...headers,
             lang: router.locale,
             Authorization: `Bearer ${cookies?.user?.token}`,
-            website: process.env.NEXT_PUBLIC_WEBSITE,
+            website: website,
           },
           params: __params,
           timeout: 1000 * 30, // wait to 10 seconds for response or cancel the request ..
