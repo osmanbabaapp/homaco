@@ -140,19 +140,19 @@ function BannerPageContent({ id = null, cookies, status }) {
         return
       }
 
-      const data = setupFormData(values)
+      // const data = setupFormData(values)
 
       if (primaryFile?.file) {
         console.log('upload file ___')
         // upload data
         const url = await uploadToS3(primaryFile?.file)
-        data?.append('image', url)
-        data?.append('file_type', primaryFile.fileType)
+        values['image'] = url
+        // data?.append('image', url)
+        // data?.append('file_type', primaryFile.fileType)
+        values['file_type'] = primaryFile.fileType
       }
-      console.log('values')
-      console.log(values)
 
-      if (id) data?.append('id', id)
+      if (id) values['id'] = id
 
       // start request
       try {
@@ -163,7 +163,7 @@ function BannerPageContent({ id = null, cookies, status }) {
             Authorization: `Bearer ${cookies.user?.token}`,
             website: process.env.NEXT_PUBLIC_WEBSITE,
           },
-          data: data,
+          data: { ...values },
         })
 
         if (status === 201 || status === 200) {
