@@ -335,7 +335,7 @@ function CategoryPageContent({ id = null, cookies, locale }) {
     },
     beforeUpload: (file) => {
       // check file size
-      if (file.size >= 1048576 * 5) {
+      if (file.size >= 1048576 * 25) {
         message.error('File size must be less than 1Mb')
         return false
       }

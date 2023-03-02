@@ -769,7 +769,7 @@ function AddPageContent({ id = null }) {
     },
     beforeUpload: (file) => {
       // check file size
-      if (file.size >= 1048576) {
+      if (file.size >= 1048576 * 25) {
         message.error('File size must be less than 1Mb')
         return false
       }
@@ -799,7 +799,7 @@ function AddPageContent({ id = null }) {
       setVideoFile({ file: null, prev: null, validate: false })
     },
     beforeUpload: (file) => {
-      if (file.size >= 1048576 * 5) {
+      if (file.size >= 1048576 * 25) {
         message.error('Video size must be less than 5Mb')
         return false
       }
@@ -829,7 +829,7 @@ function AddPageContent({ id = null }) {
       setImage1({ file: null, prev: null, validate: false })
     },
     beforeUpload: (file) => {
-      if (file.size >= 1048576) {
+      if (file.size >= 1048576 * 25) {
         message.error('File size must be less than 1Mb')
         return false
       }
@@ -859,7 +859,7 @@ function AddPageContent({ id = null }) {
       setImage2({ file: null, prev: null, validate: false })
     },
     beforeUpload: (file) => {
-      if (file.size >= 1048576) {
+      if (file.size >= 1048576 * 25) {
         message.error('File size must be less than 1Mb')
         return false
       }
@@ -889,7 +889,7 @@ function AddPageContent({ id = null }) {
       setImage3({ file: null, prev: null, validate: false })
     },
     beforeUpload: (file) => {
-      if (file.size >= 1048576) {
+      if (file.size >= 1048576 * 25) {
         message.error('File size must be less than 1Mb')
         return false
       }
@@ -919,7 +919,7 @@ function AddPageContent({ id = null }) {
       setProductImage({ file: null, prev: null, validate: false })
     },
     beforeUpload: (file) => {
-      if (file.size >= 1048576) {
+      if (file.size >= 1048576 * 25) {
         message.error('File size must be less than 1Mb')
         return false
       }
@@ -1376,7 +1376,7 @@ function AddPageContent({ id = null }) {
               <Col span={24}>
                 <Form.Item
                   label={t('addad:dsecTr')}
-                  tooltip={t('addad:tooltips.dsecTr')}
+                  tooltip={t('addad:tooltips.dsecEn')}
                   name="desc_en"
                   rules={[
                     {
@@ -1387,7 +1387,7 @@ function AddPageContent({ id = null }) {
                     },
                   ]}
                 >
-                  <Input placeholder={t('addad:dsecTr')} />
+                  <Input placeholder={t('addad:dsecEn')} />
                 </Form.Item>
               </Col>
             </Row>

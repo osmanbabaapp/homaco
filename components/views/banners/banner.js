@@ -416,7 +416,7 @@ function BannerPageContent({ id = null, cookies, status }) {
                   label={t('Unvan')}
                   rules={[
                     {
-                      required: true,
+                      required: false,
                     },
                   ]}
                   tooltip={t('Unvan')}
@@ -431,7 +431,7 @@ function BannerPageContent({ id = null, cookies, status }) {
                   label={t('العنوان')}
                   rules={[
                     {
-                      required: true,
+                      required: false,
                     },
                   ]}
                 >
@@ -445,7 +445,7 @@ function BannerPageContent({ id = null, cookies, status }) {
                   tooltip={t('Title')}
                   rules={[
                     {
-                      required: true,
+                      required: false,
                     },
                   ]}
                 >
@@ -459,7 +459,7 @@ function BannerPageContent({ id = null, cookies, status }) {
                   tooltip={t('Aciklama')}
                   rules={[
                     {
-                      required: true,
+                      required: false,
                     },
                   ]}
                 >
@@ -473,7 +473,7 @@ function BannerPageContent({ id = null, cookies, status }) {
                   name="desc_ar"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                     },
                   ]}
                 >
@@ -487,7 +487,7 @@ function BannerPageContent({ id = null, cookies, status }) {
                   name="desc_en"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                     },
                   ]}
                 >
