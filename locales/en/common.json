@@ -8,7 +8,9 @@
     "websites": "Websites",
     "category": "Categories",
     "products": "Products",
-    "banners": "Banner"
+    "banners": "Banner",
+    "logout": "Logout",
+    "settings": "Settings"
   },
   "categories": {
     "categories": "Categories",

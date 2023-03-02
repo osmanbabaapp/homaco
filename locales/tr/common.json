@@ -8,7 +8,9 @@
     "websites": "Siteler",
     "category": "Kategoriler",
     "products": "Ürünler",
-    "banners": "Banner"
+    "banners": "Banner",
+    "logout": "Cikis Yap",
+    "settings": "Ayarlar"
   },
   "categories": {
     "categories": "Kategoriler",

@@ -110,16 +110,17 @@ export default function SideMenu() {
           </MenuGroup> */}
         </StyledMenuContainer>
         <StyledSettingsContainer noFlex={true}>
-          {/* <MenuItem
+          <MenuItem
             href="/admin/settings"
-            title={t("layout.settings")}
+            title={t('layout.settings')}
             icon={<SettingOutlined />}
+            active={router.pathname.startsWith('/admin/settings')}
           />
           <MenuItem
             href="#"
-            title={t("layout.logout")}
+            title={t('layout.logout')}
             icon={<LogoutOutlined />}
-          /> */}
+          />
         </StyledSettingsContainer>
       </div>
     </StyledSideMenu>

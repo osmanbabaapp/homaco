@@ -4,14 +4,16 @@ import type { LayoutProps } from '../page-with-layout'
 import Footer from './footer'
 import MobileNavbar from './mobile-navbar'
 import Navbar from './navbar'
+import useFetch from '../../hooks/useFetch'
 
 const MainLayout: LayoutProps = (props) => {
   const { open, toggleNavbar } = useContext(MobileNavContext)
 
-  console.log('open :>> ', open)
+  const { data }: { data: any } = useFetch('api/settings', 'GET', {}, true)
+
   return (
     <div>
-      <Navbar />
+      <Navbar data={data?.description?.data} />
       <main style={{ marginTop: -102 }}>{props.children}</main>
 
       {open && <MobileNavbar open={open} toggleNavbar={toggleNavbar} />}

@@ -37,7 +37,7 @@ const FormContainer = styled.div`
   padding: 10px;
 `
 
-const UploadPrimary = styled(Upload)`
+export const UploadPrimary = styled(Upload)`
   display: block;
   padding: 0 20px;
 
@@ -46,7 +46,7 @@ const UploadPrimary = styled(Upload)`
   }
 `
 
-const PrimaryImageOuter = styled.div`
+export const PrimaryImageOuter = styled.div`
   width: 100%;
   height: 300px;
   display: flex;
@@ -74,19 +74,19 @@ const PrimaryImageOuter = styled.div`
       `
   }}
 `
-const PrimaryImagePreview = styled.div`
+export const PrimaryImagePreview = styled.div`
   width: 100%;
   height: auto;
   max-height: 470px;
 `
 
-const RemoveButton = styled(Button)`
+export const RemoveButton = styled(Button)`
   position: absolute;
   right: 20px;
   bottom: 20px;
 `
 
-const ProcessingImage = styled.div`
+export const ProcessingImage = styled.div`
   position: absolute;
   inset: 0;
   z-index: 1000;

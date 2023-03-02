@@ -13,7 +13,9 @@ export const setupFormData = (values) => {
     ) {
       formData.append(key, values[key]?.split('(')?.at(0))
     } else {
-      formData.append(key, values[key])
+      if (typeof values[key] !== 'undefined') {
+        formData.append(key, values[key])
+      }
     }
   }
 

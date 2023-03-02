@@ -8,7 +8,9 @@
     "websites": "مواقع",
     "category": "تصنيفات",
     "products": "منتجات",
-    "banners": "بانر"
+    "banners": "بانر",
+    "logout": "تسجيل الخروج",
+    "settings": "الإعدادات"
   },
   "categories": {
     "categories": "تصنيفات",

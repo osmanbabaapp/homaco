@@ -9,7 +9,8 @@ import Posters from '../components/sections/posters'
 import Products from '../components/sections/products'
 import Services from '../components/sections/services'
 import MainLayout from '../layouts/main-layout'
-
+// Import Swiper styles
+import 'swiper/css'
 import Founders from '@/components/sections/founders'
 import { useSession } from 'next-auth/react'
 import { gql, GraphQLClient } from 'graphql-request'
