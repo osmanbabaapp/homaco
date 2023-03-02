@@ -49,6 +49,7 @@ const useFetch = (
       const __params =
         method?.toLocaleLowerCase() === 'get' ? { ...params, ...data } : {}
       try {
+        console.log('before FETCH -> website:', website)
         const { data: response, status } = await axios({
           method: method,
           url: process.env.NEXT_PUBLIC_HOST + url,
@@ -92,7 +93,7 @@ const useFetch = (
         }
       }
     },
-    [url, method, params, headers, token, cookies, status]
+    [url, method, params, headers, token, cookies, status, website]
   )
 
   // useEffects

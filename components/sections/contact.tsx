@@ -1,13 +1,16 @@
-"use client";
+'use client'
 
-import { FC } from "react";
-import Container from "../container";
-import Button from "../elements/Button";
-import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { FC, useContext } from 'react'
+import Container from '../container'
+import Button from '../elements/Button'
+import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { LayoutContext } from '@/context/layout.context'
 
 const Contact: FC<{}> = () => {
+  const { settings } = useContext(LayoutContext)
+
   return (
     <>
       <div className="py-10  text-white" id="contact">
@@ -32,7 +35,7 @@ const Contact: FC<{}> = () => {
             >
               <div>
                 <Image
-                  src={"/imgs/marka.png"}
+                  src={'/imgs/marka.png'}
                   alt="marka"
                   width={100}
                   height={100}
@@ -55,7 +58,7 @@ const Contact: FC<{}> = () => {
             >
               <div>
                 <Image
-                  src={"/imgs/marka.png"}
+                  src={'/imgs/marka.png'}
                   alt="marka"
                   width={100}
                   height={100}
@@ -78,7 +81,7 @@ const Contact: FC<{}> = () => {
             >
               <div>
                 <Image
-                  src={"/imgs/marka.png"}
+                  src={'/imgs/marka.png'}
                   alt="marka"
                   width={100}
                   height={100}
@@ -101,7 +104,7 @@ const Contact: FC<{}> = () => {
             >
               <div>
                 <Image
-                  src={"/imgs/marka.png"}
+                  src={'/imgs/marka.png'}
                   alt="marka"
                   width={100}
                   height={100}
@@ -124,7 +127,7 @@ const Contact: FC<{}> = () => {
             >
               <div>
                 <Image
-                  src={"/imgs/marka.png"}
+                  src={'/imgs/marka.png'}
                   alt="marka"
                   width={100}
                   height={100}
@@ -147,7 +150,7 @@ const Contact: FC<{}> = () => {
             >
               <div>
                 <Image
-                  src={"/imgs/marka.png"}
+                  src={'/imgs/marka.png'}
                   alt="marka"
                   width={100}
                   height={100}
@@ -170,7 +173,7 @@ const Contact: FC<{}> = () => {
             >
               <div>
                 <Image
-                  src={"/imgs/marka.png"}
+                  src={'/imgs/marka.png'}
                   alt="marka"
                   width={100}
                   height={100}
@@ -193,7 +196,7 @@ const Contact: FC<{}> = () => {
             >
               <div>
                 <Image
-                  src={"/imgs/marka.png"}
+                  src={'/imgs/marka.png'}
                   alt="marka"
                   width={100}
                   height={100}
@@ -222,7 +225,7 @@ const Contact: FC<{}> = () => {
               <h2 className="text-2xl font-bold text-yellow-400">
                 <Image
                   alt="Homaco Logo"
-                  src={"/imgs/logo.png"}
+                  src={'/imgs/logo.png'}
                   className="m-auto"
                   width={240}
                   height={80}
@@ -235,34 +238,54 @@ const Contact: FC<{}> = () => {
                 >
                   <img src="/oslogo.png" alt="osmanbaba" />
                 </a>
-                <li>
-                  <a href="#">
-                    <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-yellow-500 hover:text-white hover:bg-yellow-600">
-                      <FaFacebook />
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-yellow-500 hover:text-white hover:bg-yellow-600">
-                      <FaWhatsapp />
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-yellow-500 hover:text-white hover:bg-yellow-600">
-                      <FaInstagram />
-                    </span>
-                  </a>
-                </li>
+                {settings?.facebook && settings?.facebook !== 'undefined' && (
+                  <li>
+                    <a
+                      href={settings?.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-yellow-500 hover:text-white hover:bg-yellow-600">
+                        <FaFacebook />
+                      </span>
+                    </a>
+                  </li>
+                )}
+                {settings?.whatsapp && settings?.whatsapp !== 'undefined' && (
+                  <li>
+                    <a
+                      href={settings?.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-yellow-500 hover:text-white hover:bg-yellow-600">
+                        <FaWhatsapp />
+                      </span>
+                    </a>
+                  </li>
+                )}
+                {settings?.instagram && settings?.instagram !== 'undefined' && (
+                  <li>
+                    <a
+                      href={settings?.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-yellow-500 hover:text-white hover:bg-yellow-600">
+                        <FaInstagram />
+                      </span>
+                    </a>
+                  </li>
+                )}
               </ul>
               <ul className="w-fit m-auto" dir="ltr">
-                <li className="text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
-                  <a href="mailto:example@test.com" className="text-lg">
-                    Phone: +905440000000
-                  </a>
-                </li>
+                {settings?.phones && settings.phones?.[0] !== 'undefined' && (
+                  <li className="text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
+                    <a href={'tel:' + settings.phones?.[0]} className="text-lg">
+                      Phone: {settings.phones?.[0]}
+                    </a>
+                  </li>
+                )}
                 <li className="text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
                   <a href="mailto:example@test.com" className="text-lg">
                     Email: example@test.com
@@ -280,7 +303,7 @@ const Contact: FC<{}> = () => {
                 <div className="grid grid-cols-2 gap-2">
                   <div className="col-span-1">
                     <motion.div
-                      style={{ position: "relative" }}
+                      style={{ position: 'relative' }}
                       whileInView={{
                         opacity: 1,
                         top: 0,
@@ -307,7 +330,7 @@ const Contact: FC<{}> = () => {
                   </div>
                   <div className="col-span-1">
                     <motion.div
-                      style={{ position: "relative" }}
+                      style={{ position: 'relative' }}
                       whileInView={{
                         opacity: 1,
                         top: 0,
@@ -334,7 +357,7 @@ const Contact: FC<{}> = () => {
                   </div>
                   <div className="col-span-2">
                     <motion.div
-                      style={{ position: "relative" }}
+                      style={{ position: 'relative' }}
                       whileInView={{
                         opacity: 1,
                         top: 0,
@@ -361,7 +384,7 @@ const Contact: FC<{}> = () => {
                   </div>
                   <div className="col-span-2">
                     <motion.div
-                      style={{ position: "relative" }}
+                      style={{ position: 'relative' }}
                       whileInView={{
                         opacity: 1,
                         top: 0,
@@ -387,7 +410,7 @@ const Contact: FC<{}> = () => {
                   </div>
                 </div>
                 <motion.div
-                  style={{ position: "relative" }}
+                  style={{ position: 'relative' }}
                   whileInView={{
                     opacity: 1,
                     top: 0,
@@ -416,10 +439,10 @@ const Contact: FC<{}> = () => {
       </div>
       <div className="py-2 text-center bg-white">
         <h6>
-          Made by{" "}
+          Made by{' '}
           <a
             href="https://osmanbaba.net"
-            target={"_blank"}
+            target={'_blank'}
             rel="noopener noreferrer"
           >
             Osmanbaba
@@ -427,10 +450,10 @@ const Contact: FC<{}> = () => {
         </h6>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact
 
 {
   /* <hr className="my-5" />
