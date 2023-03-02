@@ -7,9 +7,11 @@ import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { LayoutContext } from '@/context/layout.context'
+import { useRouter } from 'next/router'
 
 const Contact: FC<{}> = () => {
   const { settings } = useContext(LayoutContext)
+  const router = useRouter()
 
   return (
     <>
@@ -19,190 +21,33 @@ const Contact: FC<{}> = () => {
             شركاؤنا في نجاح العلامة التجارية لإنتاج اجود انواع الطحينية
           </h2>
           <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 items-center gap-2">
-            <motion.div
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                transition: {
-                  delay: 0,
-                  duration: 0.8,
-                },
-              }}
-              initial={{
-                scale: 0.7,
-                opacity: 0,
-              }}
-            >
-              <div>
-                <Image
-                  src={'/imgs/marka.png'}
-                  alt="marka"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                transition: {
-                  delay: 0.2,
-                  duration: 0.8,
-                },
-              }}
-              initial={{
-                scale: 0.7,
-                opacity: 0,
-              }}
-            >
-              <div>
-                <Image
-                  src={'/imgs/marka.png'}
-                  alt="marka"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                transition: {
-                  delay: 0.4,
-                  duration: 0.8,
-                },
-              }}
-              initial={{
-                scale: 0.7,
-                opacity: 0,
-              }}
-            >
-              <div>
-                <Image
-                  src={'/imgs/marka.png'}
-                  alt="marka"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                transition: {
-                  delay: 0.6,
-                  duration: 0.8,
-                },
-              }}
-              initial={{
-                scale: 0.7,
-                opacity: 0,
-              }}
-            >
-              <div>
-                <Image
-                  src={'/imgs/marka.png'}
-                  alt="marka"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                transition: {
-                  delay: 0.8,
-                  duration: 0.8,
-                },
-              }}
-              initial={{
-                scale: 0.7,
-                opacity: 0,
-              }}
-            >
-              <div>
-                <Image
-                  src={'/imgs/marka.png'}
-                  alt="marka"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                transition: {
-                  delay: 1,
-                  duration: 0.8,
-                },
-              }}
-              initial={{
-                scale: 0.7,
-                opacity: 0,
-              }}
-            >
-              <div>
-                <Image
-                  src={'/imgs/marka.png'}
-                  alt="marka"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                transition: {
-                  delay: 1.2,
-                  duration: 0.8,
-                },
-              }}
-              initial={{
-                scale: 0.7,
-                opacity: 0,
-              }}
-            >
-              <div>
-                <Image
-                  src={'/imgs/marka.png'}
-                  alt="marka"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                transition: {
-                  delay: 1.4,
-                  duration: 0.8,
-                },
-              }}
-              initial={{
-                scale: 0.7,
-                opacity: 0,
-              }}
-            >
-              <div>
-                <Image
-                  src={'/imgs/marka.png'}
-                  alt="marka"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </motion.div>
+            {settings?.clients?.length > 0 &&
+              settings?.clients?.map((item: any) => (
+                <motion.div
+                  key={item?.id}
+                  whileInView={{
+                    opacity: 1,
+                    scale: 1,
+                    transition: {
+                      delay: 0,
+                      duration: 0.8,
+                    },
+                  }}
+                  initial={{
+                    scale: 0.7,
+                    opacity: 0,
+                  }}
+                >
+                  <div>
+                    <Image
+                      src={item?.image}
+                      alt={item?.[`name_${router.locale}`]}
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                </motion.div>
+              ))}
           </div>
           <div className="grid grid-cols-3 gap-4 mt-10">
             <div className="order-3 xs:order-1 col-span-3 md:col-span-1">

@@ -1,11 +1,12 @@
 import { useState, useCallback, useEffect } from 'react'
-import Text from '../../utils/text'
+import FlexDiv from '../../../components/utils/flex-div'
+import Text from '../../../components/utils/text'
 
-import { axiosInstance, httpsAgent, configHeader } from 'helpers/constants'
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
 // components
 import {
+  Alert,
   Button,
   Col,
   Form,
@@ -18,17 +19,27 @@ import {
   Upload,
 } from 'antd'
 // modules
-import { LoadingOutlined } from '@ant-design/icons'
+import {
+  DeleteOutlined,
+  LoadingOutlined,
+  MinusCircleFilled,
+  MinusOutlined,
+  PlusCircleFilled,
+  PlusOutlined,
+} from '@ant-design/icons'
 import axios from 'axios'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
+import { signOut, useSession } from 'next-auth/react'
+import AdminLayout from '../../../layouts/admin-layout/admin-layout'
+import Head from 'next/head'
 // styles
 const FormContainer = styled.div`
   background-color: #fff;
   padding: 10px;
 `
 
-const UploadPrimary = styled(Upload)`
+export const UploadPrimary = styled(Upload)`
   display: block;
   padding: 0 20px;
 
@@ -37,7 +48,7 @@ const UploadPrimary = styled(Upload)`
   }
 `
 
-const PrimaryImageOuter = styled.div`
+export const PrimaryImageOuter = styled.div`
   width: 100%;
   height: 300px;
   display: flex;
@@ -65,46 +76,52 @@ const PrimaryImageOuter = styled.div`
       `
   }}
 `
-const PrimaryImagePreview = styled.div`
+export const PrimaryImagePreview = styled.div`
   width: 100%;
   height: auto;
   max-height: 470px;
 `
 
-const RemoveButton = styled(Button)`
+export const RemoveButton = styled(Button)`
   position: absolute;
   right: 20px;
   bottom: 20px;
 `
 
-const ProcessingImage = styled.div`
-  position: absolute;
-  inset: 0;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+// styles
+const StyledUploadImage = styled(FlexDiv)`
+  border: 1px dashed ${(props) => props.theme.colors.secondary};
+  position: relative;
+  &:hover {
+    border-width: 2px;
+  }
 `
 
-function ClientPageContent({ id = null }) {
+const StyledUploadComponent = styled(Upload)`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 400px;
+  cursor: pointer;
+  ${(props) => {
+    if (props?.small)
+      return `
+      width: 150px;
+      height: 150px;
+    `
+  }}
+  > div {
+    width: 100%;
+  }
+`
+
+export function ClientPageContent({ id = null, cookies, locale }) {
   const [form] = Form.useForm()
   const router = useRouter()
 
-  let cookies = {}
+  const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/client'
 
-  let reqUrl
-  if (id) {
-    reqUrl =
-      process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_UPDATE_CLIENT
-  } else {
-    reqUrl =
-      process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_ADD_NEW_CLIENT
-    // reqUrl = "/api/add-ad";
-  }
-
-  const { t } = useTranslation(['common', 'addad'])
+  const { t } = useTranslation('common')
   // states
   const [primaryFile, setPrimaryFile] = useState({
     prev: null,
@@ -113,174 +130,128 @@ function ClientPageContent({ id = null }) {
     validate: false,
   })
 
-  // category list
-  // const [listCategory, setListCategory] = useState([]);
-  const [processing, setProcessing] = useState(false)
-  const [prevModalVisible, setPrevModalVisible] = useState({
-    visible: false,
-    target: null,
-    file: null,
-    ready: null,
-  })
-  // lines state
-
   // loadings
   const [loading, setLoading] = useState(null)
-  const [loadings, setLoadings] = useState(null)
   const [formError, setFormError] = useState(null)
   const [formLoading, setFormLoading] = useState(false)
 
   // functions
   const handleFormFinish = useCallback(
     async (values) => {
-      if (!cookies) message.warning('Please login to complete this operation')
-      // setFormLoading(true);
+      // if (!cookies) message.warning("Please login to complete this operation");
+      setFormLoading(true)
 
       let formData = new FormData()
 
       formData.append('name_ar', values.name_ar)
       formData.append('name_tr', values.name_tr)
       formData.append('name_en', values.name_en)
-      formData.append('googleCode', values.googleCode)
 
-      if (!!values.parentId) {
-        formData.append('parentId', values.parentId)
+      if (!primaryFile.file) {
+        message.error('Please choose image.')
+        return
       }
       formData.append('image', primaryFile.file)
 
       // start send data
       if (id) {
         formData.append('id', id)
-
-        const { data: res } = await axios.post(
-          reqUrl,
-          formData,
-          {
-            httpsAgent: httpsAgent,
-            headers: {
-              websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
-            },
+      }
+      try {
+        const { data: res, status } = await axios({
+          url: reqUrl,
+          method: id ? 'PUT' : 'POST',
+          headers: {
+            Authorization: `Bearer ${cookies?.token}`,
+            website: process.env.NEXT_PUBLIC_WEBSITE,
           },
-          configHeader
-        )
-
-        if (res.status === true) {
-          if (res.status === true) {
-            message.success(t('common:clients.editClient'))
-            router.push('/admin/clients')
-          } else {
-            setFormError('Something went wrong! Please try again.')
-          }
-        }
-      } else {
-        const { data: res } = await axios.post(
-          reqUrl,
-          formData,
-          {
-            httpsAgent: httpsAgent,
-            headers: {
-              websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
-            },
-          },
-          configHeader
-        )
-
-        if (res.status === true) {
-          if (res.status === true) {
-            message.success(t('common:clients.addClient'))
-            router.push('/clients')
-          }
+          data: formData,
+        })
+        if (status === 200 || status === 201) {
+          message.success(String(res?.description))
+          router.push('/admin/clients')
         } else {
-          setFormError('Something went wrong! Please try again.')
+        }
+      } catch (err) {
+        if (err?.response?.status === 401) {
+          signOut({ callbackUrl: '/' })
+        } else if (err?.response?.status === 500) {
+          setFormError(
+            err?.response?.data ||
+              'Something went wrong! Please try again later.'
+          )
+        } else if (err?.response?.status === 400) {
+          setFormError(
+            err?.response?.data ||
+              'Something went wrong! Please try again later.'
+          )
+        } else if (err?.response?.status === 404) {
+          setFormError({ description: 'Wrong endpoint error' })
         }
       }
 
       setFormLoading(false)
     },
 
-    [cookies, primaryFile.file, id, reqUrl, t, router]
+    [primaryFile, id, reqUrl, t, router, cookies]
   )
-
-  // const getListCategory = useCallback(async () => {
-  //   if (listCategory.length !== 0) return false;
-
-  //   setLoadings("categoryList");
-  //   const { data: res } = await axios.get(process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_ALL_CLIENTS, {
-  //     headers: {
-  //       websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
-  //     },
-  //   });
-
-  //   setLoadings(null);
-
-  //   console.log("res categoryList :>> ", res);
-
-  //   if (res.status === true) {
-  //     setListCategory(res.description.filter((x) => x.id != id));
-  //   } else {
-  //     message.error("Something went wrong! Please try again.");
-  //   }
-  // }, [id, listCategory.length]);
-
-  const imageValidate = useCallback((file) => {
-    // const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-    // if (!isJpgOrPng) {
-    //   message.error("You can only upload JPG/PNG files !");
-    //   return false;
-    // }
-    // return true;
-    return true
-  }, [])
 
   // useEffects
   useEffect(() => {
     if (id) {
-      const getAdDetails = async () => {
+      const getPartner = async () => {
         setLoading(true)
-        const reqUrl =
-          process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_GET_CLIENT
+        const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/client/' + id
 
-        console.log('id :>> ', id)
-
-        const { data: res } = await axios.post(
-          reqUrl,
-          { id },
-          {
+        try {
+          const { data: res, status } = await axios.get(reqUrl, {
             headers: {
-              websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
+              website: process.env.NEXT_PUBLIC_WEBSITE,
+              Authorization: `Bearer ${cookies?.token}`,
             },
-          }
-        )
-
-        console.log('res :>> ', res)
-
-        const myData = res.description.result
-
-        if (res.status === true) {
-          // await getListCategory();
-          // let categories = res.category?.map((item, i) => item?.categoryID) ?? [];
-
-          form.setFieldsValue({
-            name_tr: myData?.name_tr,
-            name_en: myData?.name_en,
-            name_ar: myData?.name_ar,
-            googleCode: ['3750'],
-            parentId: myData?.parentId,
           })
+          console.log('status', status)
+          if (status === 200) {
+            const myData = res?.description?.data
+            form.setFieldsValue({
+              name_tr: myData?.name_tr,
+              name_ar: myData?.name_ar,
+              name_en: myData?.name_en,
+            })
 
-          if (myData?.image !== '{}') {
-            setPrimaryFile({
-              prev: process.env.NEXT_PUBLIC_HOST + myData?.image,
-              file: true,
-              validate: false,
+            if (myData?.image) {
+              setPrimaryFile({
+                prev: myData?.image,
+                file: true,
+                validate: false,
+              })
+            }
+          } else if (status === 204) {
+            setFormError({
+              header: 'No Content Found',
+              description: 'Something went wrong! Please try again. 204',
             })
           }
-        } else {
-          alert('Something went wrong! Please try again.')
+        } catch (err) {
+          if (err?.response?.status === 401) {
+            signOut({ callbackUrl: '/' })
+          } else if (err?.response?.status === 500) {
+            setFormError(
+              err?.response?.data ||
+                'Something went wrong! Please try again later.'
+            )
+          } else if (err?.response?.status === 400) {
+            setFormError(
+              err?.response?.data ||
+                'Something went wrong! Please try again later.'
+            )
+          } else if (err?.response?.status === 404) {
+            setFormError({ description: 'Wrong endpoint error' })
+          }
         }
         setLoading(false)
       }
-      getAdDetails()
+      getPartner()
     }
   }, [form, id])
 
@@ -306,9 +277,6 @@ function ClientPageContent({ id = null }) {
       }
 
       setPrimaryFile((prev) => {
-        // check image file..
-        const validate = imageValidate(file)
-        if (!validate) return prev
         // set image
         let newObj = prev
         newObj.file = file
@@ -316,25 +284,31 @@ function ClientPageContent({ id = null }) {
         newObj.validate = false
         return { ...newObj }
       })
-      setPrevModalVisible({
-        visible: true,
-        target: 'primary',
-        file: primaryFile,
-        ready: null,
-      })
       return false
     },
     primaryFile,
   }
 
+  if (loading) return <h2>Loading ...</h2>
+
   return (
     <FormContainer>
       <Form form={form} layout="vertical" onFinish={handleFormFinish}>
         <Row>
+          {formError && (
+            <Col span={24}>
+              <Alert
+                type="error"
+                showIcon
+                description={formError?.description}
+                message={formError?.header}
+              />
+            </Col>
+          )}
           <Col xs={24} sm={24} md={12} lg={12}>
             <Row gutter={[24, 24]}>
               <Col span={24}>
-                <Tooltip title={t('addad:tooltips.primary_photo')}>
+                <Tooltip title={t('image')}>
                   <UploadPrimary name="PrimaryImage" {...primaryFileProps}>
                     <PrimaryImageOuter error={primaryFile.validate !== false}>
                       {primaryFile.prev ? (
@@ -363,7 +337,7 @@ function ClientPageContent({ id = null }) {
                               })
                             }
                           >
-                            {t('common:actions.delete', {
+                            {t('delete', {
                               name:
                                 router.locale === 'ar'
                                   ? 'ملف'
@@ -372,22 +346,11 @@ function ClientPageContent({ id = null }) {
                                   : 'Fotoğrafı',
                             })}
                           </RemoveButton>
-                          {processing === 'primary' && (
-                            <ProcessingImage>
-                              <LoadingOutlined
-                                spin
-                                style={{ color: 'orange', fontSize: 42 }}
-                              />
-                              <Text as="h1" type="primary">
-                                Processing Image
-                              </Text>
-                            </ProcessingImage>
-                          )}
                         </>
                       ) : (
                         <h2>
                           {primaryFile.validate === false
-                            ? t('addad:tooltips.primary_photo_title')
+                            ? t('image')
                             : primaryFile.validate}
                         </h2>
                       )}
@@ -402,52 +365,43 @@ function ClientPageContent({ id = null }) {
               <Col span={24}>
                 <Form.Item
                   name="name_tr"
-                  label={t('common:clients.clientTr')}
+                  label={t('Isim')}
                   rules={[
                     {
                       required: true,
-                      message: t('common:form.validation.required.message', {
-                        name: t('common:clients.clientTr'),
-                      }),
                     },
                   ]}
-                  tooltip={t('common:clients.clientTr')}
+                  tooltip={t('Name')}
                 >
-                  <Input placeholder={t('common:clients.clientTr')} />
+                  <Input placeholder={t('Isim')} />
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item
                   name="name_ar"
-                  tooltip={t('common:clients.clientAr')}
-                  label={t('common:clients.clientAr')}
+                  label={t('الاسم')}
                   rules={[
                     {
-                      required: false,
-                      message: t('common:form.validation.required.message', {
-                        name: t('common:clients.clientAr'),
-                      }),
+                      required: true,
                     },
                   ]}
+                  tooltip={t('Name')}
                 >
-                  <Input placeholder={t('common:clients.clientAr')} />
+                  <Input placeholder={t('الاسم')} />
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item
                   name="name_en"
-                  label={t('common:clients.clientEn')}
-                  tooltip={t('common:clients.clientEn')}
+                  label={t('Name')}
                   rules={[
                     {
-                      required: false,
-                      message: t('common:form.validation.required.message', {
-                        name: t('common:clients.clientEn'),
-                      }),
+                      required: true,
                     },
                   ]}
+                  tooltip={t('Name')}
                 >
-                  <Input placeholder={t('common:clients.clientEn')} />
+                  <Input placeholder={t('Name')} />
                 </Form.Item>
               </Col>
             </Row>
@@ -457,18 +411,19 @@ function ClientPageContent({ id = null }) {
             <Space>
               <Button
                 htmlType="submit"
+                type="dashed"
                 // onClick={handleValidateFiles}
                 loading={formLoading}
               >
-                {id ? t('common:form.edit') : t('common:form.confirm')}
+                {id ? t('edit') : t('confirm')}
               </Button>
               <Button
                 onClick={() => router.back()}
-                type="primary"
+                type="dashed"
                 danger
                 disabled={formLoading}
               >
-                {t('common:form.cancel')}
+                {t('cancel')}
               </Button>
             </Space>
           </Col>
@@ -478,4 +433,15 @@ function ClientPageContent({ id = null }) {
   )
 }
 
-export default ClientPageContent
+export default function ClientPage({ id }) {
+  const { data: cookies } = useSession()
+  const locale = useRouter().locale
+  return (
+    <>
+      <Head>
+        <title>Partner</title>
+      </Head>
+      <ClientPageContent cookies={cookies?.user} locale={locale} id={id} />
+    </>
+  )
+}

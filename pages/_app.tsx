@@ -16,6 +16,8 @@ import { useRouter } from 'next/router'
 import { Provider } from 'react-redux'
 import { useStore } from '../redux/index'
 import AuthGuard from '@/components/auth-guard'
+import { ApolloProvider } from '@apollo/client'
+import gqlClient from '../helpers/apollo-gql'
 
 // layout types
 type AppLayoutProps = AppProps & {
@@ -73,30 +75,34 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyles image={imageBg} dir={locale === 'ar' ? 'rtl' : 'ltr'} />
       <div className={myFont.className} style={{ ...myFont.style }}>
-        <Provider store={store}>
-          {/* <style jsx global>{`
+        <ApolloProvider client={gqlClient}>
+          <Provider store={store}>
+            {/* <style jsx global>{`
         body {
           font-family: ${myFont.style.fontFamily};
         }
       `}</style> */}
-          <SessionProvider
-            session={pageProps?.session}
-            refetchInterval={5 * 60}
-          >
-            <MobileNavContextProvider>
-              <LayoutContextProvider>
-                {router.pathname.startsWith('/admin') ? (
-                  <AuthGuard>
-                    <Component {...pageProps} />
-                  </AuthGuard>
-                ) : (
-                  <Component {...pageProps} />
-                )}
-                <DrawerContainer />
-              </LayoutContextProvider>
-            </MobileNavContextProvider>
-          </SessionProvider>
-        </Provider>
+            <SessionProvider
+              session={pageProps?.session}
+              refetchInterval={5 * 60}
+            >
+              <MobileNavContextProvider>
+                <LayoutContextProvider>
+                  <MobileNavContextProvider>
+                    {router.pathname.startsWith('/admin') ? (
+                      <AuthGuard>
+                        <Component {...pageProps} />
+                      </AuthGuard>
+                    ) : (
+                      <Component {...pageProps} />
+                    )}
+                    <DrawerContainer />
+                  </MobileNavContextProvider>
+                </LayoutContextProvider>
+              </MobileNavContextProvider>
+            </SessionProvider>
+          </Provider>
+        </ApolloProvider>
       </div>
     </>
   )

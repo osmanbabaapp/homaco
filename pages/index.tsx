@@ -13,8 +13,10 @@ import MainLayout from '../layouts/main-layout'
 import 'swiper/css'
 import Founders from '@/components/sections/founders'
 import { useSession } from 'next-auth/react'
-import { gql, GraphQLClient } from 'graphql-request'
+// import { gql, GraphQLClient } from 'graphql-request'
 import { useRouter } from 'next/router'
+import gqlClient from '../helpers/apollo-gql'
+import { gql } from '@apollo/client'
 
 const Home: NextPage = (props: any) => {
   const { data } = useSession()
@@ -58,40 +60,79 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {},
     }
-  const HomeQuery = gql`
-    query($website: String!){
-      products(website: $website) {
-        id
-        title_${locale}
-        desc_${locale}
-        primary_image
-        slug_${locale}
-      }
-      banners(website: $website) {
-        id
-        image
-        file_type
-        title_${locale}
-        desc_${locale}
-        type
-      }
-      partners(website: $website) {
-        id
-        image
-        name
-        whatsapp
-        phone
-        role
-      }
-    }
-  `
 
-  const url = process.env.NEXT_PUBLIC_HOST + 'graphql'
-
-  const graphQLClient = new GraphQLClient(url)
-  const data = await graphQLClient.request(HomeQuery, {
-    website: website,
+  const { data } = await gqlClient.query({
+    query: gql`
+          query($website: String!){
+            products(website: $website) {
+              id
+              title_${locale}
+              desc_${locale}
+              primary_image
+              slug_${locale}
+            }
+            banners(website: $website) {
+              id
+              image
+              file_type
+              title_${locale}
+              desc_${locale}
+              type
+            }
+            partners(website: $website) {
+              id
+              image
+              name
+              whatsapp
+              phone
+              role
+            }
+          }
+        `,
+    variables: {
+      website,
+    },
   })
+
+  // const HomeQuery = gql`
+  //   query($website: String!){
+  //     products(website: $website) {
+  //       id
+  //       title_${locale}
+  //       desc_${locale}
+  //       primary_image
+  //       slug_${locale}
+  //     }
+  //     banners(website: $website) {
+  //       id
+  //       image
+  //       file_type
+  //       title_${locale}
+  //       desc_${locale}
+  //       type
+  //     }
+  //     partners(website: $website) {
+  //       id
+  //       image
+  //       name
+  //       whatsapp
+  //       phone
+  //       role
+  //     }
+  //     clients(website: $website) {
+  //       id
+  //       image
+  //       name: name_${locale}
+  //     }
+  //   }
+  // `
+
+  // const url = process.env.NEXT_PUBLIC_HOST + 'graphql'
+
+  // const graphQLClient = new GraphQLClient(url)
+  // const data = await graphQLClient.request(HomeQuery, {
+  //   website: website,
+  // })
 
   return {
     props: { ...data },
