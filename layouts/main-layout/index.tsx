@@ -3,10 +3,9 @@ import { MobileNavContext } from '../../context/mobile-nav-context'
 import type { LayoutProps } from '../page-with-layout'
 import MobileNavbar from './mobile-navbar'
 import Navbar from './navbar'
-import useFetch from '../../hooks/useFetch'
 import { LayoutContext } from '../../context/layout.context'
 import { gql, useQuery } from '@apollo/client'
-import { RiWhatsappFill } from 'react-icons/ri'
+import {  RiWhatsappLine } from 'react-icons/ri'
 import { motion } from 'framer-motion'
 
 const GET_LAYOUT_DATA = gql`
@@ -76,8 +75,8 @@ const MainLayout: LayoutProps = (props) => {
           }}
         >
           <a href={'https://wa.me/9' + settings?.whatsapp}>
-            <div className="flex items-center justify-center w-[70px] h-[70px] text-white text-3xl shadow-lg fixed bottom-10 right-10 rounded-full bg-green-600">
-              <RiWhatsappFill />
+            <div className="flex items-center justify-center w-[70px] h-[70px] text-white text-5xl shadow-lg fixed bottom-10 right-10 rounded-full bg-green-600">
+              <RiWhatsappLine />
             </div>
           </a>
         </motion.div>

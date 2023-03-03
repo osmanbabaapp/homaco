@@ -95,7 +95,7 @@ const Contact: FC<{}> = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-yellow-500 hover:text-white hover:bg-yellow-600">
+                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-primYellow hover:text-white hover:bg-primYellowHover">
                         <FaFacebook />
                       </span>
                     </a>
@@ -108,7 +108,7 @@ const Contact: FC<{}> = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-yellow-500 hover:text-white hover:bg-yellow-600">
+                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-primYellow hover:text-white hover:bg-primYellowHover">
                         <FaWhatsapp />
                       </span>
                     </a>
@@ -121,7 +121,7 @@ const Contact: FC<{}> = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-yellow-500 hover:text-white hover:bg-yellow-600">
+                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-primYellow hover:text-white hover:bg-primYellowHover">
                         <FaInstagram />
                       </span>
                     </a>
