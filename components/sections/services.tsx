@@ -1,8 +1,9 @@
-import { FC } from "react";
-import Container from "../container";
-import { TbBuildingFactory } from "react-icons/tb";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { FC, useContext } from 'react'
+import Container from '../container'
+import { TbBuildingFactory } from 'react-icons/tb'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { LayoutContext } from '@/context/layout.context'
 
 // const Services: FC<{}> = () => {
 //   return (
@@ -73,6 +74,8 @@ import { motion } from "framer-motion";
 //   );
 // };
 const Services: FC<{}> = () => {
+  const { settings } = useContext(LayoutContext)
+
   return (
     <div className="relative py-10 group text-white h-[500px] md:h-[500px] lg:h-[600px]">
       <motion.div
@@ -98,7 +101,7 @@ const Services: FC<{}> = () => {
         <div className="grid grid-cols-4">
           <h2 className="col-span-4 md:col-span-1 text-3xl">
             <motion.div
-              style={{ position: "relative" }}
+              style={{ position: 'relative' }}
               whileInView={{
                 opacity: 1,
                 top: 0,
@@ -114,16 +117,16 @@ const Services: FC<{}> = () => {
             >
               <Image
                 alt="Homaco Logo"
-                src={"/imgs/logo.png"}
+                src={settings?.logo || '/imgs/logo.png'}
                 width={280}
                 height={80}
-                className={"w-[180px] md:w-[380px]"}
+                className={'w-[180px] md:w-[380px]'}
               />
             </motion.div>
           </h2>
           <div className="col-span-4 md:col-span-3">
             <motion.div
-              style={{ position: "relative", width: "100%" }}
+              style={{ position: 'relative', width: '100%' }}
               whileInView={{
                 opacity: 1,
                 top: 0,
@@ -138,15 +141,16 @@ const Services: FC<{}> = () => {
               }}
             >
               <p className="text-2xl">
-                يتم من خلال الآلة الطحن السمسم وانتاج الطحينة هذه الالة مصنوعة من معدن الستانلس ستيل ٣٠٤ بالكامل وتعمل
-                بنظام اتوماتيكي يتم طحن السمسم علي مرحلتين وتحوي الالة روؤس تنعيم السمسم المطحون
+                يتم من خلال الآلة الطحن السمسم وانتاج الطحينة هذه الالة مصنوعة
+                من معدن الستانلس ستيل ٣٠٤ بالكامل وتعمل بنظام اتوماتيكي يتم طحن
+                السمسم علي مرحلتين وتحوي الالة روؤس تنعيم السمسم المطحون
               </p>
             </motion.div>
           </div>
         </div>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default Services;
+export default Services

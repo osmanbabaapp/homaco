@@ -1,3 +1,4 @@
+import useTranslation from 'next-translate/useTranslation'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
@@ -51,10 +52,16 @@ const data: any = {
 const FounderItem: FC<{ item: any }> = ({ item }) => {
   return (
     <div className="w-[300px] relative group overflow-hidden">
-      <div className="absolute text-center top-full transition-all left-0 w-full p-2 border-[1px] border-primYellowHover bg-primYellowHover/30 backdrop-blur-sm group-hover:top-[calc(100%_-_100px)]">
+      <div className="absolute text-center top-[calc(100%_-_100px)] md:top-full transition-all left-0 w-full p-2 border-[1px] border-primYellowHover bg-primYellowHover/30 backdrop-blur-sm md:group-hover:top-[calc(100%_-_100px)]">
         <h2 className="font-bold text-2xl">{item?.name}</h2>
         <p>{item?.role}</p>
-        <a href={`tel:${item?.plink}`}>{item.phone}</a>
+        <a
+          className="block ltr"
+          style={{ direction: 'ltr' }}
+          href={`tel:${item?.phone}`}
+        >
+          {item.phone}
+        </a>
       </div>
       <Image
         src={
@@ -72,11 +79,14 @@ const FounderItem: FC<{ item: any }> = ({ item }) => {
 const Founders: FC<{ data: any }> = ({ data }) => {
   const router = useRouter()
   const locale = router.locale
+  const { t } = useTranslation('common')
 
   return (
     <div className="py-24 text-white">
       <Container>
-        <h2 className="text-center text-4xl mb-5">Founders</h2>
+        <h2 className="text-center text-4xl mb-5">
+          {t('sections.founders.title')}
+        </h2>
         <div className="grid grid-cols-2">
           {data?.length > 0 &&
             data?.map((item: any, index: number) => (

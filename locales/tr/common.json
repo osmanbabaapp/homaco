@@ -12,6 +12,11 @@
     "logout": "Cikis Yap",
     "settings": "Ayarlar"
   },
+  "sections": {
+    "founders": {
+      "title": "Kurucular"
+    }
+  },
   "categories": {
     "categories": "Kategoriler",
     "newCategory": "Yeni Kategori",
@@ -41,5 +46,6 @@
   "googleCode": "Google Kodu",
   "cancel": "Iptal",
   "confirm": "Tamam",
-  "edit": "Duzenle"
+  "edit": "Duzenle",
+  "logo": "Logo"
 }

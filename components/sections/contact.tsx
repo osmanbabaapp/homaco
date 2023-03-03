@@ -77,12 +77,17 @@ const Contact: FC<{}> = () => {
                 />
               </h2>
               <ul className="flex flex-row gap-3 justify-center my-2">
-                <a
-                  href="#"
-                  className="flex overflow-hidden justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
-                >
-                  <img src="/oslogo.png" alt="osmanbaba" />
-                </a>
+                {settings?.osmanbaba && settings?.osmanbaba !== 'undefined' && (
+                  <a
+                    href={settings?.osmanbaba}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex overflow-hidden justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
+                  >
+                    <img src="/oslogo.png" alt="osmanbaba" />
+                  </a>
+                )}
+
                 {settings?.facebook && settings?.facebook !== 'undefined' && (
                   <li>
                     <a

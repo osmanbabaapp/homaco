@@ -28,6 +28,7 @@ const GET_LAYOUT_DATA = gql`
       logo
       address
       email
+      osmanbaba
     }
   }
 `

@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import { FC, useContext } from 'react'
 import Container from '../container'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { LayoutContext } from '@/context/layout.context'
 
 // const AboutUs: FC = () => {
 //   return (
@@ -54,9 +55,11 @@ import { motion } from 'framer-motion'
 //   );
 // };
 const AboutUs: FC = () => {
+  const { settings } = useContext(LayoutContext)
   return (
     <div
       className="py-28 flex text-white bg-[url('/imgs/bg-section-about.png')] bg-no-repeat bg-contain"
+      style={{ direction: 'rtl' }}
       id="about-us"
     >
       <Container>
@@ -78,7 +81,7 @@ const AboutUs: FC = () => {
           >
             <Image
               alt="Homaco Logo"
-              src={'/imgs/logo.png'}
+              src={settings?.logo || '/imgs/logo.png'}
               width={240}
               height={80}
               className={'w-[180px] md:w-[380px]'}

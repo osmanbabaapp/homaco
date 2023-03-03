@@ -16,6 +16,7 @@ import {
   RiMapPin2Line,
   RiPhoneLine,
   RiTwitterLine,
+  RiUser2Line,
   RiWhatsappLine,
 } from 'react-icons/ri'
 import styled from 'styled-components'
@@ -111,6 +112,13 @@ export default function SettingsPage() {
   const handleFormOnFinish = useCallback(
     async (values) => {
       setFormLoading(true)
+      if (values?.osmanbaba?.startsWith('https://osmanbaba.net/')) {
+        values.osmanbaba = `https://osmanbaba.net/${values?.osmanbaba
+          ?.split('https://osmanbaba.net/')
+          ?.at(-1)}`
+      } else {
+        values.osmanbaba = `https://osmanbaba.net/${values?.osmanbaba}`
+      }
       const formData = setupFormData(values)
 
       if (primaryFile.file) formData.append('logo', primaryFile.file)
@@ -166,6 +174,9 @@ export default function SettingsPage() {
         phones: _data?.phones,
         email: _data?.email,
         address: _data?.address,
+        osmanbaba: _data?.osmanbaba?.startsWith('https://osmanbaba.net/')
+          ? _data?.osmanbaba?.split('https://osmanbaba.net/')?.at(-1)
+          : _data?.osmanbaba,
       })
       if (_data?.logo) {
         setPrimaryFile({
@@ -228,7 +239,12 @@ export default function SettingsPage() {
             <MdSettings />
             Settings
           </h2>
-          <Form layout="vertical" form={form} onFinish={handleFormOnFinish}>
+          <Form
+            layout="vertical"
+            form={form}
+            onFinish={handleFormOnFinish}
+            initialValues={{}}
+          >
             <Row gutter={[24, 24]}>
               {formError && (
                 <Col span={24}>
@@ -249,6 +265,17 @@ export default function SettingsPage() {
               </Col>
               <Col span={12}>
                 <Row>
+                  <Col span={24}>
+                    <Form.Item
+                      label={'Osmanbaba Account Username'}
+                      name="osmanbaba"
+                    >
+                      <Input
+                        addonBefore={'https://osmanbaba.net/'}
+                        placeholder="Osmanbaba account Username"
+                      />
+                    </Form.Item>
+                  </Col>
                   <Col span={24}>
                     <Form.Item label={'Facebook Url'} name="facebook">
                       <Input
@@ -349,7 +376,7 @@ export default function SettingsPage() {
                     ) : (
                       <h2>
                         {primaryFile.validate === false
-                          ? t('image')
+                          ? t('logo')
                           : primaryFile.validate}
                       </h2>
                     )}

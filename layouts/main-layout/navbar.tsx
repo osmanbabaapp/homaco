@@ -124,14 +124,16 @@ const Navbar: FC<{ data: any }> = ({ data }) => {
                   <FaInstagram />
                 </a>
               )}
-              <a
-                href="https://new-osb.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex overflow-hidden justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
-              >
-                <img src="/oslogo.png" alt="osmanbaba" />
-              </a>
+              {data?.osmanbaba && data?.osmanbaba !== 'undefined' && (
+                <a
+                  href={data?.osmanbaba}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex overflow-hidden justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
+                >
+                  <img src="/oslogo.png" alt="osmanbaba" />
+                </a>
+              )}
             </div>
             <div className="block sm:hidden">
               <NavSwitch open={open} toggleNavbar={toggleNavbar} />

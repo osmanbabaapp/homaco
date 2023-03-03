@@ -20,6 +20,11 @@
     "enTitle": "Category Title",
     "parent": "Parent"
   },
+  "sections": {
+    "founders": {
+      "title": "Founders"
+    }
+  },
   "form": {
     "category": "Category",
     "validation": {
@@ -41,5 +46,6 @@
   "googleCode": "Google Code",
   "cancel": "Cancel",
   "confirm": "Ok",
-  "edit": "Edit"
+  "edit": "Edit",
+  "logo": "Logo"
 }

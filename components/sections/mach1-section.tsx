@@ -1,19 +1,22 @@
-import { FC } from "react";
-import Container from "../container";
-import { motion } from "framer-motion";
-import { useRouter } from "next/router";
+import { FC } from 'react'
+import Container from '../container'
+import { motion } from 'framer-motion'
+import { useRouter } from 'next/router'
 
 const MachineSection1: FC<{}> = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
-    <div className="py-28 flex bg-white bg-[url('/imgs/mach-1.png')] bg-no-repeat bg-contain relative">
+    <div
+      className="py-28 flex bg-white bg-[url('/imgs/mach-1.png')] bg-no-repeat bg-contain relative"
+      style={{ direction: 'rtl' }}
+    >
       <Container>
-        <h2 className="absolute z-10 text-2xl md:text-4xl left-[20vw] top-[4vh] font-bold text-black flex-wrap w-[200px] ">
+        <h2 className="absolute z-10 text-2xl md:text-4xl right-[10vw] top-[4vh] font-bold text-black flex-wrap w-auto ">
           آلة طحن السمسم وانتاج الطحينة
         </h2>
         <motion.div
-          style={{ position: "relative" }}
+          style={{ position: 'relative' }}
           className="ml-[30vw] "
           whileInView={{
             opacity: 1,
@@ -36,8 +39,8 @@ const MachineSection1: FC<{}> = () => {
 
             <section className="text-xl">
               <section className="text-red-600 inline-block">
-                {" "}
-                الستانلس{" "}
+                {' '}
+                الستانلس{' '}
               </section>
               تم تصميم هذه الآلة التي تعد من أهم الآلات التي قمنا بصناعتها , حيث
               استخدمنا في صناعتها أجود أنواع
@@ -57,7 +60,7 @@ const MachineSection1: FC<{}> = () => {
         </motion.div>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default MachineSection1;
+export default MachineSection1

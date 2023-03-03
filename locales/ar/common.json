@@ -20,6 +20,11 @@
     "enTitle": "Category Title",
     "parent": "Parent"
   },
+  "sections": {
+    "founders": {
+      "title": "المؤسسون"
+    }
+  },
   "form": {
     "category": "تصنيف",
     "validation": {
@@ -41,5 +46,6 @@
   "googleCode": "كود كوكل",
   "cancel": "إلغاء",
   "confirm": "إتمام",
-  "edit": "تعديل"
+  "edit": "تعديل",
+  "logo": "شعار"
 }
