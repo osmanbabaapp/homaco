@@ -81,8 +81,7 @@ const PrimaryImageOuter = styled.div`
 `
 const PrimaryImagePreview = styled.div`
   width: 100%;
-  height: auto;
-  height: 470px;
+  height: 100%;
   max-height: 100%;
 `
 
@@ -214,16 +213,6 @@ function BannerPageContent({ id = null, cookies, status }) {
     [id, primaryFile.file, reqUrl, router, cookies]
   )
 
-  const imageValidate = useCallback((file) => {
-    // const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-    // if (!isJpgOrPng) {
-    //   message.error("You can only upload JPG/PNG files !");
-    //   return false;
-    // }
-    // return true;
-    return true
-  }, [])
-
   // useEffects
 
   useEffect(() => {
@@ -281,9 +270,6 @@ function BannerPageContent({ id = null, cookies, status }) {
       }
 
       setPrimaryFile((prev) => {
-        // check image file..
-        const validate = imageValidate(file)
-        if (!validate) return prev
         // set image
         let newObj = prev
         newObj.file = file

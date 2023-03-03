@@ -42,7 +42,7 @@ const Home: NextPage = (props: any) => {
           <AboutUs />
           <MachineSection1 />
           <Services />
-          <Posters />
+          <Posters data={props?.gallery} />
           <Founders data={props?.partners} />
           <Contact />
         </>
@@ -86,6 +86,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
               whatsapp
               phone
               role
+            }
+            gallery(website: $website) {
+              id
+              title: title_${locale}
+              desc: desc_${locale}
+              image
+              video
             }
           }
         `,

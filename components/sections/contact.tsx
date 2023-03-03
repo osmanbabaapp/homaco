@@ -70,7 +70,7 @@ const Contact: FC<{}> = () => {
               <h2 className="text-2xl font-bold text-yellow-400">
                 <Image
                   alt="Homaco Logo"
-                  src={'/imgs/logo.png'}
+                  src={settings?.logo || '/imgs/logo.png'}
                   className="m-auto"
                   width={240}
                   height={80}
@@ -99,7 +99,7 @@ const Contact: FC<{}> = () => {
                 {settings?.whatsapp && settings?.whatsapp !== 'undefined' && (
                   <li>
                     <a
-                      href={settings?.whatsapp}
+                      href={'https://wa.me/9' + settings?.whatsapp}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -125,22 +125,26 @@ const Contact: FC<{}> = () => {
               </ul>
               <ul className="w-fit m-auto" dir="ltr">
                 {settings?.phones && settings.phones?.[0] !== 'undefined' && (
-                  <li className="text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
+                  <li className="font-sans text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
                     <a href={'tel:' + settings.phones?.[0]} className="text-lg">
                       Phone: {settings.phones?.[0]}
                     </a>
                   </li>
                 )}
-                <li className="text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
-                  <a href="mailto:example@test.com" className="text-lg">
-                    Email: example@test.com
-                  </a>
-                </li>
-                <li className="text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
-                  <a href="mailto:example@test.com" className="text-lg">
-                    Address will be here
-                  </a>
-                </li>
+                {settings?.email && (
+                  <li className="font-sans text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
+                    <a href={'mailto:' + settings.email} className="text-lg">
+                      Email: {settings.email}
+                    </a>
+                  </li>
+                )}
+                {settings?.address && settings.address !== 'undefined' && (
+                  <li className="font-sans text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
+                    <a href="#" className="text-lg">
+                      Address: {settings?.address}
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
             <div className="order-2 xs:order-3 col-span-3 md:col-span-1">

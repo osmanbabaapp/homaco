@@ -8,6 +8,8 @@ import { MobileNavContext } from '../../context/mobile-nav-context'
 import MobileNavbar from './mobile-navbar'
 import { FaFacebook, FaInstagram, FaLanguage, FaWhatsapp } from 'react-icons/fa'
 import { MdLanguage } from 'react-icons/md'
+import { Dropdown, Menu } from 'antd'
+import { useRouter } from 'next/router'
 
 const LinkItem: FC<{
   href: string
@@ -25,12 +27,28 @@ const LinkItem: FC<{
 
 const Navbar: FC<{ data: any }> = ({ data }) => {
   const { open, toggleNavbar } = useContext(MobileNavContext)
-  const [menuActive, setMenuActive] = useState(false)
+  const router = useRouter()
 
-  console.log('layout data')
-  console.log(data)
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">
+        <Link href={router.asPath} locale={'tr'}>
+          Türkçe
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="1">
+        <Link href={router.asPath} locale={'ar'}>
+          العربية
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="3">
+        <Link href={router.asPath} locale={'en'}>
+          English
+        </Link>
+      </Menu.Item>
+    </Menu>
+  )
 
-  let menuClasses = menuActive ? '' : 'hidden'
   return (
     <nav className="drop-shadow-sm w-[100%]  relative z-50 text-primYellow">
       <Container>
@@ -38,7 +56,7 @@ const Navbar: FC<{ data: any }> = ({ data }) => {
           <div>
             <Image
               alt="Homaco Logo"
-              src={'/imgs/logo.png'}
+              src={data?.logo || '/imgs/logo.png'}
               width={240}
               height={80}
               className={'w-[180px] md:w-[380px]'}
@@ -63,45 +81,19 @@ const Navbar: FC<{ data: any }> = ({ data }) => {
               </ul>
             </div>
             <div className="flex gap-2">
-              <div className="relative">
-                <div>
-                  <a
-                    href="#"
-                    onClick={() => setMenuActive(!menuActive)}
-                    className="flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
-                  >
-                    <MdLanguage />
-                  </a>
-                </div>
-                <div
-                  className={
-                    'absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ' +
-                    menuClasses
-                  }
-                  tabIndex={-1}
+              <Dropdown
+                overlay={menu}
+                placement="bottomRight"
+                trigger={['click']}
+              >
+                <a
+                  href="#"
+                  className="flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
                 >
-                  <div className="py-1" role="none">
-                    <a
-                      href="#"
-                      className="text-gray-700 block px-4 py-2 text-sm"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="menu-item-0"
-                    >
-                      العربية
-                    </a>
-                    <a
-                      href="#"
-                      className="text-gray-700 block px-4 py-2 text-sm"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="menu-item-1"
-                    >
-                      Türkçe
-                    </a>
-                  </div>
-                </div>
-              </div>
+                  <MdLanguage />
+                </a>
+              </Dropdown>
+
               {data?.facebook && data?.facebook !== 'undefined' && (
                 <a
                   href={data?.facebook}

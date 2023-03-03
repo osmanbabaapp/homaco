@@ -11,7 +11,9 @@ import { useCallback } from 'react'
 import { MdFacebook, MdSettings } from 'react-icons/md'
 import {
   RiFacebookBoxLine,
+  RiInboxFill,
   RiInstagramLine,
+  RiMapPin2Line,
   RiPhoneLine,
   RiTwitterLine,
   RiWhatsappLine,
@@ -108,6 +110,7 @@ export default function SettingsPage() {
   // form finish
   const handleFormOnFinish = useCallback(
     async (values) => {
+      setFormLoading(true)
       const formData = setupFormData(values)
 
       if (primaryFile.file) formData.append('logo', primaryFile.file)
@@ -123,6 +126,7 @@ export default function SettingsPage() {
           },
           data: formData,
         })
+        setFormLoading(false)
         if (status === 200 || status === 201) {
           message.success(String(res?.description))
           setFormError(null)
@@ -135,22 +139,15 @@ export default function SettingsPage() {
       } catch (err) {
         console.log('err')
         console.log(err)
+        setFormLoading(false)
         if (err?.response?.status === 401) {
-          //   signOut({ callbackUrl: '/' })
+          signOut({ callbackUrl: '/' })
         } else {
           setFormError({
             header: err?.response?.data?.header,
             description: err?.response?.data?.description,
           })
         }
-        // else if (err?.response?.status === 400) {
-        //   setFormError(
-        //     err?.response?.data ||
-        //       'Something went wrong! Please try again later.'
-        //   )
-        // } else if (err?.response?.status === 404) {
-        //   setFormError({ description: 'Wrong endpoint error' })
-        // }
       }
     },
     [form, primaryFile, cookies]
@@ -167,6 +164,8 @@ export default function SettingsPage() {
         twitter: _data?.twitter,
         whatsapp: _data?.whatsapp,
         phones: _data?.phones,
+        email: _data?.email,
+        address: _data?.address,
       })
       if (_data?.logo) {
         setPrimaryFile({
@@ -241,6 +240,13 @@ export default function SettingsPage() {
                   />
                 </Col>
               )}
+              <Col span={24} style={{ margin: '10px 0' }}>
+                <Alert
+                  showIcon
+                  type="warning"
+                  description={'This data will be shown in website'}
+                />
+              </Col>
               <Col span={12}>
                 <Row>
                   <Col span={24}>
@@ -280,6 +286,22 @@ export default function SettingsPage() {
                       <Input
                         addonBefore={<RiPhoneLine />}
                         placeholder="Phone"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={24}>
+                    <Form.Item label={'Email'} name="email">
+                      <Input
+                        addonBefore={<RiInboxFill />}
+                        placeholder="Email"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={24}>
+                    <Form.Item label={'Address'} name="address">
+                      <Input
+                        addonBefore={<RiMapPin2Line />}
+                        placeholder="Address"
                       />
                     </Form.Item>
                   </Col>
@@ -336,7 +358,9 @@ export default function SettingsPage() {
               </Col>
 
               <Col span={24}>
-                <Button htmlType="submit">Save</Button>
+                <Button htmlType="submit" loading={formLoading}>
+                  Save
+                </Button>
               </Col>
             </Row>
           </Form>

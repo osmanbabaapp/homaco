@@ -9,7 +9,11 @@ import axios from 'axios'
  * @returns {Promise<success:boolean; message:string; data:string;>}
  * @description uploading file to aws
  */
-export const uploadToS3 = async (fileData: File, slug?: string) => {
+export const uploadToS3 = async (
+  fileData: File,
+  folder: string = 'banner',
+  slug?: string
+) => {
   try {
     const s3 = new S3({
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -20,7 +24,7 @@ export const uploadToS3 = async (fileData: File, slug?: string) => {
     const params = {
       // ACL: 'public-read',
       Bucket: process.env.AWS_S3_BUCKET,
-      Key: `banner/${Date.now()}.${fileData?.name.split('.').at(-1)}`,
+      Key: `${folder}/${Date.now()}.${fileData?.name.split('.').at(-1)}`,
       ContentType: fileData.type,
     }
 

@@ -1,16 +1,9 @@
 import Image from 'next/image'
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Container from '../container'
 import { motion } from 'framer-motion'
 import { MdClose } from 'react-icons/md'
-
-const data = [
-  '/imgs/poster.jpeg',
-  '/imgs/poster.jpeg',
-  '/imgs/poster.jpeg',
-  '/imgs/poster.jpeg',
-]
 
 const modalVariants = {
   show: {
@@ -26,51 +19,53 @@ const modalVariants = {
   },
 }
 
-const Posters: FC<{}> = () => {
+const Posters: FC<{ data: any }> = ({ data }) => {
   const [open, setOpen] = useState<boolean>(false)
+  const [video, setVideo] = useState<string | null>(null)
 
   // toggle modal
-  const toggleModal = useCallback((open: boolean) => {
-    console.log('toggle modal !')
-    console.log(open)
+  const toggleModal = useCallback((open: boolean, video: string | null) => {
     setOpen(!open)
+    setVideo(video)
   }, [])
+
   return (
     <div className="py-10 bg-white">
       <Container>
         <div>
           <Swiper spaceBetween={30} className="py-10 px-5" slidesPerView="auto">
-            {data.map((item, index) => (
-              <SwiperSlide className="w-[250px]" key={index}>
-                <motion.div
-                  style={{ position: 'relative' }}
-                  whileInView={{
-                    opacity: 1,
-                    top: 0,
-                    transition: {
-                      delay: 0.2 * index,
-                      duration: 0.8,
-                    },
-                  }}
-                  initial={{
-                    top: -50,
-                    opacity: 0,
-                  }}
-                >
-                  <Image
-                    onClick={() => toggleModal(open)}
-                    src={item}
-                    alt="Poster"
-                    width={250}
-                    height={250}
-                  />
-                </motion.div>
-              </SwiperSlide>
-            ))}
+            {data?.length > 0 &&
+              data.map((item: any, index: number) => (
+                <SwiperSlide className="w-[250px]" key={index}>
+                  <motion.div
+                    style={{ position: 'relative', cursor: 'pointer' }}
+                    whileInView={{
+                      opacity: 1,
+                      top: 0,
+                      transition: {
+                        delay: 0.2 * index,
+                        duration: 0.8,
+                      },
+                    }}
+                    initial={{
+                      top: -50,
+                      opacity: 0,
+                    }}
+                  >
+                    <Image
+                      onClick={() => toggleModal(open, item?.video)}
+                      src={item?.image}
+                      alt="Poster"
+                      width={250}
+                      height={250}
+                    />
+                  </motion.div>
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
       </Container>
-      {open && (
+      {open && video && (
         <motion.div
           initial="hidden"
           animate="show"
@@ -83,12 +78,17 @@ const Posters: FC<{}> = () => {
               className="text-4xl text-white absolute right-2 md:-right-8 -top-8"
               onClick={(e) => {
                 e.preventDefault()
-                toggleModal(open)
+                toggleModal(open, null)
               }}
             >
               <MdClose />
             </a>
-            <video src="/video.mp4" autoPlay={true} controls></video>
+            <video
+              src={video}
+              autoPlay={true}
+              controls
+              style={{ maxHeight: '80vh' }}
+            ></video>
           </div>
         </motion.div>
       )}

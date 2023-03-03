@@ -1,11 +1,12 @@
 import Image from 'next/image'
-import { FC, useRef } from 'react'
+import { FC, useContext, useRef } from 'react'
 import Container from '../container'
 import Button from '../elements/Button'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { LayoutContext } from '@/context/layout.context'
 
 const ProductItem: FC<any> = (props) => {
   return (
@@ -44,6 +45,7 @@ const ProductItem: FC<any> = (props) => {
 const Products: FC<{ products: any }> = ({ products }) => {
   // const ref = useRef<HTMLDivElement>(null);
   // const onScreen = useEle
+  const { settings } = useContext(LayoutContext)
 
   const locale = useRouter().locale
 
@@ -52,7 +54,7 @@ const Products: FC<{ products: any }> = ({ products }) => {
       <Container>
         <Image
           alt="Homaco Logo"
-          src={'/imgs/logo.png'}
+          src={settings?.logo || '/imgs/logo.png'}
           className="m-auto w-[180px] md:w-[380px]"
           width={280}
           height={80}
