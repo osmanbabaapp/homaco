@@ -80,22 +80,19 @@ const Banner: FC<{
   //   }, []);
 
   useEffect(() => {
-    // if (window) {
-    //   timer = window?.setInterval(() => {
-    //     if (curActive + 1 === data.length) {
-    //       curActive = 0
-    //       setActive(0)
-    //     } else {
-    //       curActive++
-    //       setActive((prev) => prev + 1)
-    //     }
-    //   }, 4000)
-    // }
-    // return () => window?.clearInterval(timer)
+    if (__type === 'image' && window) {
+      timer = window?.setInterval(() => {
+        if (curActive + 1 === data.length) {
+          curActive = 0
+          setActive(0)
+        } else {
+          curActive++
+          setActive((prev) => prev + 1)
+        }
+      }, 4000)
+    }
+    return () => window?.clearInterval(timer)
   }, [])
-
-  console.log('banners')
-  console.log(banners)
 
   return (
     <section className="pb-2 relative">
@@ -113,7 +110,7 @@ const Banner: FC<{
                   style={{
                     backgroundImage: "url('" + item.image + "')",
                   }}
-                  className={`relative bg-no-repeat bg-contain lg:bg-cover h-[90vh] after:content-[''] after:absolute after:inset-0 after:bg-black/70 after:-z-1`}
+                  className={`relative bg-no-repeat bg-contain lg:bg-cover h-[90vh] after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:-z-1`}
                 >
                   <div className="relative h-[70vh] sm:h-[100vh] md:h-[96vh] z-[1000]">
                     <Container>
@@ -134,7 +131,7 @@ const Banner: FC<{
                   style={{
                     backgroundImage: "url('" + item.image + "')",
                   }}
-                  className={`relative bg-no-repeat bg-contain lg:bg-cover h-[90vh] after:content-[''] after:absolute after:inset-0 after:bg-black/70 after:-z-1`}
+                  className={`relative bg-no-repeat bg-contain lg:bg-cover h-[50vh] md:h-screen after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:-z-1`}
                 >
                   <Container>
                     <motion.div
@@ -154,7 +151,7 @@ const Banner: FC<{
                     autoPlay
                     loop
                     muted
-                    className="h-full w-full"
+                    className="h-[50vh] md:h-screen w-full object-cover"
                   ></video>
                 </div>
               )}

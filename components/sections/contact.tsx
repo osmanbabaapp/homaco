@@ -20,7 +20,7 @@ const Contact: FC<{}> = () => {
           <h2 className="text-2xl text-center mb-5">
             شركاؤنا في نجاح العلامة التجارية لإنتاج اجود انواع الطحينية
           </h2>
-          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 items-center gap-2">
+          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 items-center justify-center gap-2 my-10">
             {settings?.clients?.length > 0 &&
               settings?.clients?.map((item: any) => (
                 <motion.div
@@ -38,7 +38,7 @@ const Contact: FC<{}> = () => {
                     opacity: 0,
                   }}
                 >
-                  <div>
+                  <div className="transition duration-[.8s]  hover:scale-[1.2]">
                     <Image
                       src={item?.image}
                       alt={item?.[`name_${router.locale}`]}
@@ -49,7 +49,7 @@ const Contact: FC<{}> = () => {
                 </motion.div>
               ))}
           </div>
-          <div className="grid grid-cols-3 gap-4 mt-10">
+          <div className="grid grid-cols-3 gap-4 mt-20">
             <div className="order-3 xs:order-1 col-span-3 md:col-span-1">
               <div className="relative w-full h-[250px] rounded-lg">
                 <div className="w-[100px] h-[100px] bg-primYellow absolute -top-[8px] -left-[8px] z-10"></div>
@@ -72,7 +72,7 @@ const Contact: FC<{}> = () => {
                   alt="Homaco Logo"
                   src={settings?.logo || '/imgs/logo.png'}
                   className="m-auto"
-                  width={240}
+                  width={300}
                   height={80}
                 />
               </h2>
@@ -82,7 +82,7 @@ const Contact: FC<{}> = () => {
                     href={settings?.osmanbaba}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex overflow-hidden justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
+                    className="flex overflow-hidden justify-center text-white items-center w-10 h-10 rounded-full bg-primYellow hover:bg-primYellowHover"
                   >
                     <img src="/oslogo.png" alt="osmanbaba" />
                   </a>
@@ -95,7 +95,7 @@ const Contact: FC<{}> = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-primYellow hover:text-white hover:bg-primYellowHover">
+                      <span className="flex justify-center items-center text-xl w-10 h-10 rounded-full text-white bg-primYellow hover:text-white hover:bg-primYellowHover">
                         <FaFacebook />
                       </span>
                     </a>
@@ -108,7 +108,7 @@ const Contact: FC<{}> = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-primYellow hover:text-white hover:bg-primYellowHover">
+                      <span className="flex justify-center items-center text-xl w-10 h-10 rounded-full text-white bg-primYellow hover:text-white hover:bg-primYellowHover">
                         <FaWhatsapp />
                       </span>
                     </a>
@@ -121,7 +121,7 @@ const Contact: FC<{}> = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span className="flex justify-center items-center w-8 h-8 rounded-full text-white bg-primYellow hover:text-white hover:bg-primYellowHover">
+                      <span className="flex justify-center items-center text-xl w-10 h-10 rounded-full text-white bg-primYellow hover:text-white hover:bg-primYellowHover">
                         <FaInstagram />
                       </span>
                     </a>
@@ -130,23 +130,23 @@ const Contact: FC<{}> = () => {
               </ul>
               <ul className="w-fit m-auto" dir="ltr">
                 {settings?.phones && settings.phones?.[0] !== 'undefined' && (
-                  <li className="font-sans text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
-                    <a href={'tel:' + settings.phones?.[0]} className="text-lg">
-                      Phone: {settings.phones?.[0]}
+                  <li className="font-sans text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-md">
+                    <a href={'tel:' + settings.phones?.[0]} className="text-md">
+                      {settings.phones?.[0]}
                     </a>
                   </li>
                 )}
                 {settings?.email && (
-                  <li className="font-sans text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
-                    <a href={'mailto:' + settings.email} className="text-lg">
-                      Email: {settings.email}
+                  <li className="font-sans text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-md">
+                    <a href={'mailto:' + settings.email} className="text-md">
+                      {settings.email}
                     </a>
                   </li>
                 )}
                 {settings?.address && settings.address !== 'undefined' && (
-                  <li className="font-sans text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-lg">
-                    <a href="#" className="text-lg">
-                      Address: {settings?.address}
+                  <li className="font-sans text-start before:content-[''] before:inline-block before:w-3 before:h-3 before:rounded-full w-full relative before:absolute before:-left-5 before:top-2 before:bg-yellow-400 before:text-md">
+                    <a href="#" className="text-md">
+                      {settings?.address}
                     </a>
                   </li>
                 )}

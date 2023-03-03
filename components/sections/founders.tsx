@@ -87,10 +87,10 @@ const Founders: FC<{ data: any }> = ({ data }) => {
         <h2 className="text-center text-4xl mb-5">
           {t('sections.founders.title')}
         </h2>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2">
           {data?.length > 0 &&
             data?.map((item: any, index: number) => (
-              <div key={index} className="flex justify-center">
+              <div key={index} className="flex justify-center my-2">
                 <FounderItem item={item} />
               </div>
             ))}

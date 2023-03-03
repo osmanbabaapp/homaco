@@ -54,13 +54,15 @@ const Navbar: FC<{ data: any }> = ({ data }) => {
       <Container>
         <header className="flex justify-between items-center">
           <div>
-            <Image
-              alt="Homaco Logo"
-              src={data?.logo || '/imgs/logo.png'}
-              width={240}
-              height={80}
-              className={'w-[180px] md:w-[380px]'}
-            />
+            <Link href={'/'}>
+              <Image
+                alt="Homaco Logo"
+                src={data?.logo || '/imgs/logo.png'}
+                width={240}
+                height={80}
+                className={'w-[180px] md:w-[380px]'}
+              />
+            </Link>
           </div>
 
           <div className="flex gap-5 items-center">

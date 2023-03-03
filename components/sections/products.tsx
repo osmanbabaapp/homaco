@@ -11,7 +11,7 @@ import { LayoutContext } from '@/context/layout.context'
 const ProductItem: FC<any> = (props) => {
   return (
     <Link href={`/product/${props.slug}`}>
-      <div className="group  drop-shadow-lg p-3 m-auto w-[300px] relative overflow-hidden">
+      <div className="group  drop-shadow-lg  m-auto w-[260px] relative overflow-hidden">
         <div className="absolute transition-all opacity-0 bg-black/60 flex flex-col p-10 text-center justify-center items-center left-0 w-full h-full group-hover:opacity-100">
           <p className="absolute text-lg -left-[50%] top-[40%] w-[90%] text-white opacity-0 transition-all delay-200 group-hover:opacity-100 group-hover:left-[50%] -translate-x-1/2">
             {props[`description_${props.locale}`]}
@@ -31,10 +31,10 @@ const ProductItem: FC<any> = (props) => {
           height={150}
           className="object-cover h-[300px] w-full"
         />
-        <h3 className="font-bold text-[28px] my-2 self-center px-[50px] text-red-600 text-center line-clamp-2">
+        <h3 className="font-bold text-xl my-2 self-center px-[50px] text-red-600 text-center line-clamp-2">
           {props[`title_${props?.locale}`]}
         </h3>
-        <p className="font-bold text-[18px] line-clamp-2 ">
+        <p className="font-bold text-md line-clamp-2">
           {props[`desc_${props?.locale}`]}
         </p>
       </div>
@@ -65,7 +65,7 @@ const Products: FC<{ products: any }> = ({ products }) => {
           السمسم و انتاج الطحينة والآت التعبئة الكيميائية والطبية وخطوط انتاج
           المارشميلو
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:my-[4vh]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 md:my-[4vh]">
           {products?.map((item: any, index: number) => {
             return (
               <motion.div
