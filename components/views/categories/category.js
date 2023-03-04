@@ -221,24 +221,22 @@ function CategoryPageContent({ id = null, cookies, locale }) {
     if (listCategory.length !== 0) return false
 
     setLoadings('categoryList')
-    const { data: res } = await axios.get(
-      process.env.NEXT_PUBLIC_HOST + process.env.NEXT_PUBLIC_ALL_CATEGORIES,
+    const { data: res, status } = await axios.get(
+      process.env.NEXT_PUBLIC_HOST + 'api/category',
       {
         headers: {
-          websiteHostName: process.env.NEXT_PUBLIC_WEBSITE_HOST_NAME,
+          Authorization: `Bearer ${cookies?.token}`,
+          lang: locale,
+          website: process.env.NEXT_PUBLIC_WEBSITE,
         },
       }
     )
 
-    setLoadings(null)
-
-    console.log('res categoryList :>> ', res)
-
-    if (res.status === true) {
-      setListCategory(res.description.filter((x) => x.id != id))
+    if (status === 200) {
+      setListCategory(res?.description?.data)
     } else {
-      message.error('Something went wrong! Please try again.')
     }
+    setLoadings(null)
   }, [id, listCategory.length])
 
   const imageValidate = useCallback((file) => {
@@ -361,12 +359,6 @@ function CategoryPageContent({ id = null, cookies, locale }) {
     },
     primaryFile,
   }
-
-  const clearSelected = useCallback(() => {
-    form.setFieldsValue({
-      parentId: '',
-    })
-  }, [form])
 
   if (loading) return <h2>Loading ...</h2>
 
@@ -520,7 +512,7 @@ function CategoryPageContent({ id = null, cookies, locale }) {
                     },
                   ]}
                   tooltip={{
-                    title: t('categories.tooltips.kategori'),
+                    title: t('categories.parentHint'),
                     placement: router.locale === 'ar' ? 'left' : 'right',
                   }}
                 >
@@ -539,6 +531,7 @@ function CategoryPageContent({ id = null, cookies, locale }) {
                         .toLowerCase()
                         .includes(input.toLowerCase())
                     }}
+                    allowClear
                   >
                     {listCategory.map((item, i) => {
                       return (
@@ -549,9 +542,6 @@ function CategoryPageContent({ id = null, cookies, locale }) {
                     })}
                   </Select>
                 </Form.Item>
-                <Button onClick={() => clearSelected()}>
-                  Clear Selected category
-                </Button>
               </Col>
             </Row>
           </Col>
@@ -567,7 +557,7 @@ function CategoryPageContent({ id = null, cookies, locale }) {
                 {id ? t('edit') : t('confirm')}
               </Button>
               <Button
-                onClick={() => router.back()}
+                onClick={() => router.push('/admin/categories')}
                 type="dashed"
                 danger
                 disabled={formLoading}

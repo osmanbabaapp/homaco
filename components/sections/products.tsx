@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { LayoutContext } from '@/context/layout.context'
+import useTranslation from 'next-translate/useTranslation'
 
 const ProductItem: FC<any> = (props) => {
   return (
@@ -48,6 +49,7 @@ const Products: FC<{ products: any }> = ({ products }) => {
   const { settings } = useContext(LayoutContext)
 
   const locale = useRouter().locale
+  const { t } = useTranslation('common')
 
   return (
     <div className="py-10 bg-white" id="products">
@@ -61,9 +63,7 @@ const Products: FC<{ products: any }> = ({ products }) => {
         />
         {/* <h2 className="font-bold text-4xl mb-10">Products</h2> */}
         <p className="font-bold text-2xl text-center w-[80%] m-auto md:mt-[4vh]">
-          شركة هوماكو للصناعات الهندسية وخطوط الانتاج نقوم بتصنيع الآت طحن
-          السمسم و انتاج الطحينة والآت التعبئة الكيميائية والطبية وخطوط انتاج
-          المارشميلو
+          {t('sections.products.title')}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 md:my-[4vh]">
           {products?.map((item: any, index: number) => {

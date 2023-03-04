@@ -15,12 +15,6 @@ import FlexDiv from '../../utils/flex-div'
 import Text from '../../utils/text'
 import Link from 'next/link'
 
-import {
-  axiosInstance,
-  httpsAgent,
-  configHeader,
-} from '../../../helpers/constants'
-
 import { useState, useEffect, useCallback } from 'react'
 // components
 
@@ -248,7 +242,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
 
   const columns = [
     {
-      title: 'Product Image',
+      title: t('image'),
       dataIndex: 'primary_image',
       key: 'id',
       width: '200px',
@@ -257,13 +251,13 @@ export default function ProductsPageContent({ locale, cookies, status }) {
       },
     },
     {
-      title: 'Title',
+      title: t('name'),
       dataIndex: `title_${locale}`,
       width: '20%',
       key: 'id',
     },
     {
-      title: 'Description',
+      title: t('desc'),
       dataIndex: `desc_${locale}`.substring(0, 24),
       width: '15%',
       height: '60px',
@@ -278,7 +272,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
       },
     },
     {
-      title: 'Active Status',
+      title: t('actStatus'),
       dataIndex: '',
       key: 'id',
       render: (data) => {
@@ -307,7 +301,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
                       <UnlockFilled />
                     </div>
                   </FlexDiv>
-                  <Text>Active</Text>
+                  <Text>{t('active')}</Text>
                 </>
               ) : (
                 <>
@@ -323,7 +317,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
                       <LockFilled />
                     </div>
                   </FlexDiv>
-                  <Text>Passive</Text>
+                  <Text>{t('passive')}</Text>
                 </>
               )}
             </FlexDiv>
@@ -333,7 +327,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
     },
 
     {
-      title: t('tables.columns.actions'),
+      title: t('action'),
       dataIndex: '',
       key: 'x',
       render: (data) => {
@@ -420,12 +414,14 @@ export default function ProductsPageContent({ locale, cookies, status }) {
       <Col span={24}>
         <FlexDiv justifyContent="space-between" alignItems="center">
           <FlexDiv>
-            <Text as="h1">Products</Text>
+            <Text as="h1">{t('layout.products')}</Text>
           </FlexDiv>
           <FlexDiv>
             <Link href="/admin/products/product">
               <Button type="dashed" icon={<PlusOutlined />}>
-                New Product
+                {t('new', {
+                  name: t('layout.products'),
+                })}
               </Button>
             </Link>
           </FlexDiv>

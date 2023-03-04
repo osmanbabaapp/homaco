@@ -1,10 +1,4 @@
-import {
-  DeleteFilled,
-  EditFilled,
-  LockFilled,
-  PlusOutlined,
-  UnlockFilled,
-} from '@ant-design/icons'
+import { DeleteFilled, PlusOutlined } from '@ant-design/icons'
 import {
   Button,
   Col,
@@ -24,8 +18,6 @@ import Link from 'next/link'
 import AdminLayout from '../../../layouts/admin-layout/admin-layout'
 
 import { useState, useEffect, useCallback } from 'react'
-// components
-// import DashPageHeader from "@/components/utils/dash-page-header";
 
 import { ExclamationCircleFilled } from '@ant-design/icons'
 import axios from 'axios'
@@ -82,13 +74,13 @@ export default function GalleriesPage({ locale }) {
     async (e, id) => {
       e.preventDefault()
       Modal.confirm({
-        title: t('categories.areYouSure'),
+        title: t('sureMessage'),
         icon: <ExclamationCircleFilled />,
-        content: t('categories.areYouSureToPermanentlyDeleteThisCategory'),
+        content: t('deleteMessage'),
         // content: "Are you sure about deleting this ad ?",
-        okText: t('categories.yes'),
+        okText: t('yes'),
         okButtonProps: { type: 'default' },
-        cancelText: t('categories.cancel'),
+        cancelText: t('cancel'),
         cancelButtonProps: {
           type: 'primary',
           danger: true,
@@ -139,7 +131,7 @@ export default function GalleriesPage({ locale }) {
       },
     },
     {
-      title: t('Video'),
+      title: t('video'),
       dataIndex: `video`,
       key: '_id',
       render: (data) => {
@@ -156,7 +148,7 @@ export default function GalleriesPage({ locale }) {
       },
     },
     {
-      title: t('tables.columns.actions'),
+      title: t('action'),
       dataIndex: '',
       width: 50,
       key: '_id',
@@ -183,7 +175,7 @@ export default function GalleriesPage({ locale }) {
   return (
     <>
       <Head>
-        <title>Gallery</title>
+        <title>{'layout.gallery'}</title>
       </Head>
       <AdminLayout>
         <Row gutter={[24, 24]}>
@@ -200,12 +192,14 @@ export default function GalleriesPage({ locale }) {
           <Col span={24}>
             <FlexDiv justifyContent="space-between" alignItems="center">
               <FlexDiv>
-                <Text as="h1">{t('Gallery')}</Text>
+                <Text as="h1">{t('layout.gallery')}</Text>
               </FlexDiv>
               <FlexDiv>
                 <Link href="/admin/galleries/gallery">
                   <Button type="dashed" icon={<PlusOutlined />}>
-                    {t('New Gallery')}
+                    {t('new', {
+                      name: t('layout.gallery'),
+                    })}
                   </Button>
                 </Link>
               </FlexDiv>

@@ -10,6 +10,7 @@ import { FaFacebook, FaInstagram, FaLanguage, FaWhatsapp } from 'react-icons/fa'
 import { MdLanguage } from 'react-icons/md'
 import { Dropdown, Menu } from 'antd'
 import { useRouter } from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 
 const LinkItem: FC<{
   href: string
@@ -28,6 +29,7 @@ const LinkItem: FC<{
 const Navbar: FC<{ data: any }> = ({ data }) => {
   const { open, toggleNavbar } = useContext(MobileNavContext)
   const router = useRouter()
+  const { t } = useTranslation('common')
 
   const menu = (
     <Menu>
@@ -69,16 +71,16 @@ const Navbar: FC<{ data: any }> = ({ data }) => {
             <div className="hidden sm:flex space-x-10 items-center">
               <ul className="flex gap-5">
                 <li>
-                  <LinkItem href="/" text="الرئيسية" />
+                  <LinkItem href="/" text={t('nav.home')} />
                 </li>
                 <li>
-                  <LinkItem href="#about-us" text="من نحن" />
+                  <LinkItem href="#about-us" text={t('nav.about')} />
                 </li>
                 <li>
-                  <LinkItem href="#products" text="منتجاتنا" />
+                  <LinkItem href="#products" text={t('nav.products')} />
                 </li>
                 <li>
-                  <LinkItem href="/#contact" text="اتصل بنا" />
+                  <LinkItem href="/#contact" text={t('nav.contact')} />
                 </li>
               </ul>
             </div>

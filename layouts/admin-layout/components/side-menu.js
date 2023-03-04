@@ -10,7 +10,7 @@ import {
   StarOutlined,
 } from '@ant-design/icons'
 import { LayoutContext } from '../../../context/layout.context'
-import { TbApps } from 'react-icons/tb'
+import { TbApps, TbUsers } from 'react-icons/tb'
 import { RiApps2Line, RiGalleryFill } from 'react-icons/ri'
 import { MdOutlineCategory } from 'react-icons/md'
 import { CgWebsite } from 'react-icons/cg'
@@ -107,13 +107,13 @@ export default function SideMenu() {
             />
             <MenuItem
               href="/admin/partners"
-              title={t('Partners')}
-              icon={<PlayCircleOutlined />}
+              title={t('layout.partners')}
+              icon={<TbUsers />}
               active={router.pathname.startsWith('/admin/partners')}
             />
             <MenuItem
               href="/admin/galleries"
-              title={t('Gallery')}
+              title={t('layout.gallery')}
               icon={<RiGalleryFill />}
               active={router.pathname.startsWith('/admin/galleries')}
             />

@@ -231,13 +231,23 @@ export default function SettingsPage() {
   return (
     <>
       <Head>
-        <title>Website Settings</title>
+        <title>
+          {router.locale === 'ar'
+            ? 'إعدادات الموقع'
+            : router.locale === 'en'
+            ? 'Website Settings'
+            : 'Site Ayarları'}
+        </title>
       </Head>
       <AdminLayout>
         <div>
           <h2 className="text-2xl font-bold flex items-center gap-2">
             <MdSettings />
-            Settings
+            {router.locale === 'ar'
+              ? 'إعدادات الموقع'
+              : router.locale === 'en'
+              ? 'Website Settings'
+              : 'Site Ayarları'}
           </h2>
           <Form
             layout="vertical"
@@ -260,19 +270,42 @@ export default function SettingsPage() {
                 <Alert
                   showIcon
                   type="warning"
-                  description={'This data will be shown in website'}
+                  // description={'This data will be shown in website'}
+                  description={
+                    router.locale === 'ar'
+                      ? 'سيتم عرض هذه البيانات في الموقع'
+                      : router.locale === 'en'
+                      ? 'This data will be shown in website'
+                      : 'Bu veriler web sitesinde gösterilecek'
+                  }
                 />
               </Col>
               <Col span={12}>
                 <Row>
                   <Col span={24}>
                     <Form.Item
-                      label={'Osmanbaba Account Username'}
+                      label={
+                        router.locale === 'ar'
+                          ? 'اسم مستخدم حساب Osmanbaba'
+                          : router.locale === 'en'
+                          ? 'Osmanbaba Account Username'
+                          : 'Osmanbaba Hesap Kullanıcı Adı'
+                      }
                       name="osmanbaba"
                     >
                       <Input
-                        addonBefore={'https://osmanbaba.net/'}
-                        placeholder="Osmanbaba account Username"
+                        addonBefore={
+                          <span style={{ direction: 'ltr' }}>
+                            https://osmanbaba.net/
+                          </span>
+                        }
+                        placeholder={
+                          router.locale === 'ar'
+                            ? 'اسم مستخدم حساب Osmanbaba'
+                            : router.locale === 'en'
+                            ? 'Osmanbaba Account Username'
+                            : 'Osmanbaba Hesap Kullanıcı Adı'
+                        }
                       />
                     </Form.Item>
                   </Col>
@@ -386,7 +419,7 @@ export default function SettingsPage() {
 
               <Col span={24}>
                 <Button htmlType="submit" loading={formLoading}>
-                  Save
+                  {t('save')}
                 </Button>
               </Col>
             </Row>

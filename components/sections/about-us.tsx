@@ -3,6 +3,7 @@ import Container from '../container'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { LayoutContext } from '@/context/layout.context'
+import useTranslation from 'next-translate/useTranslation'
 
 // const AboutUs: FC = () => {
 //   return (
@@ -56,6 +57,7 @@ import { LayoutContext } from '@/context/layout.context'
 // };
 const AboutUs: FC = () => {
   const { settings } = useContext(LayoutContext)
+  const { t } = useTranslation('common')
   return (
     <div
       className="py-28 flex text-white bg-[url('/imgs/bg-section-about.png')] bg-no-repeat bg-contain"
@@ -103,14 +105,9 @@ const AboutUs: FC = () => {
               right: -100,
             }}
           >
-            <p className="text-xl">اسم تثقون به</p>
-            <p className="text-xl">صناعات هندسية وخطوط الإنتاج</p>
-            <p className="text-xl">
-              تصاميم فريدة، احترافية عالية، بايدي الخبراء نعتمد اعلى معايير
-              الدقة والحرفية في التصميم خيرات متوارثة في التصميم والصناعة لأكثر
-              من ٣٠ عاماٍ سماكة الطحينة السائلة دليل خبرتنا ونجاحنا اجود انواع
-              الستانلس ستيل
-            </p>
+            <p className="text-xl">{t('sections.about.line1')}</p>
+            <p className="text-xl">{t('sections.about.line2')}</p>
+            <p className="text-xl">{t('sections.about.line3')}</p>
           </motion.div>
         </div>
       </Container>

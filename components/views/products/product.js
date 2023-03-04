@@ -1092,14 +1092,7 @@ function AddPageContent({ id = null }) {
                               })
                             }
                           >
-                            {t('common:actions.delete', {
-                              name:
-                                router.locale === 'ar'
-                                  ? 'ملف'
-                                  : router.locale === 'en'
-                                  ? 'Photo'
-                                  : 'Fotoğrafı',
-                            })}
+                            {t('delete')}
                           </RemoveButton>
                           {processing === 'primary' && (
                             <ProcessingImage>
@@ -1522,7 +1515,12 @@ function AddPageContent({ id = null }) {
               >
                 {id ? t('common:edit') : t('common:confirm')}
               </Button>
-              <Button type="primary" danger disabled={formLoading}>
+              <Button
+                type="primary"
+                onClick={() => router.push('/admin/products')}
+                danger
+                disabled={formLoading}
+              >
                 {t('common:cancel')}
               </Button>
             </Space>

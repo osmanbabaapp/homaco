@@ -80,13 +80,13 @@ export default function CategoriesPageContent({ locale, cookies }) {
     async (e, id) => {
       e.preventDefault()
       Modal.confirm({
-        title: t('categories.areYouSure'),
+        title: t('sureMessage'),
         icon: <ExclamationCircleFilled />,
-        content: t('categories.areYouSureToPermanentlyDeleteThisCategory'),
+        content: t('deleteMessage'),
         // content: "Are you sure about deleting this ad ?",
-        okText: t('categories.yes'),
+        okText: t('yes'),
         okButtonProps: { type: 'default' },
-        cancelText: t('categories.cancel'),
+        cancelText: t('cancel'),
         cancelButtonProps: {
           type: 'primary',
           danger: true,
@@ -143,14 +143,14 @@ export default function CategoriesPageContent({ locale, cookies }) {
     },
 
     {
-      title: t('tables.columns.actions'),
+      title: t('action'),
       dataIndex: '',
-      width: 50,
+      width: 200,
       key: '_id',
       render: (data) => {
         return (
           <Space key={data.id}>
-            <Tooltip placement="top" title={t('actions.editCategory')}>
+            <Tooltip placement="top" title={t('edit')}>
               <Link
                 href={`/admin/categories/${data?._id}`}
                 passHref
@@ -161,7 +161,7 @@ export default function CategoriesPageContent({ locale, cookies }) {
                 </Button>
               </Link>
             </Tooltip>
-            <Tooltip placement="top" title={t('actions.deleteCategory')}>
+            <Tooltip placement="top" title={t('delete')}>
               <a href="#">
                 <Button
                   shape="circle"

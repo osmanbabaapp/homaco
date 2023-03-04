@@ -68,13 +68,13 @@ export default function ClientsPage({ locale, cookies }) {
     async (e, id) => {
       e.preventDefault()
       Modal.confirm({
-        title: t('categories.areYouSure'),
+        title: t('sureMessage'),
         icon: <ExclamationCircleFilled />,
-        content: t('categories.areYouSureToPermanentlyDeleteThisCategory'),
+        content: t('deleteMessage'),
         // content: "Are you sure about deleting this ad ?",
-        okText: t('categories.yes'),
+        okText: t('yes'),
         okButtonProps: { type: 'default' },
-        cancelText: t('categories.cancel'),
+        cancelText: t('cancel'),
         cancelButtonProps: {
           type: 'primary',
           danger: true,
@@ -130,7 +130,7 @@ export default function ClientsPage({ locale, cookies }) {
       key: '_id',
     },
     {
-      title: t('tables.columns.actions'),
+      title: t('action'),
       dataIndex: '',
       width: 50,
       key: '_id',
@@ -176,12 +176,14 @@ export default function ClientsPage({ locale, cookies }) {
       <Col span={24}>
         <FlexDiv justifyContent="space-between" alignItems="center">
           <FlexDiv>
-            <Text as="h1">{t('Clients')}</Text>
+            <Text as="h1">{t('layout.clients')}</Text>
           </FlexDiv>
           <FlexDiv>
             <Link href="/admin/clients/client">
               <Button type="dashed" icon={<PlusOutlined />}>
-                {t('New Client')}
+                {t('new', {
+                  name: locale === 'ar' ? 'عميل' : t('layout.clients'),
+                })}
               </Button>
             </Link>
           </FlexDiv>

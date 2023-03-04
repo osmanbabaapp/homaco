@@ -1,5 +1,11 @@
 {
   "site": "OS-Calisma Alani",
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "products": "Ürünlerimiz",
+    "contact": "Bize Ulaşın"
+  },
   "layout": {
     "analytics": "Analitik",
     "home": "Ana Sayfa",
@@ -9,12 +15,28 @@
     "category": "Kategoriler",
     "products": "Ürünler",
     "banners": "Banner",
+    "partners": "Ortaklar",
+    "gallery": "Galery",
     "logout": "Cikis Yap",
     "settings": "Ayarlar"
   },
   "sections": {
     "founders": {
       "title": "Kurucular"
+    },
+    "products": {
+      "title": "Mühendislik Endüstrileri ve Üretim Hatları için Homaco Şirketi Susam öğütme makineleri, tahin üretimi, kimyasal ve medikal paketleme makineleri ve hatmi üretim hatları üretiyoruz."
+    },
+    "about": {
+      "line1": "Güvendiğiniz bir isim",
+      "line2": "Mühendislik endüstrileri ve üretim hatları",
+      "line3": "Benzersiz tasarımlar, yüksek profesyonellik, uzman eller Tasarımda en yüksek hassasiyet ve işçilik standartlarını benimsiyoruz Tasarım ve endüstride miras alınan mallar 30 yıldan fazla sıvı tahin kalınlığı deneyimimizin ve başarımızın kanıtıdır en iyi paslanmaz çelik türleri"
+    },
+    "services": {
+      "title": "Makine sayesinde susam öğütülür ve tahin elde edilir.Bu makine tamamen 304 paslanmaz çelikten imal edilmiştir ve otomatik sistemle çalışmaktadır.Susam iki kademeli olarak öğütülür ve makine öğütülmüş susamın ince öğütme kafalarını içerir."
+    },
+    "partners": {
+      "title": "Markanın en iyi tahin çeşitlerini üretme başarısındaki ortaklarımız"
     }
   },
   "categories": {
@@ -23,8 +45,10 @@
     "trTitle": "Kategori ismi",
     "arTitle": "اسم التصنيف",
     "enTitle": "Category Title",
-    "parent": "Parent"
+    "parent": "Parent",
+    "parentHint": "Bu kategoriyi başka bir kategori için alt kategori yapmak istiyorsanız"
   },
+
   "form": {
     "category": "Kategori",
     "validation": {
@@ -42,10 +66,29 @@
   },
   "image": "Resim",
   "name": "Isim",
+  "video": "Video",
+  "desc": "Tanım",
+  "actStatus": "Aktif Durum",
+  "active": "Aktif",
+  "passive": "Pasif",
+  "country": "Ülke",
+  "email": "E-posta",
+  "message": "Mesaj",
   "delete": "Sil",
   "googleCode": "Google Kodu",
   "cancel": "Iptal",
   "confirm": "Tamam",
   "edit": "Duzenle",
-  "logo": "Logo"
+  "logo": "Logo",
+  "send": "Gönder",
+  "action": "",
+  "sureMessage": "Emin misiniz ?",
+  "deleteMessage": "Bu öğe silinecektir!",
+  "yes": "Evet",
+  "new": "Yeni {{name}}",
+  "type": "Tip",
+  "role": "Rol",
+  "phone": "Telefon",
+  "whatsapp": "Whatsapp",
+  "save": "Kaydet"
 }

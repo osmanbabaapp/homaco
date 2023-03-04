@@ -8,17 +8,19 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { LayoutContext } from '@/context/layout.context'
 import { useRouter } from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 
 const Contact: FC<{}> = () => {
   const { settings } = useContext(LayoutContext)
   const router = useRouter()
+  const { t } = useTranslation('common')
 
   return (
     <>
       <div className="py-10  text-white" id="contact">
         <Container>
           <h2 className="text-2xl text-center mb-5">
-            شركاؤنا في نجاح العلامة التجارية لإنتاج اجود انواع الطحينية
+            {t('sections.partners.title')}
           </h2>
           <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 items-center justify-center gap-2 my-10">
             {settings?.clients?.length > 0 &&
@@ -176,7 +178,7 @@ const Contact: FC<{}> = () => {
                           type="firstName"
                           id="firstName"
                           className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
-                          placeholder="الاسم"
+                          placeholder={t('name')}
                           required
                         />
                       </div>
@@ -203,7 +205,7 @@ const Contact: FC<{}> = () => {
                           type="lastName"
                           id="lastName"
                           className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
-                          placeholder="الدولة"
+                          placeholder={t('country')}
                           required
                         />
                       </div>
@@ -230,7 +232,7 @@ const Contact: FC<{}> = () => {
                           type="email"
                           id="email"
                           className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
-                          placeholder="البريد الالكتروني"
+                          placeholder={t('email')}
                           required
                         />
                       </div>
@@ -256,7 +258,7 @@ const Contact: FC<{}> = () => {
                         <textarea
                           id="message"
                           className="bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 "
-                          placeholder="الرسالة"
+                          placeholder={t('message')}
                           required
                         />
                       </div>
@@ -283,7 +285,7 @@ const Contact: FC<{}> = () => {
                     color="secondary"
                     type="fill"
                   >
-                    إرسال
+                    {t('send')}
                   </Button>
                 </motion.div>
               </form>

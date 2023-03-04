@@ -13,27 +13,18 @@ import {
   Input,
   message,
   Row,
-  Select,
   Space,
   Tooltip,
   Upload,
 } from 'antd'
-// modules
-import {
-  DeleteOutlined,
-  LoadingOutlined,
-  MinusCircleFilled,
-  MinusOutlined,
-  PlusCircleFilled,
-  PlusOutlined,
-} from '@ant-design/icons'
+
 import axios from 'axios'
-import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
 import { signOut, useSession } from 'next-auth/react'
 import AdminLayout from '../../../layouts/admin-layout/admin-layout'
 import Head from 'next/head'
 import { uploadToS3 } from '../../../helpers/aws'
+import useTranslation from 'next-translate/useTranslation'
 // styles
 const FormContainer = styled.div`
   background-color: #fff;
@@ -116,13 +107,12 @@ const StyledUploadComponent = styled(Upload)`
   }
 `
 
-export function GalleryPageContent({ id = null, cookies, locale }) {
+export function GalleryPageContent({ t, id = null, cookies, locale }) {
   const [form] = Form.useForm()
   const router = useRouter()
 
   const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/gallery'
 
-  const { t } = useTranslation('common')
   // states
   const [primaryFile, setPrimaryFile] = useState({
     prev: null,
@@ -411,7 +401,7 @@ export function GalleryPageContent({ id = null, cookies, locale }) {
                 </Tooltip>
               </Col>
               <Col span={12}>
-                <Tooltip title={t('Video')}>
+                <Tooltip title={t('video')}>
                   <UploadPrimary name="Video" {...videoFileProps}>
                     <PrimaryImageOuter error={videoFile.validate !== false}>
                       {videoFile.prev ? (
@@ -442,14 +432,7 @@ export function GalleryPageContent({ id = null, cookies, locale }) {
                               })
                             }
                           >
-                            {t('common:delete', {
-                              name:
-                                router.locale === 'ar'
-                                  ? 'ملف'
-                                  : router.locale === 'en'
-                                  ? 'Video'
-                                  : 'Video',
-                            })}
+                            {t('delete')}
                           </RemoveButton>
                         </>
                       ) : (
@@ -469,7 +452,11 @@ export function GalleryPageContent({ id = null, cookies, locale }) {
             <Row gutter={24}>
               <Col span={24}>
                 <h2 className="font-bold text-2xl my-5">
-                  More Info - Not Required
+                  {locale === 'ar'
+                    ? 'معلومات إضافية'
+                    : locale === 'en'
+                    ? ' More Info '
+                    : 'Fazla Bilgiler'}
                 </h2>
               </Col>
               <Col span={8}>
@@ -588,13 +575,14 @@ export function GalleryPageContent({ id = null, cookies, locale }) {
 export default function GalleryPage() {
   const { data: cookies } = useSession()
   const locale = useRouter().locale
+  const { t } = useTranslation('common')
   return (
     <>
       <Head>
-        <title>New Gallery</title>
+        <title>{t('new', { name: t('layout.gallery') })}</title>
       </Head>
       <AdminLayout>
-        <GalleryPageContent cookies={cookies?.user} locale={locale} />
+        <GalleryPageContent t={t} cookies={cookies?.user} locale={locale} />
       </AdminLayout>
     </>
   )

@@ -119,9 +119,10 @@ export function PartnerPageContent({ id = null, cookies, locale }) {
   const [form] = Form.useForm()
   const router = useRouter()
 
+  const { t } = useTranslation('common')
+
   const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/partners'
 
-  const { t } = useTranslation('common')
   // states
   const [primaryFile, setPrimaryFile] = useState({
     prev: null,
@@ -380,57 +381,57 @@ export function PartnerPageContent({ id = null, cookies, locale }) {
               <Col span={24}>
                 <Form.Item
                   name="name"
-                  label={t('Name')}
+                  label={t('name')}
                   rules={[
                     {
                       required: true,
                     },
                   ]}
-                  tooltip={t('Name')}
+                  tooltip={t('name')}
                 >
-                  <Input placeholder={t('Name')} />
+                  <Input placeholder={t('name')} />
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item
                   name="role"
-                  label={t('Role')}
+                  label={t('role')}
                   rules={[
                     {
                       required: true,
                     },
                   ]}
-                  tooltip={t('Role')}
+                  tooltip={t('role')}
                 >
-                  <Input placeholder={t('Role')} />
+                  <Input placeholder={t('role')} />
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item
                   name="phone"
-                  label={t('Phone')}
+                  label={t('phone')}
                   rules={[
                     {
                       required: true,
                     },
                   ]}
-                  tooltip={t('Phone')}
+                  tooltip={t('phone')}
                 >
-                  <Input placeholder={t('Phone')} />
+                  <Input placeholder={t('phone')} />
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item
                   name="whatsapp"
-                  label={t('Whatsapp')}
+                  label={t('whatsapp')}
                   rules={[
                     {
                       required: true,
                     },
                   ]}
-                  tooltip={t('Whatsapp')}
+                  tooltip={t('whatsapp')}
                 >
-                  <Input placeholder={t('Whatsapp')} />
+                  <Input placeholder={t('whatsapp')} />
                 </Form.Item>
               </Col>
             </Row>

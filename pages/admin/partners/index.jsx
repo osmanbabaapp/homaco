@@ -24,8 +24,6 @@ import Link from 'next/link'
 import AdminLayout from '../../../layouts/admin-layout/admin-layout'
 
 import { useState, useEffect, useCallback } from 'react'
-// components
-// import DashPageHeader from "@/components/utils/dash-page-header";
 
 import { ExclamationCircleFilled } from '@ant-design/icons'
 import axios from 'axios'
@@ -81,13 +79,13 @@ export default function PartnersPage({ locale }) {
     async (e, id) => {
       e.preventDefault()
       Modal.confirm({
-        title: t('categories.areYouSure'),
+        title: t('sureMessage'),
         icon: <ExclamationCircleFilled />,
-        content: t('categories.areYouSureToPermanentlyDeleteThisCategory'),
+        content: t('deleteMessage'),
         // content: "Are you sure about deleting this ad ?",
-        okText: t('categories.yes'),
+        okText: t('yes'),
         okButtonProps: { type: 'default' },
-        cancelText: t('categories.cancel'),
+        cancelText: t('cancel'),
         cancelButtonProps: {
           type: 'primary',
           danger: true,
@@ -143,19 +141,19 @@ export default function PartnersPage({ locale }) {
       key: '_id',
     },
     {
-      title: t('Role'),
+      title: t('role'),
       dataIndex: `role`,
       key: '_id',
     },
     {
-      title: t('tables.columns.actions'),
+      title: t('action'),
       dataIndex: '',
       width: 50,
       key: '_id',
       render: (data) => {
         return (
           <Space key={data.id}>
-            <Tooltip placement="top" title={t('actions.editCategory')}>
+            <Tooltip placement="top" title={t('edit')}>
               <Link
                 href={`/admin/partners/${data?._id}`}
                 passHref
@@ -166,7 +164,7 @@ export default function PartnersPage({ locale }) {
                 </Button>
               </Link>
             </Tooltip>
-            <Tooltip placement="top" title={t('actions.deleteCategory')}>
+            <Tooltip placement="top" title={t('delete')}>
               <a href="#">
                 <Button
                   shape="circle"
@@ -199,12 +197,14 @@ export default function PartnersPage({ locale }) {
         <Col span={24}>
           <FlexDiv justifyContent="space-between" alignItems="center">
             <FlexDiv>
-              <Text as="h1">{t('Partners')}</Text>
+              <Text as="h1">{t('layout.partners')}</Text>
             </FlexDiv>
             <FlexDiv>
               <Link href="/admin/partners/partner">
                 <Button type="dashed" icon={<PlusOutlined />}>
-                  {t('New Partner')}
+                  {t('new', {
+                    name: t('layout.partners'),
+                  })}
                 </Button>
               </Link>
             </FlexDiv>

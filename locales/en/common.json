@@ -1,5 +1,11 @@
 {
   "site": "OS-Workspace",
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Our Products",
+    "contact": "Contact Us"
+  },
   "layout": {
     "analytics": "Analytics",
     "home": "Home",
@@ -9,6 +15,8 @@
     "category": "Categories",
     "products": "Products",
     "banners": "Banner",
+    "partners": "Partners",
+    "gallery": "Gallery",
     "logout": "Logout",
     "settings": "Settings"
   },
@@ -18,11 +26,27 @@
     "trTitle": "Kategori ismi",
     "arTitle": "اسم التصنيف",
     "enTitle": "Category Title",
-    "parent": "Parent"
+    "parent": "Parent",
+    "parentHint": "If you want to make this category a subcategory for another one"
   },
+
   "sections": {
     "founders": {
       "title": "Founders"
+    },
+    "products": {
+      "title": "Homaco Company for Engineering Industries and Production Lines. We manufacture sesame grinding machines, tahini production, chemical and medical packing machines, and marshmallow production lines."
+    },
+    "about": {
+      "line1": "A name you trust",
+      "line2": "Engineering industries and production lines",
+      "line3": "Unique designs, high professionalism, expert hands we adopt the highest standards of precision and craftsmanship in design inherited goods in design and industry for more than 30 years the thickness of liquid tahini is the evidence of our experience and success the finest types of stainless steel"
+    },
+    "services": {
+      "title": "Through the machine, sesame is grinded and tahini is produced. This machine is made of stainless steel 304 completely and operates with an automatic system. The sesame is ground in two stages, and the machine contains fine grinding heads of ground sesame."
+    },
+    "partners": {
+      "title": "Our partners in the success of the brand to produce the finest types of tahini"
     }
   },
   "form": {
@@ -42,10 +66,29 @@
   },
   "image": "Image",
   "name": "Name",
+  "video": "Video",
+  "desc": "Description",
+  "actStatus": "Active Status",
+  "active": "Active",
+  "passive": "Passive",
+  "country": "Country",
+  "email": "Email",
+  "message": "Message",
   "delete": "Delete",
   "googleCode": "Google Code",
   "cancel": "Cancel",
   "confirm": "Ok",
   "edit": "Edit",
-  "logo": "Logo"
+  "logo": "Logo",
+  "send": "Send",
+  "action": "Action",
+  "sureMessage": "Are you sure ?",
+  "deleteMessage": "This item will be deleted for ever !",
+  "yes": "Yes",
+  "new": "New {{name}}",
+  "type": "Type",
+  "role": "Role",
+  "phone": "Phone",
+  "whatsapp": "Whatsapp",
+  "save": "Save"
 }

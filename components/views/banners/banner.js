@@ -224,7 +224,7 @@ function BannerPageContent({ id = null, cookies, status }) {
   useEffect(() => {
     if (!getLoading && !getError && getData) {
       const _data = getData?.description?.data
-
+      setBannerType(_data?.type)
       form.setFieldsValue({
         type: _data?.type,
         title_tr: _data?.title_tr,
@@ -239,6 +239,7 @@ function BannerPageContent({ id = null, cookies, status }) {
           prev: _data.image,
           file: true,
           validate: false,
+          fileType: _data.file_type,
         })
       }
     }
@@ -326,7 +327,7 @@ function BannerPageContent({ id = null, cookies, status }) {
                   label={'Banner Type'}
                   rules={[{ required: true }]}
                 >
-                  <Radio.Group>
+                  <Radio.Group value={bannerType}>
                     <Radio value={'text'}>Text</Radio>
                     <Radio value={'image'}>Image</Radio>
                     <Radio value={'banner'}>Text And Image</Radio>

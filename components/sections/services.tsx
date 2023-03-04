@@ -4,6 +4,7 @@ import { TbBuildingFactory } from 'react-icons/tb'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { LayoutContext } from '@/context/layout.context'
+import useTranslation from 'next-translate/useTranslation'
 
 // const Services: FC<{}> = () => {
 //   return (
@@ -75,6 +76,7 @@ import { LayoutContext } from '@/context/layout.context'
 // };
 const Services: FC<{}> = () => {
   const { settings } = useContext(LayoutContext)
+  const { t } = useTranslation('common')
 
   return (
     <div className="relative py-10 group text-white h-[500px] md:h-[500px] lg:h-[600px]">
@@ -140,10 +142,8 @@ const Services: FC<{}> = () => {
                 opacity: 0,
               }}
             >
-              <p className="text-2xl">
-                يتم من خلال الآلة الطحن السمسم وانتاج الطحينة هذه الالة مصنوعة
-                من معدن الستانلس ستيل ٣٠٤ بالكامل وتعمل بنظام اتوماتيكي يتم طحن
-                السمسم علي مرحلتين وتحوي الالة روؤس تنعيم السمسم المطحون
+              <p className="text-2xl" style={{ direction: 'rtl' }}>
+                {t('sections.services.title')}
               </p>
             </motion.div>
           </div>

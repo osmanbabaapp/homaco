@@ -22,13 +22,10 @@ import Text from 'components/utils/text'
 import Link from 'next/link'
 
 import { useState, useEffect, useCallback } from 'react'
-// components
-// import DashPageHeader from "@/components/utils/dash-page-header";
 
 import { ExclamationCircleFilled } from '@ant-design/icons'
 import axios from 'axios'
 import useTranslation from 'next-translate/useTranslation'
-import { RiH1 } from 'react-icons/ri'
 
 export default function BannersPageContent({ locale, cookies }) {
   const [list, setList] = useState([])
@@ -231,7 +228,7 @@ export default function BannersPageContent({ locale, cookies }) {
 
   const columns = [
     {
-      title: 'Banner Image',
+      title: t('image'),
       dataIndex: 'image',
       key: '_id',
       width: 200,
@@ -255,12 +252,12 @@ export default function BannersPageContent({ locale, cookies }) {
       },
     },
     {
-      title: 'Type',
-      dataIndex: 'type',
+      title: t('type'),
+      dataIndex: 'file_type',
       key: '_id',
     },
     {
-      title: 'Active Status',
+      title: t('actStatus'),
       dataIndex: '',
       key: 'id',
       render: (data) => {
@@ -289,7 +286,7 @@ export default function BannersPageContent({ locale, cookies }) {
                       <UnlockFilled />
                     </div>
                   </FlexDiv>
-                  <Text>Active</Text>
+                  <Text>{t('active')}</Text>
                 </>
               ) : (
                 <>
@@ -305,7 +302,7 @@ export default function BannersPageContent({ locale, cookies }) {
                       <LockFilled />
                     </div>
                   </FlexDiv>
-                  <Text>Passive</Text>
+                  <Text>{t('passive')}</Text>
                 </>
               )}
             </FlexDiv>
@@ -315,7 +312,7 @@ export default function BannersPageContent({ locale, cookies }) {
     },
 
     {
-      title: 'Actions',
+      title: t('actions'),
       dataIndex: '',
       key: '_id',
       render: (data) => {
@@ -359,12 +356,14 @@ export default function BannersPageContent({ locale, cookies }) {
       <Col span={24}>
         <FlexDiv justifyContent="space-between" alignItems="center">
           <FlexDiv>
-            <Text as="h1">Banners</Text>
+            <Text as="h1">{t('layout.banners')}</Text>
           </FlexDiv>
           <FlexDiv>
             <Link href="/admin/banners/banner">
               <Button type="dashed" icon={<PlusOutlined />}>
-                {t('New Banner')}
+                {t('new', {
+                  name: t('layout.banners'),
+                })}
               </Button>
             </Link>
           </FlexDiv>
