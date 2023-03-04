@@ -1,6 +1,7 @@
 {
   "locales": ["ar", "tr", "en"],
   "defaultLocale": "ar",
+  "extensionsRgx": " /.page.(tsx|ts|js|mjs|jsx)$/",
   "pages": {
     "*": ["common"],
     "/admin/products/product": ["addad"],
