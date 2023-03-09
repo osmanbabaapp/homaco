@@ -51,6 +51,7 @@ const Contact: FC<{}> = () => {
                 </motion.div>
               ))}
           </div>
+          
           <div className="grid grid-cols-3 gap-4 mt-20">
             <div className="order-3 xs:order-1 col-span-3 md:col-span-1">
               <div className="relative w-full h-[250px] rounded-lg">
@@ -68,13 +69,14 @@ const Contact: FC<{}> = () => {
                 ></iframe>
               </div>
             </div>
+
             <div className="order-1 xs:order-2 col-span-3 md:col-span-1 text-center">
-              <h2 className="text-2xl font-bold text-yellow-400">
+              <h2 className="text-2xl font-bold text-yellow-400 my-4">
                 <Image
                   alt="Homaco Logo"
                   src={settings?.logo || '/imgs/logo.png'}
                   className="m-auto"
-                  width={300}
+                  width={400}
                   height={80}
                 />
               </h2>
@@ -154,7 +156,8 @@ const Contact: FC<{}> = () => {
                 )}
               </ul>
             </div>
-            <div className="order-2 xs:order-3 col-span-3 md:col-span-1">
+
+            <div className="order-2 xs:order-3 col-span-3 md:col-span-1 mx-8">
               <form>
                 <div className="grid grid-cols-2 gap-2">
                   <div className="col-span-1">
