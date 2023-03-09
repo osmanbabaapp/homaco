@@ -1,22 +1,24 @@
-import { FC } from 'react'
-import Container from '../container'
-import { motion } from 'framer-motion'
-import { useRouter } from 'next/router'
+import { FC } from "react";
+import Container from "../container";
+import { motion } from "framer-motion";
+import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 
 const MachineSection1: FC<{}> = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const { t } = useTranslation("common");
 
   return (
     <div
       className="py-28 flex bg-white bg-[url('/imgs/mach-1.png')] bg-no-repeat bg-contain relative"
-      style={{ direction: 'rtl' }}
+      style={{ direction: "rtl" }}
     >
       <Container>
         <h2 className="absolute z-10 text-2xl md:text-4xl right-[10vw] top-[4vh] font-bold text-black flex-wrap w-auto ">
           آلة طحن السمسم وانتاج الطحينة
         </h2>
         <motion.div
-          style={{ position: 'relative' }}
+          style={{ position: "relative" }}
           className="ml-[30vw] "
           whileInView={{
             opacity: 1,
@@ -33,34 +35,15 @@ const MachineSection1: FC<{}> = () => {
         >
           <div className="md:w-[40%] min-w-[50%] sm:w-[70%] w-[100%] bg-white drop-shadow-lg p-5 mt-[30vh] sm:mt-[0vh]  ">
             {/* <div className="block"> */}
-            <section className="text-xl">
-              لطحن السمسم و إنتاج أفضل أنواع الطحينية ,
-            </section>
+            <p className="text-xl">{t("sections.susam.line1")}</p>
+            <p className="text-xl">{t("sections.susam.line2")}</p>
 
-            <section className="text-xl">
-              <section className="text-red-600 inline-block">
-                {' '}
-                الستانلس{' '}
-              </section>
-              تم تصميم هذه الآلة التي تعد من أهم الآلات التي قمنا بصناعتها , حيث
-              استخدمنا في صناعتها أجود أنواع
-            </section>
-
-            <p className="text-xl">
-              ستيل 304L بتحكم آلي بالكامل .. تمتاز هذه الآلة بطاقتها الإنتاجية
-              العالية لاحتوائها على أحدث أنواع أنظمة
-            </p>
-
-            <p className="text-xl">
-              التحكم الالكتروني PLC برؤوس تنعيم للسمسم المطحون للحصول على أجود
-              أنواع الطحينة باللزوجة المثالية
-            </p>
             {/* </div> */}
           </div>
         </motion.div>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default MachineSection1
+export default MachineSection1;

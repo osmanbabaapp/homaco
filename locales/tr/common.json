@@ -25,15 +25,19 @@
       "title": "Kurucular"
     },
     "products": {
-      "title": "Mühendislik Endüstrileri ve Üretim Hatları için Homaco Şirketi Susam öğütme makineleri, tahin üretimi, kimyasal ve medikal paketleme makineleri ve hatmi üretim hatları üretiyoruz."
+      "title": "HOMACO Mühendislik Endüstrileri ve Üretim Hatları Şirketi Susam öğütme Makinaları, tahin üretimi, kimyasal ve medikal paketleme makineleri ve Marshmallow şekeri üretim hatları"
     },
     "about": {
-      "line1": "Güvendiğiniz bir isim",
-      "line2": "Mühendislik endüstrileri ve üretim hatları",
-      "line3": "Benzersiz tasarımlar, yüksek profesyonellik, uzman eller Tasarımda en yüksek hassasiyet ve işçilik standartlarını benimsiyoruz Tasarım ve endüstride miras alınan mallar 30 yıldan fazla sıvı tahin kalınlığı deneyimimizin ve başarımızın kanıtıdır en iyi paslanmaz çelik türleri"
+      "line1": "Homaco güvenebileceğiniz bir isimdir",
+      "line2": "Mühendislik endüstrileri ve üretim hatları Uzmanların ellerinde Benzersiz tasarımlar, yüksek kalite ve profesyonel",
+      "line3": "Tasarımda doğruluk ve işçilik standartlarını benimsiyoruz. Tasarım ve endüstride 30 yılı aşkın bir süredir devraldığımız deneyim. Sıvı tahinin kalınlığı deneyimimizin ve başarımızın kanıtıdır."
     },
     "services": {
-      "title": "Makine sayesinde susam öğütülür ve tahin elde edilir.Bu makine tamamen 304 paslanmaz çelikten imal edilmiştir ve otomatik sistemle çalışmaktadır.Susam iki kademeli olarak öğütülür ve makine öğütülmüş susamın ince öğütme kafalarını içerir."
+      "title": "Bu makine sayesinde susam öğütülür ve tahin elde edilir. Bu makine yüksek üretim kapasitesi ile ve otomatik sistemi ile çalışır. Susam iki aşamada öğütülür ve makine ince yumuşatıcı başlıklar içerir."
+    },
+    "susam": {
+      "line1": "Susam öğütmek ve en iyi tahin çeşitlerini üretmek. Tam otomatik kontrollü ve en kaliteli L304 paslanmaz çeliği imalatında kullandığımız için imal ettiğimiz en önemli makinelerden biridir. Bu makine, plc elektronik kontrol sistemlerini içerdiği için yüksek üretim kapasitesi ile karakterize edilir.",
+      "line2": "Yumuşatıcı başlıkları ile İdeal viskozitede en iyi tahin türlerini elde edilmektedir."
     },
     "partners": {
       "title": "Markanın en iyi tahin çeşitlerini üretme başarısındaki ortaklarımız"
