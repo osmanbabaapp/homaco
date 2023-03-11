@@ -16,6 +16,9 @@ import { useDispatch } from 'react-redux'
 import { openDrawer } from '@/redux/drawer/actions'
 import * as constants from 'redux/drawer/constants'
 
+import videojs from 'video.js'
+import 'video.js/dist/video-js.css'
+
 // styles
 const PageContent = styled.div``
 
@@ -435,6 +438,7 @@ export default function OneAdV2Page({
             image1: data?.image1,
             image2: data?.image2,
             image3: data?.image3,
+            video: data?.video,
           }}
         />
 

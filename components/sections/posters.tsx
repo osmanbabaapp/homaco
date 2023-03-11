@@ -53,9 +53,11 @@ const Posters: FC<{ data: any }> = ({ data }) => {
                     }}
                   >
                     <div className="relative">
-                      <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-primYellow rounded-full flex items-center justify-center text-4xl animate-pulse">
-                        <MdPlayArrow />
-                      </span>
+                      {item?.video && (
+                        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-primYellow rounded-full flex items-center justify-center text-4xl animate-pulse">
+                          <MdPlayArrow />
+                        </span>
+                      )}
                       <div className="w-full p-2 absolute bottom-0 left-0 line-clamp-1 bg-primYellowHover/60 font-bold">
                         {item?.title}
                       </div>

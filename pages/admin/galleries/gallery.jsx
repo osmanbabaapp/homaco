@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import FlexDiv from '../../../components/utils/flex-div'
 import Text from '../../../components/utils/text'
-
+import useFetch from '../../../hooks/useFetch'
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
 // components
@@ -12,6 +12,7 @@ import {
   Form,
   Input,
   message,
+  Modal,
   Row,
   Space,
   Tooltip,
@@ -23,7 +24,7 @@ import { useRouter } from 'next/router'
 import { signOut, useSession } from 'next-auth/react'
 import AdminLayout from '../../../layouts/admin-layout/admin-layout'
 import Head from 'next/head'
-import { uploadToS3 } from '../../../helpers/aws'
+import { removeFileFromS3, uploadToS3 } from '../../../helpers/aws'
 import useTranslation from 'next-translate/useTranslation'
 // styles
 const FormContainer = styled.div`
@@ -127,8 +128,14 @@ export function GalleryPageContent({ t, id = null, cookies, locale }) {
     validate: false,
   })
 
+  const { data, loading, error, executeFetch } = useFetch(
+    'api/gallery/' + id,
+    'GET',
+    {},
+    id ? true : false
+  )
+
   // loadings
-  const [loading, setLoading] = useState(null)
   const [formError, setFormError] = useState(null)
   const [formLoading, setFormLoading] = useState(false)
 
@@ -137,19 +144,27 @@ export function GalleryPageContent({ t, id = null, cookies, locale }) {
     async (values) => {
       setFormLoading(true)
 
-      if (!primaryFile?.file) {
+      console.log('primaryFile')
+      console.log(primaryFile)
+      if ((!id && !primaryFile?.file) || (id && !primaryFile.prev)) {
         message.error('Image field is required !')
+        setFormLoading(false)
         return
       }
-      // upload data
-      const url = await uploadToS3(primaryFile?.file, 'gallery')
-      values['image'] = url
+
+      if (primaryFile.file) {
+        // upload data
+        const url = await uploadToS3(primaryFile?.file, 'gallery')
+        values['image'] = url
+      }
 
       // check for video
       if (videoFile?.file) {
         // upload data
         const url = await uploadToS3(videoFile?.file, 'gallery')
         values['video'] = url
+      } else if (videoFile?.prev) {
+        values['video'] = videoFile?.prev
       }
 
       // start send data
@@ -197,70 +212,32 @@ export function GalleryPageContent({ t, id = null, cookies, locale }) {
 
   // useEffects
   useEffect(() => {
-    if (id) {
-      const getGallery = async () => {
-        setLoading(true)
-        const reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/gallery/' + id
-
-        try {
-          const { data: res, status } = await axios.get(reqUrl, {
-            headers: {
-              website: process.env.NEXT_PUBLIC_WEBSITE,
-              Authorization: `Bearer ${cookies?.token}`,
-            },
-          })
-          console.log('status', status)
-          if (status === 200) {
-            console.log('Setting data')
-            const myData = res?.description?.data
-            console.log('myData', myData)
-            // await getListCategory()
-            // let categories =
-            //   res.category?.map((item, i) => item?.categoryID) ?? []
-            // setting form values
-            console.log('setting form values _____')
-            form.setFieldsValue({
-              name: myData?.name,
-              phone: myData?.phone,
-              whatsapp: myData?.whatsapp,
-              role: myData?.role,
-            })
-
-            if (myData?.image) {
-              setPrimaryFile({
-                prev: myData?.image,
-                file: true,
-                validate: false,
-              })
-            }
-          } else if (status === 204) {
-            setFormError({
-              header: 'No Content Found',
-              description: 'Something went wrong! Please try again. 204',
-            })
-          }
-        } catch (err) {
-          if (err?.response?.status === 401) {
-            signOut({ callbackUrl: '/' })
-          } else if (err?.response?.status === 500) {
-            setFormError(
-              err?.response?.data ||
-                'Something went wrong! Please try again later.'
-            )
-          } else if (err?.response?.status === 400) {
-            setFormError(
-              err?.response?.data ||
-                'Something went wrong! Please try again later.'
-            )
-          } else if (err?.response?.status === 404) {
-            setFormError({ description: 'Wrong endpoint error' })
-          }
-        }
-        setLoading(false)
+    if (!loading && !error && data) {
+      const myData = data?.description?.data
+      form.setFieldsValue({
+        title_ar: myData?.title_ar,
+        title_en: myData?.title_en,
+        title_tr: myData?.title_tr,
+        desc_ar: myData?.desc_ar,
+        desc_en: myData?.desc_en,
+        desc_tr: myData?.desc_tr,
+      })
+      if (myData?.image) {
+        setPrimaryFile({
+          prev: myData?.image,
+          file: false,
+          validate: false,
+        })
       }
-      getGallery()
+      if (myData?.video) {
+        setVideoFile({
+          prev: myData.video,
+          file: false,
+          validate: false,
+        })
+      }
     }
-  }, [form, id])
+  }, [data, loading, error])
 
   // primary image props
   const primaryFileProps = {
@@ -332,6 +309,18 @@ export function GalleryPageContent({ t, id = null, cookies, locale }) {
   }
 
   if (loading) return <h2>Loading ...</h2>
+
+  if (error)
+    return (
+      <Col span={24}>
+        <Alert
+          showIcon
+          type="error"
+          message={getError?.header}
+          description={getError?.description}
+        />
+      </Col>
+    )
 
   return (
     <FormContainer>
@@ -423,14 +412,14 @@ export function GalleryPageContent({ t, id = null, cookies, locale }) {
                           <RemoveButton
                             danger
                             color="#ff0000"
-                            onClick={() =>
+                            onClick={() => {
                               setVideoFile({
                                 prev: null,
                                 file: null,
-                                validate: false,
                                 ready: null,
+                                validate: false,
                               })
-                            }
+                            }}
                           >
                             {t('delete')}
                           </RemoveButton>

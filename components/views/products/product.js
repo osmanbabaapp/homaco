@@ -29,6 +29,7 @@ import Text from '@/components/utils/text'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import useFetch from '../../../hooks/useFetch'
+import { uploadToS3 } from '../../../helpers/aws'
 // styles
 const FormContainer = styled.div`
   background-color: #fff;
@@ -262,6 +263,14 @@ function AddPageContent({ id = null }) {
       // )
       // const googleCodes = values.ModelID?.map((item) => item?.split('/')[1])
       // formData.append("ModelID", values.ModelID);
+      // check for video
+      if (videoFile?.file) {
+        // upload video
+        const url = await uploadToS3(videoFile?.file, 'product')
+        formData.append('video', url)
+      } else if (videoFile?.prev) {
+        formData.append('video', videoFile?.prev)
+      }
 
       formData.append('category', JSON.stringify(values.category))
       formData.append('desc_ar', values.desc_ar)
@@ -280,8 +289,8 @@ function AddPageContent({ id = null }) {
         formData.append('image3', image3.file)
       if (typeof productImage?.file !== 'boolean')
         formData.append('productImage', productImage.file)
-      if (typeof videoFile?.file !== 'boolean')
-        formData.append('video', videoFile.file)
+      // if (typeof videoFile?.file !== 'boolean')
+      //   formData.append('video', videoFile.file)
 
       const linesString = JSON.stringify(adjects)
       formData.append('adjects', linesString)
@@ -349,7 +358,20 @@ function AddPageContent({ id = null }) {
 
       setFormLoading(false)
     },
-    [id, image1, image2, image3, productImage, primaryFile, adjects, cookies]
+    [
+      id,
+      image1,
+      image2,
+      image3,
+      productImage,
+      primaryFile,
+      adjects,
+      cookies,
+      videoFile,
+      image1,
+      image2,
+      image3,
+    ]
   )
 
   const getListCategory = useCallback(async () => {
@@ -705,6 +727,11 @@ function AddPageContent({ id = null }) {
         file: true,
         validate: false,
       })
+      setVideoFile({
+        prev: _data?.video,
+        file: false,
+        validate: false,
+      })
 
       setImage1({
         prev: _data?.image1,
@@ -911,6 +938,41 @@ function AddPageContent({ id = null }) {
     },
     image3,
   }
+  // video props
+  const videoFileProps = {
+    accept: 'video/*',
+    showUploadList: false,
+    disabled: videoFile.file || videoFile.prev ? true : false,
+    onRemove: (file) => {
+      setVideoFile((prevF) => {
+        let newObj = prevF
+        newObj.file = null
+        newObj.prev = null
+        newObj.validate = false
+        return { ...newObj }
+      })
+    },
+    beforeUpload: (file) => {
+      // check file size
+      if (file.size >= 1048576 * 25) {
+        message.error('File size must be less than 1Mb')
+        return false
+      }
+
+      setVideoFile((prev) => {
+        // set image
+        let newObj = prev
+        newObj.file = file
+        newObj.prev = URL.createObjectURL(file)
+        newObj.validate = false
+        return { ...newObj }
+      })
+
+      return false
+    },
+    primaryFile,
+  }
+
   const productFile = {
     // accept: "image/png, image/jpeg",
     showUploadList: false,
@@ -1271,6 +1333,54 @@ function AddPageContent({ id = null }) {
                           )}
                         </>
                       )}
+                    </UploadSmall>
+                  </Tooltip>
+                </Col>
+                <Col>
+                  <Tooltip title={t('video')}>
+                    <UploadSmall name="Video" {...videoFileProps}>
+                      <PrimaryImageOuter error={videoFile.validate !== false}>
+                        {videoFile.prev ? (
+                          <>
+                            <PrimaryImagePreview>
+                              <video
+                                src={
+                                  videoFile?.ready
+                                    ? videoFile?.ready
+                                    : videoFile.prev
+                                }
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                }}
+                                controls
+                              ></video>
+                            </PrimaryImagePreview>
+                            <RemoveButtonLink
+                              danger
+                              color="#ff0000"
+                              onClick={() => {
+                                setVideoFile({
+                                  prev: null,
+                                  file: null,
+                                  ready: null,
+                                  validate: false,
+                                })
+                              }}
+                            >
+                              <DeleteOutlined />
+                            </RemoveButtonLink>
+                          </>
+                        ) : (
+                          <h2>
+                            {primaryFile.validate === false ? (
+                              <UploadFileCom text={t('video')} />
+                            ) : (
+                              primaryFile.validate
+                            )}
+                          </h2>
+                        )}
+                      </PrimaryImageOuter>
                     </UploadSmall>
                   </Tooltip>
                 </Col>

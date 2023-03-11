@@ -324,6 +324,7 @@ export async function getStaticProps({ params, locale }) {
         image1
         image2
         image3
+        video
         adjects {
           title: adj_${locale}
           values: adj_value

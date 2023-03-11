@@ -69,3 +69,42 @@ export const uploadToS3 = async (
     return { success: false, message: 'Unable to access this file', data: {} }
   }
 }
+
+/**
+ *
+ * @name removeFileFromS3
+ * @param {S3} s3
+ * @param {S3} fileData
+ * @returns {Promise<success:boolean; message:string; data:string;>}
+ * @description uploading file to aws
+ */
+export const removeFileFromS3 = async (filePath: string) => {
+  const s3 = new S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION,
+    signatureVersion: 'v4',
+  })
+  let __ = filePath.split('amazonaws.com/').at(-1)
+  const command = {
+    Bucket: process.env.AWS_S3_BUCKET!,
+    Key: __!,
+  }
+  console.log('delete command')
+  console.log(command)
+  try {
+    const res = await s3.deleteObject(command).promise()
+    console.log('File removed from AWS', res)
+    return {
+      message: 'File deleted successfully',
+      success: true,
+      data: res,
+    }
+  } catch (err) {
+    return {
+      success: false,
+      message: String(err),
+      data: null,
+    }
+  }
+}
