@@ -16,9 +16,6 @@ import { useDispatch } from 'react-redux'
 import { openDrawer } from '@/redux/drawer/actions'
 import * as constants from 'redux/drawer/constants'
 
-import videojs from 'video.js'
-import 'video.js/dist/video-js.css'
-
 // styles
 const PageContent = styled.div``
 
