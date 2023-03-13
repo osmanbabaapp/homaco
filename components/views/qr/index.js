@@ -18,7 +18,7 @@ function QrScreen({ data }) {
 
   return (
     <div className="flex flex-col justify-center h-[100vh] w-[100vw]   qr-page-bg-style">
-      <div className="flex top-[20px] left-[12%]  z-[400] absolute  ">
+      <div className="flex top-[20px] left-[16%]  z-[400] absolute  ">
         <Image src={"/imgs/logo.png"} alt="asd" width={280} height={100} />
       </div>
 
