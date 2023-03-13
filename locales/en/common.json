@@ -154,5 +154,12 @@
   "role": "Role",
   "phone": "Phone",
   "whatsapp": "Whatsapp",
-  "save": "Save"
+  "save": "Save",
+  "qr": {
+    "call": "Call",
+    "unitedAmbalaj": "Homaco Company",
+    "direction": "Direction",
+    "email": "Email",
+    "ourProducts": "Our Products"
+  }
 }

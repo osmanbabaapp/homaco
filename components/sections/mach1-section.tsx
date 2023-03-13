@@ -19,7 +19,7 @@ const MachineSection1: FC<{}> = () => {
         </h2>
         <motion.div
           style={{ position: "relative" }}
-          className="ml-[30vw] "
+          className="ml-[30vw] mt-[100px] "
           whileInView={{
             opacity: 1,
             scale: 1,
