@@ -15,7 +15,7 @@ const MachineSection1: FC<{}> = () => {
     >
       <Container>
         <h2 className="absolute z-10 text-2xl md:text-4xl right-[10vw] top-[4vh] font-bold text-black flex-wrap w-auto ">
-          آلة طحن السمسم وانتاج الطحينة
+          {t("sections.susam.line3")}
         </h2>
         <motion.div
           style={{ position: "relative" }}

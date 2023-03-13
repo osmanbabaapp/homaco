@@ -256,6 +256,8 @@ function AddPageContent({ id = null }) {
       // setFormLoading(true);
       let reqUrl = process.env.NEXT_PUBLIC_HOST + 'api/product'
 
+      console.log('11111111 :>> ', 11111111);
+
       let formData = new FormData()
       // values.ModelID?.map((item) =>
       //   formData.append('ModelID', item?.split('/')[0])
