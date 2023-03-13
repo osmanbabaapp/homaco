@@ -18,8 +18,8 @@ function QrScreen({ data }) {
 
   return (
     <div className="flex flex-col justify-center h-[100vh] w-[100vw]   qr-page-bg-style">
-      <div className="flex top-[20px] left-[28%]  z-[400] absolute  ">
-        <Image src={"/imgs/logo.png"} alt="asd" width={180} height={100} />
+      <div className="flex top-[20px] left-[12%]  z-[400] absolute  ">
+        <Image src={"/imgs/logo.png"} alt="asd" width={280} height={100} />
       </div>
 
       <div className="top-[160px] z-[200] absolute  h-[40px] w-[100%] qr-bg-gradient-heading" />
@@ -58,7 +58,7 @@ function QrScreen({ data }) {
 
           <div className="flex flex-col w-[100%] items-center">
             <a href="tel:+50225079227;1">
-              <span /* onClick={() => onPhoneCall()} */ className="text-white text-[18px] my-[16px]">
+              <span /* onClick={() => onPhoneCall()} */ className="text-white text-[18px] my-[16px] font-sans" dir="ltr">
                 +905385800069
               </span>
             </a>
@@ -90,7 +90,7 @@ function QrScreen({ data }) {
 
           <div className="flex flex-col w-[100%] items-center">
             <a href="https://homacomakina.com/">
-              <span /* onClick={() => onPhoneCall()} */ className="text-white text-[18px] my-[16px]">
+              <span /* onClick={() => onPhoneCall()} */ className="text-white text-[18px] my-[16px] font-sans">
                 homacomakina.com
               </span>
             </a>
@@ -106,7 +106,7 @@ function QrScreen({ data }) {
 
           <div className="flex flex-col w-[100%] items-center">
             <a href="https://homacomakina.com/" className="flex flex-col justify-center   items-center">
-              <span /* onClick={() => onPhoneCall()} */ className="text-white text-[18px] my-[0px] text-center p-[10px] ">
+              <span /* onClick={() => onPhoneCall()} */ className="text-white text-[18px] my-[0px] text-center p-[10px] font-sans  ">
                 {/* 27600 Baspinar Osb/ Sehitkamil/Gaziantep */}
                 SANAYİ MAH.60346SK.NO:6 ŞEHİTKAMİL, GAZİANTEP
               </span>
