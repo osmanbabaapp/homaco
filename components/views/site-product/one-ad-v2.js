@@ -468,7 +468,7 @@ export default function OneAdV2Page({
     >
       <div style={{ margin: '0px 0' }}>
         <ProductNameText>{data?.title}</ProductNameText>
-        {data?.desc?.split('. ').map((x) => {
+        {data?.desc?.split('.').map((x) => {
           return (
             <Text
               key={x}

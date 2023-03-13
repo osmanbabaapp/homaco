@@ -14,7 +14,7 @@ const MachineSection1: FC<{}> = () => {
       style={{ direction: "rtl" }}
     >
       <Container>
-        <h2 className="absolute z-10 text-2xl md:text-4xl right-[10vw] top-[4vh] font-bold text-black flex-wrap w-auto ">
+        <h2 className="absolute z-10 text-2xl md:text-4xl right-[10vw] top-[4vh] font-bold text-red-600 flex-wrap w-[26%] text-center self-center mb-12">
           {t("sections.susam.line3")}
         </h2>
         <motion.div

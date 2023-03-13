@@ -131,7 +131,7 @@ const Banner: FC<{
                   style={{
                     backgroundImage: "url('" + item.image + "')",
                   }}
-                  className={`relative bg-no-repeat bg-contain lg:bg-cover h-[50vh] md:h-screen after:content-[''] after:absolute after:inset-0 after:bg-black/50 after:-z-1`}
+                  className={`relative bg-no-repeat bg-contain lg:bg-cover h-[50vh] md:h-screen after:content-[''] after:absolute after:inset-0 after:bg-black/40 after:-z-1`}
                 >
                   <Container>
                     <motion.div
