@@ -1,7 +1,4 @@
 import { useState, useCallback, useEffect } from 'react'
-import FlexDiv from 'components/utils/flex-div'
-import Text from 'components/utils/text'
-import Loading from 'components/utils/loading'
 
 import { axiosInstance, httpsAgent, configHeader } from 'helpers/constants'
 
@@ -284,9 +281,6 @@ function BannerPageContent({ id = null, cookies, status }) {
     },
     primaryFile,
   }
-
-  console.log('primaryFile')
-  console.log(primaryFile)
 
   if (getError)
     return (

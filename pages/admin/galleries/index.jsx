@@ -1,4 +1,4 @@
-import { DeleteFilled, PlusOutlined } from '@ant-design/icons'
+import { DeleteFilled, EditFilled, PlusOutlined } from '@ant-design/icons'
 import {
   Button,
   Col,
@@ -154,7 +154,14 @@ export default function GalleriesPage({ locale }) {
       key: '_id',
       render: (data) => {
         return (
-          <Space key={data.id}>
+          <Space key={data?._id}>
+            <Tooltip placement="top" title={t('edit')}>
+              <Link href={`/admin/galleries/${data?._id}`}>
+                <Button shape="circle">
+                  <EditFilled />
+                </Button>
+              </Link>
+            </Tooltip>
             <Tooltip placement="top" title={t('delete')}>
               <a href="#">
                 <Button

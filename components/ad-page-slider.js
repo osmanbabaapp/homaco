@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Col, Row } from 'antd'
 import FlexDiv from './utils/flex-div'
 import ImageContainer from './utils/image-container'
+import { PlayCircleFilled } from '@ant-design/icons'
 
 // import { palette2 } from "@/constants/colors";
 
@@ -12,9 +13,15 @@ const cstyle1 = `
 border-radius: 20px;
 border: 2px solid ${'red'};
 overflow: hidden;
-// height: 80px;
 margin: 2px;
-
+height: 80px;
+width: 80px;
+position: relative;
+ img,  video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
 
 @media (max-width: 450px) {
   border-radius: 20px;
@@ -28,16 +35,21 @@ export const SlideBreadImage = ({ image, alt, isVideo }) => {
     <div>
       <ImageContainer width={100} cstyle={cstyle1}>
         {isVideo ? (
-          <video
-            poster={image}
-            // controls={true}
-            autoPlay={false}
-            muted={true}
-            style={{ width: '100%', minHeight: '70px' }}
-            preload="metadata"
-          >
-            <source src={`${image}#t=0.5`} />
-          </video>
+          <>
+            <video
+              poster={image}
+              // controls={true}
+              autoPlay={false}
+              muted={true}
+              style={{ width: '100%', minHeight: '70px', maxHeight: '100%' }}
+              preload="metadata"
+            >
+              <source src={`${image}#t=0.5`} />
+            </video>
+            <span className="absolute text-red-600 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 text-3xl w-10 h-10 rounded-full flex items-center justify-center">
+              <PlayCircleFilled />
+            </span>
+          </>
         ) : (
           <Image
             src={image}
@@ -57,9 +69,16 @@ const SlideShower = styled.div`
   background-color: white;
   width: 100%;
   max-width: 500px;
+  max-height: 600px;
   border-radius: 20px;
   border: 2px solid ${'red'};
   overflow: hidden;
+  img,
+  video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 `
 
 export default function AdSlide({ data, companyName, productName }) {
@@ -200,7 +219,7 @@ export default function AdSlide({ data, companyName, productName }) {
               </a>
             </Col>
           )}
-          {data?.video?.includes('.mp4') && (
+          {data?.video && (
             <Col>
               <a
                 href="#"
@@ -212,7 +231,7 @@ export default function AdSlide({ data, companyName, productName }) {
               >
                 <SlideBreadImage
                   isVideo={true}
-                  image={data?.video}
+                  image={data?.primaryImage}
                   alt={`${productName} - ${companyName} - Osmanbaba`}
                 />
               </a>

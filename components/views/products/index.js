@@ -154,7 +154,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
     [getList, locale, cookies]
   )
   const toggleActivation = useCallback(
-    async (e, id, active) => {
+    async (e, id, active, video) => {
       e.preventDefault()
       Modal.confirm({
         title:
@@ -190,6 +190,7 @@ export default function ProductsPageContent({ locale, cookies, status }) {
               {
                 id,
                 active: !active,
+                video,
               },
               {
                 headers: {
@@ -274,12 +275,14 @@ export default function ProductsPageContent({ locale, cookies, status }) {
     {
       title: t('actStatus'),
       dataIndex: '',
-      key: 'id',
+      key: '_id',
       render: (data) => {
         return (
           <a
             href="#"
-            onClick={(e) => toggleActivation(e, data?._id, data.active)}
+            onClick={(e) =>
+              toggleActivation(e, data?._id, data.active, data?.video)
+            }
             style={{ width: 'fit-content', display: 'inline-block' }}
           >
             <FlexDiv
