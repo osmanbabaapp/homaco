@@ -259,7 +259,9 @@ export default function OneAdV2Page({
     },
   ])
 
-  console.log('descriptions', descriptions)
+  // console.log('descriptions', descriptions)
+  console.log('data?.adjects :>>', data?.adjects)
+  
 
   const [listDescriptions, setListDescriptions] = useState([])
 
@@ -357,6 +359,7 @@ export default function OneAdV2Page({
         productId: data?.id,
         productName: 'productName',
         adjs: lol2,
+        adjs2: data?.adjects,
         productData: data,
       })
     )
