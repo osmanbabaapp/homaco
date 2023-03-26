@@ -55,7 +55,7 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
       // send email
       let messageJson = "";
 
-      descriptions.forEach((item) => {
+      descriptions && descriptions.forEach((item) => {
         const lol = listDescriptions.find((x) => x.id === item.id);
         if (item.type == 4) {
           const desName = t("form.labels.orderCount");
@@ -271,7 +271,7 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
   );
 
   useEffect(() => {
-    getListDescriptions();
+    // getListDescriptions();
     // form.setFieldsValue({
     //   fullName: "user?.fullName",
     //   email: "user?.email",
@@ -297,17 +297,26 @@ export default function ContactDrawer({ open, onClose, payload, locale }) {
     //   username: user?.userName,
     //   email: user?.email,
     // });
+    // form.setFieldsValue({
+    //   username: user?.userName,
+    // });
+
     let obj = {};
-    for (let i = 0; i < payload?.adjs.length; i++) {
+    for (let i = 0; i < payload?.adjs2.length; i++) {
       // eslint-disable-next-line no-unused-expressions
+      // obj[
+      //   `${
+      //     payload?.adjs2[i].result[`${locale === "ar" ? "adjactiveAR" : locale === "tr" ? "adjctiveTR" : "adjactiveEN"}`]
+      //   }`
+      // ] = payload?.adjs2[i].result["value"][0];
       obj[
         `${
-          payload?.adjs[i].result[`${locale === "ar" ? "adjactiveAR" : locale === "tr" ? "adjctiveTR" : "adjactiveEN"}`]
+          payload?.adjs2[i].title
         }`
-      ] = payload?.adjs[i].result["value"][0];
+      ] = payload?.adjs2[i]["values"][0];
     }
     form.setFieldsValue(obj);
-  }, [form, getListDescriptions, listDescriptions, locale, open, payload?.adjs, payload.productData?.descriptionsId]);
+  }, [form, getListDescriptions, listDescriptions, locale, open, payload?.adjs2, payload.productData?.descriptionsId]);
 
   return (
     <div>

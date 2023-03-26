@@ -19,7 +19,7 @@ import * as constants from 'redux/drawer/constants'
 // styles
 const PageContent = styled.div``
 
-/* 
+/*
     This component used for product page sections title
     like: Name of ad, Details etc..
 */
@@ -58,7 +58,7 @@ export const Title = ({ title, as, locale, itemprop }) => {
   )
 }
 
-/* 
+/*
     This component used for product page detials table
     ad details will be displayed here
     !!! required props: list => to render details in table
@@ -261,7 +261,7 @@ export default function OneAdV2Page({
 
   // console.log('descriptions', descriptions)
   console.log('data?.adjects :>>', data?.adjects)
-  
+
 
   const [listDescriptions, setListDescriptions] = useState([])
 
@@ -352,7 +352,6 @@ export default function OneAdV2Page({
   ]
 
   const handleOpenContactDrawer = useCallback(() => {
-    console.log('111111 :>> ', 111111)
     dispatch(
       openDrawer(constants.modalType_ContactCompany, () => false, {
         companyId: 'data?.id',
