@@ -10,7 +10,7 @@ const MachineSection1: FC<{}> = () => {
 
   return (
     <div
-      className="py-28 flex bg-white bg-[url('/imgs/mach-1.png')] bg-no-repeat bg-contain relative"
+      className="py-28 flex bg-white bg-white-background relative"
       style={{ direction: "rtl" }}
     >
       <Container>

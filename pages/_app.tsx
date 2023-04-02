@@ -25,6 +25,20 @@ type AppLayoutProps = AppProps & {
   pageProps: any;
 };
 
+const jazeeraFont = localFont({
+  src: [
+    {
+      path: "../public/fonts/Al-Jazeera-Arabic-Regular.ttf",
+      weight: "normal",
+    },
+    {
+      path: "../public/fonts/Al-Jazeera-Arabic-Bold.ttf",
+      weight: "bold",
+    },
+  ],
+  // fallback: ["Helvetica", "ui-sans-serif"],
+});
+
 const myFont = localFont({
   src: [
     {
@@ -68,14 +82,22 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="google-site-verification" content="h1M0H97zNrzTcJCcNfZLBOSMdwm-awqkDV6pe24Wcb8" />
       </Head>
       <GlobalStyles image={imageBg} dir={locale === "ar" ? "rtl" : "ltr"} />
-      <div className={myFont.className} style={locale !== "tr" ? { ...myFont.style } : {}}>
+      <div className={jazeeraFont.className} style={locale !== "tr" ? { ...jazeeraFont.style } : {}}>
         <ApolloProvider client={gqlClient}>
           <Provider store={store}>
-            {/* <style jsx global>{`
-        body {
-          font-family: ${myFont.style.fontFamily};
-        }
-      `}</style> */}
+            <style jsx global>{`
+              :root {
+                --font-sans: ${jazeeraFont.style.fontFamily};
+              }
+              html,
+              p,
+              div,
+              span,
+              h1,
+              h2, h3, h4, h5, h6 {
+                font-family: ${jazeeraFont.style.fontFamily};
+              }
+            `}</style>
             <SessionProvider session={pageProps?.session} refetchInterval={5 * 60}>
               <MobileNavContextProvider>
                 <LayoutContextProvider>

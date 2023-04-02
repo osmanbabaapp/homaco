@@ -51,7 +51,7 @@ const Contact: FC<{}> = () => {
                 </motion.div>
               ))}
           </div>
-          
+
           <div className="grid grid-cols-3 gap-4 mt-20">
             <div className="order-3 xs:order-1 col-span-3 md:col-span-1">
               <div className="relative w-full h-[250px] rounded-lg">
@@ -61,11 +61,7 @@ const Contact: FC<{}> = () => {
                   className="absolute w-full h-full left-0 top-0 z-20"
                   width="100%"
                   height="250"
-                  frameBorder="0"
-                  scrolling="no"
-                  marginHeight={0}
-                  marginWidth={0}
-                  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Address+(Homaco%20Company)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3183.6470572408125!2d37.45028291547091!3d37.06589307989476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1531e55607e0fb59%3A0x35d6e06fff29c9cd!2z2YfZiNmF2KfZg9mIINi52KjYr9in2YTZiNin2K3YryDYutin2Kgg2KfZhNit2LPZhg!5e0!3m2!1sen!2str!4v1680439424551!5m2!1sen!2str"
                 ></iframe>
               </div>
             </div>

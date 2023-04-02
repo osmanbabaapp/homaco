@@ -105,6 +105,12 @@
   }
 }
 
+#products,
+.bg-white-background {
+  background: url(/images/background.jpg) no-repeat center center;
+  background-size: cover;
+}
+
 html,
 body {
   scroll-behavior: smooth !important;
@@ -112,12 +118,14 @@ body {
   overflow-x: hidden !important;
 }
 
+html { font-family: var(--font-sans); }
+
 body {
   color: #111;
   background-size: cover;
   /* background-color: #fefce8; */
-  font-family: Bahij, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
-    Droid Sans, Helvetica Neue, sans-serif;
+  /* font-family: JazeeraRegular, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif; */
 }
 
 a {

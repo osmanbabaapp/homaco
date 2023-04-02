@@ -30,7 +30,7 @@ const Posters: FC<{ data: any }> = ({ data }) => {
   }, [])
 
   return (
-    <div className="py-10 bg-white">
+    <div className="py-10 bg-white bg-white-background">
       <Container>
         <div>
           <Swiper spaceBetween={30} className="py-10 px-5" slidesPerView="auto">
