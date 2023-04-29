@@ -1,30 +1,24 @@
-import Head from 'next/head'
-import { LayoutContext } from '../../context/layout.context'
-import { useContext } from 'react'
-import HomePageContent from '../../components/views/home-page/index'
-import { useRouter } from 'next/router'
-import AdminLayout from '../../layouts/admin-layout/admin-layout'
-// import https from "https";
-// import axios from "axios";
+import Head from "next/head";
+import HomePageContent from "../../components/views/home-page/index";
+import { useRouter } from "next/router";
+import AdminLayout from "../../layouts/admin-layout/admin-layout";
 
 export default function Home(props) {
-  const { sideOpen } = useContext(LayoutContext)
-  const router = useRouter()
-  // const { id } = router.query;
+	const router = useRouter();
 
-  const locale = router.locale
-  return (
-    <>
-      <Head>
-        <title>Home Page</title>
-      </Head>
-      <AdminLayout>
-        <HomePageContent
-          data={props?.data}
-          products={props?.products}
-          locale={locale}
-        />
-      </AdminLayout>
-    </>
-  )
+	const locale = router.locale;
+	return (
+		<>
+			<Head>
+				<title>Home Page</title>
+			</Head>
+			<AdminLayout>
+				<HomePageContent
+					data={props?.data}
+					products={props?.products}
+					locale={locale}
+				/>
+			</AdminLayout>
+		</>
+	);
 }

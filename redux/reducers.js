@@ -5,7 +5,7 @@ import { drawerReducer } from "./drawer/reducers";
 
 // COMBINED REDUCERS
 const reducers = {
-  drawer: drawerReducer,
+	drawer: drawerReducer,
 };
 
 export default combineReducers(reducers);

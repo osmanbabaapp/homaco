@@ -1,10 +1,7 @@
-import { FC } from "react";
+import React from "react";
 
-const Page500: FC = () => {
-  return (
-    <div>
-      <h2>500 Error</h2>
-    </div>
-  );
-};
-export default Page500;
+type Props = {};
+
+export default function ServerError({}: Props) {
+	return <div>500 Server error</div>;
+}

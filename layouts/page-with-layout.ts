@@ -8,9 +8,9 @@ export type PageWithAdminLayout = NextPage & { layout: typeof MainLayout };
 export type PageWithLayoutType = PageWithMainLayout | PageWithAdminLayout;
 
 export type LayoutProps = ({
-  children,
+	children,
 }: {
-  children: ReactElement;
+	children: ReactElement;
 }) => ReactElement;
 
 export default PageWithLayoutType;

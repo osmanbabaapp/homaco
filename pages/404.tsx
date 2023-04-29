@@ -1,10 +1,7 @@
-import { FC } from "react";
+import React from "react";
 
-const Page404: FC = () => {
-  return (
-    <div>
-      <h2>404 Not Found</h2>
-    </div>
-  );
-};
-export default Page404;
+type Props = {};
+
+export default function PageNotFound({}: Props) {
+	return <div>PageNotFound</div>;
+}
