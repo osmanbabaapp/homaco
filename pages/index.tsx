@@ -1,33 +1,33 @@
-import type { GetServerSideProps, NextPage } from "next";
-import Head from "next/head";
-import AboutUs from "../components/sections/about-us";
-import Banner from "../components/sections/banner";
-import Contact from "../components/sections/contact";
-import MachineSection1 from "../components/sections/mach1-section";
-import Posters from "../components/sections/posters";
-import Products from "../components/sections/products";
-import Services from "../components/sections/services";
-import MainLayout from "../layouts/main-layout";
+import type { GetServerSideProps, NextPage } from 'next';
+import Head from 'next/head';
+import AboutUs from '../components/sections/about-us';
+import Banner from '../components/sections/banner';
+import Contact from '../components/sections/contact';
+import MachineSection1 from '../components/sections/mach1-section';
+import Posters from '../components/sections/posters';
+import Products from '../components/sections/products';
+import Services from '../components/sections/services';
+import MainLayout from '../layouts/main-layout';
 // Import Swiper styles
-import "swiper/css";
-import Founders from "@/components/sections/founders";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import gqlClient from "../helpers/apollo-gql";
-import { gql } from "@apollo/client";
+import 'swiper/css';
+import Founders from '@/components/sections/founders';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import gqlClient from '../helpers/apollo-gql';
+import { gql } from '@apollo/client';
 
 const Home: NextPage = (props: any) => {
 	const { data } = useSession();
 	const router = useRouter();
 
-	console.log("home props");
+	console.log('home props');
 	console.log(props);
 
 	return (
 		<>
 			<Head>
 				<title>Homaco Makina</title>
-				<link rel='icon' href='/imgs/logo.png' />
+				<link rel="icon" href="/imgs/logo.png" />
 			</Head>
 			<div>
 				<MainLayout>

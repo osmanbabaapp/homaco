@@ -1,15 +1,15 @@
-import React, { FC, useContext } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React, { FC, useContext } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 // components
-import Container from "../../components/container";
-import NavSwitch from "../../components/nav-switch";
-import { MobileNavContext } from "../../context/mobile-nav-context";
-import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
-import { MdLanguage } from "react-icons/md";
-import { Dropdown, Menu } from "antd";
-import { useRouter } from "next/router";
-import useTranslation from "next-translate/useTranslation";
+import Container from '../../components/container';
+import NavSwitch from '../../components/nav-switch';
+import { MobileNavContext } from '../../context/mobile-nav-context';
+import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { MdLanguage } from 'react-icons/md';
+import { Dropdown, Menu } from 'antd';
+import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 
 const LinkItem: FC<{
 	href: string;
@@ -18,7 +18,7 @@ const LinkItem: FC<{
 	return (
 		<Link
 			href={props.href}
-			className='text-lg md:text-2xl hover:text-primYellowHover'
+			className="text-lg md:text-2xl hover:text-primYellowHover"
 		>
 			{props.text}
 		</Link>
@@ -28,22 +28,22 @@ const LinkItem: FC<{
 const Navbar: FC<{ data: any }> = ({ data }) => {
 	const { open, toggleNavbar } = useContext(MobileNavContext);
 	const router = useRouter();
-	const { t } = useTranslation("common");
+	const { t } = useTranslation('common');
 
 	const menu = (
 		<Menu>
-			<Menu.Item key='0'>
-				<Link href={router.asPath} locale={"tr"}>
+			<Menu.Item key="0">
+				<Link href={router.asPath} locale={'tr'}>
 					Türkçe
 				</Link>
 			</Menu.Item>
-			<Menu.Item key='1'>
-				<Link href={router.asPath} locale={"ar"}>
+			<Menu.Item key="1">
+				<Link href={router.asPath} locale={'ar'}>
 					العربية
 				</Link>
 			</Menu.Item>
-			<Menu.Item key='3'>
-				<Link href={router.asPath} locale={"en"}>
+			<Menu.Item key="3">
+				<Link href={router.asPath} locale={'en'}>
 					English
 				</Link>
 			</Menu.Item>
@@ -51,94 +51,99 @@ const Navbar: FC<{ data: any }> = ({ data }) => {
 	);
 
 	return (
-		<nav className='drop-shadow-sm w-[100%]  relative z-50 text-primYellow'>
+		<nav className="drop-shadow-sm w-[100%]  relative z-50 text-primYellow">
 			<Container>
-				<header className='flex justify-between items-center'>
+				<header className="flex justify-between items-center">
 					<div>
-						<Link href={"/"}>
+						<Link href={'/'}>
 							<Image
-								alt='Homaco Logo'
-								src={data?.logo || "/imgs/logo.png"}
+								alt="Homaco Logo"
+								src={data?.logo || '/imgs/logo.png'}
 								width={240}
 								height={80}
-								className={"w-[180px] md:w-[380px]"}
+								className={'w-[180px] md:w-[380px]'}
 							/>
 						</Link>
 					</div>
 
-					<div className='flex gap-5 items-center'>
-						<div className='hidden sm:flex space-x-10 items-center'>
-							<ul className='flex gap-5'>
+					<div className="flex gap-5 items-center">
+						<div className="hidden sm:flex space-x-10 items-center">
+							<ul className="flex gap-5">
 								<li>
-									<LinkItem href='/' text={t("nav.home")} />
+									<LinkItem href="/" text={t('nav.home')} />
 								</li>
 								<li>
-									<LinkItem href='#about-us' text={t("nav.about")} />
+									<LinkItem href="#about-us" text={t('nav.about')} />
 								</li>
 								<li>
-									<LinkItem href='#products' text={t("nav.products")} />
+									<LinkItem href="#products" text={t('nav.products')} />
 								</li>
 								<li>
-									<LinkItem href='/#contact' text={t("nav.contact")} />
+									<LinkItem href="/#contact" text={t('nav.contact')} />
 								</li>
 							</ul>
 						</div>
-						<div className='flex gap-2'>
+						<div className="flex gap-2">
 							<Dropdown
 								overlay={menu}
-								placement='bottomRight'
-								trigger={["click"]}
+								placement="bottomRight"
+								trigger={['click']}
 							>
 								<a
-									href='#'
-									className='flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover'
+									href="#"
+									className="flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
 								>
 									<MdLanguage />
 								</a>
 							</Dropdown>
 
-							{data?.facebook && data?.facebook !== "undefined" && (
+							{data?.facebook && data?.facebook !== 'undefined' && (
 								<a
 									href={data?.facebook}
-									target='_blank'
-									rel='noopener noreferrer'
-									className='flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover'
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
 								>
 									<FaFacebook />
 								</a>
 							)}
-							{data?.whatsapp && data?.whatsapp !== "undefined" && (
+							{data?.whatsapp && data?.whatsapp !== 'undefined' && (
 								<a
-									href={"https://wa.me/9" + data?.whatsapp}
-									target='_blank'
-									rel='noopener noreferrer'
-									className='flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover'
+									href={'https://wa.me/9' + data?.whatsapp}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
 								>
 									<FaWhatsapp />
 								</a>
 							)}
-							{data?.instagram && data?.instagram !== "undefined" && (
+							{data?.instagram && data?.instagram !== 'undefined' && (
 								<a
 									href={data?.instagram}
-									target='_blank'
-									rel='noopener noreferrer'
-									className='flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover'
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
 								>
 									<FaInstagram />
 								</a>
 							)}
-							{data?.osmanbaba && data?.osmanbaba !== "undefined" && (
+							{data?.osmanbaba && data?.osmanbaba !== 'undefined' && (
 								<a
 									href={data?.osmanbaba}
-									target='_blank'
-									rel='noopener noreferrer'
-									className='flex overflow-hidden justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover'
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex overflow-hidden justify-center text-white items-center w-8 h-8 rounded-full bg-primYellow hover:bg-primYellowHover"
 								>
-									<img src='/oslogo.png' alt='osmanbaba' />
+									<Image
+										src="/oslogo.png"
+										alt="osmanbaba"
+										width={340}
+										height={340}
+									/>
 								</a>
 							)}
 						</div>
-						<div className='block sm:hidden'>
+						<div className="block sm:hidden">
 							<NavSwitch open={open} toggleNavbar={toggleNavbar} />
 						</div>
 					</div>

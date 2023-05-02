@@ -2,13 +2,13 @@
 
 import { FC, useContext } from "react";
 import Container from "../container";
-import Button from "../elements/Button";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { LayoutContext } from "@/context/layout.context";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
+import Form from "../contact_form";
 
 const Contact: FC<{}> = () => {
 	const { settings } = useContext(LayoutContext);
@@ -154,140 +154,7 @@ const Contact: FC<{}> = () => {
 						</div>
 
 						<div className='order-2 xs:order-3 col-span-3 md:col-span-1 mx-8'>
-							<form>
-								<div className='grid grid-cols-2 gap-2'>
-									<div className='col-span-1'>
-										<motion.div
-											style={{ position: "relative" }}
-											whileInView={{
-												opacity: 1,
-												top: 0,
-												transition: {
-													delay: 0,
-													duration: 0.8,
-												},
-											}}
-											initial={{
-												top: -10,
-												opacity: 0,
-											}}
-										>
-											<div className='mb-6'>
-												<input
-													type='firstName'
-													id='firstName'
-													className='bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 '
-													placeholder={t("name")}
-													required
-												/>
-											</div>
-										</motion.div>
-									</div>
-									<div className='col-span-1'>
-										<motion.div
-											style={{ position: "relative" }}
-											whileInView={{
-												opacity: 1,
-												top: 0,
-												transition: {
-													delay: 0.4,
-													duration: 0.8,
-												},
-											}}
-											initial={{
-												top: -10,
-												opacity: 0,
-											}}
-										>
-											<div className='mb-6'>
-												<input
-													type='lastName'
-													id='lastName'
-													className='bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 '
-													placeholder={t("country")}
-													required
-												/>
-											</div>
-										</motion.div>
-									</div>
-									<div className='col-span-2'>
-										<motion.div
-											style={{ position: "relative" }}
-											whileInView={{
-												opacity: 1,
-												top: 0,
-												transition: {
-													delay: 0.8,
-													duration: 0.8,
-												},
-											}}
-											initial={{
-												top: -10,
-												opacity: 0,
-											}}
-										>
-											<div className='mb-6'>
-												<input
-													type='email'
-													id='email'
-													className='bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 '
-													placeholder={t("email")}
-													required
-												/>
-											</div>
-										</motion.div>
-									</div>
-									<div className='col-span-2'>
-										<motion.div
-											style={{ position: "relative" }}
-											whileInView={{
-												opacity: 1,
-												top: 0,
-												transition: {
-													delay: 1.2,
-													duration: 0.8,
-												},
-											}}
-											initial={{
-												top: -10,
-												opacity: 0,
-											}}
-										>
-											<div className='mb-6'>
-												<textarea
-													id='message'
-													className='bg-gray-50 border border-slate-500 text-gray-900 text-sm  focus:ring-red-500 focus:border-red-500 block w-full p-1.5 '
-													placeholder={t("message")}
-													required
-												/>
-											</div>
-										</motion.div>
-									</div>
-								</div>
-								<motion.div
-									style={{ position: "relative" }}
-									whileInView={{
-										opacity: 1,
-										top: 0,
-										transition: {
-											delay: 1.6,
-											duration: 0.8,
-										},
-									}}
-									initial={{
-										top: -10,
-										opacity: 0,
-									}}
-								>
-									<Button
-										className='w-[100px] block m-auto border-none text-md'
-										color='secondary'
-										type='fill'
-									>
-										{t("send")}
-									</Button>
-								</motion.div>
-							</form>
+							<Form email={settings?.email} />
 						</div>
 					</div>
 				</Container>
